@@ -11,10 +11,9 @@ const registerUser = asyncHandler(async (req, res) => {
     const { name, email, phone, password } = req.body;
 
     const userExists = await User.findOne({ email });
-
     if (userExists) {
         if (!userExists.profileCreated) {
-            // User exists but haven't verified OTP yet, let's update OTP and resend
+            // ... (existing OTP resend logic)
             const otp = generateOTP();
             const otpExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 mins
 
@@ -29,8 +28,14 @@ const registerUser = asyncHandler(async (req, res) => {
             });
         } else {
             res.status(400);
-            throw new Error('User already exists');
+            throw new Error('Email is already registered');
         }
+    }
+
+    const phoneExists = await User.findOne({ phone });
+    if (phoneExists) {
+        res.status(400);
+        throw new Error('Mobile number is already registered');
     }
 
     const otp = generateOTP();
@@ -90,7 +95,24 @@ const authUser = asyncHandler(async (req, res) => {
 
     const user = await User.findOne({ email });
 
-    if (user && (await user.comparePassword(password))) {
+    if (!user) {
+        await logAction({
+            user: null,
+            action: 'Login Failed',
+            resource: 'Authentication',
+            details: `Failed login attempt (Invalid Email) for: ${email}`,
+            req
+        });
+        res.status(401);
+        throw new Error('Invalid email address');
+    }
+
+    if (user.isDeleted) {
+        res.status(403);
+        throw new Error('Your account has been archived. Please contact administration.');
+    }
+
+    if (await user.comparePassword(password)) {
         res.json({
             _id: user._id,
             name: user.name,
@@ -108,14 +130,14 @@ const authUser = asyncHandler(async (req, res) => {
         });
     } else {
         await logAction({
-            user: null, // No user for failed login
+            user,
             action: 'Login Failed',
             resource: 'Authentication',
-            details: `Failed login attempt for email: ${email}`,
+            details: `Failed login attempt (Wrong Password) for: ${email}`,
             req
         });
         res.status(401);
-        throw new Error('Invalid email or password');
+        throw new Error('Wrong password');
     }
 });
 
@@ -126,7 +148,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
     const { email } = req.body;
     const user = await User.findOne({ email });
 
-    if (!user) {
+    if (!user || user.isDeleted) {
         res.status(404);
         throw new Error('User not found');
     }

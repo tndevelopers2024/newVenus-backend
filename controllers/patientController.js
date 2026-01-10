@@ -48,7 +48,7 @@ const getMedicalHistory = asyncHandler(async (req, res) => {
 // @route   GET /api/patient/doctors
 // @access  Private/Patient
 const getDoctors = asyncHandler(async (req, res) => {
-    const doctors = await User.find({ role: 'doctor' }).select('-password');
+    const doctors = await User.find({ role: 'doctor', isDeleted: { $ne: true } }).select('-password');
     res.json(doctors);
 });
 

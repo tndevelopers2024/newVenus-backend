@@ -177,13 +177,16 @@ const searchMedications = asyncHandler(async (req, res) => {
 });
 
 // @desc    Get unique patients for doctor
+// @desc    Get unique patients for doctor
 // @route   GET /api/doctor/patients
 // @access  Private/Doctor
 const getDoctorPatients = asyncHandler(async (req, res) => {
     const patients = await Appointment.find({ doctor: req.user._id }).distinct('patient');
 
-    const patientDetails = await User.find({ _id: { $in: patients } })
-        .select('name email phone createdAt');
+    const patientDetails = await User.find({
+        _id: { $in: patients },
+        isDeleted: { $ne: true }
+    }).select('name email phone createdAt');
 
     const patientList = await Promise.all(patientDetails.map(async (p) => {
         const lastAppt = await Appointment.findOne({ doctor: req.user._id, patient: p._id })

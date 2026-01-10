@@ -10,7 +10,8 @@ const {
     assignAppointment,
     getAppointments,
     deleteAppointment,
-    updateInvoiceStatus
+    updateInvoiceStatus,
+    restoreUser
 } = require('../controllers/adminController');
 const { protect, authorize } = require('../middleware/auth');
 
@@ -21,6 +22,7 @@ router.get('/users', getUsers);
 router.get('/invoices', getInvoices);
 router.get('/logs', getAuditLogs);
 router.delete('/users/:id', deleteUser);
+router.put('/users/:id/restore', restoreUser); // Restore route
 router.post('/doctors', createDoctor);
 router.post('/patients', createPatient);
 router.post('/appointments', assignAppointment);

@@ -72,7 +72,6 @@ const createDoctor = asyncHandler(async (req, res) => {
     res.status(201).json(doctor);
 });
 
-
 // @desc    Delete user
 // @route   DELETE /api/admin/users/:id
 // @access  Private/Admin
@@ -86,17 +85,45 @@ const deleteUser = asyncHandler(async (req, res) => {
         res.status(403);
         throw new Error('Superadmin accounts cannot be deleted');
     }
-    await user.deleteOne();
+
+    // Soft Delete
+    user.isDeleted = true;
+    await user.save();
 
     await logAction({
         user: req.user,
         action: 'Delete User',
         resource: 'User Management',
-        details: `Permanently removed user ${user.name} (${user.email})`,
+        details: `Soft deleted user ${user.name} (${user.email}) - Data preserved`,
         req
     });
 
-    res.json({ message: 'User removed' });
+    res.json({ message: 'User removed from active registry' });
+});
+
+// @desc    Restore a soft-deleted user
+// @route   PUT /api/admin/users/:id/restore
+// @access  Private/Admin
+const restoreUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+        res.status(404);
+        throw new Error('User not found');
+    }
+
+    // Restore User
+    user.isDeleted = false;
+    await user.save();
+
+    await logAction({
+        user: req.user,
+        action: 'Restore User',
+        resource: 'User Management',
+        details: `Restored user ${user.name} (${user.email}) from archives`,
+        req
+    });
+
+    res.json({ message: 'User restored successfully' });
 });
 
 // @desc    Assign appointment to a doctor
@@ -238,6 +265,7 @@ module.exports = {
     createDoctor,
     createPatient,
     deleteUser,
+    restoreUser,
     getInvoices,
     getAuditLogs,
     assignAppointment,

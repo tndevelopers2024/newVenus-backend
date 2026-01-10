@@ -54,13 +54,9 @@ app.use('/api/patient', require('./routes/patientRoutes'));
 app.use('/api/admin', require('./routes/adminRoutes'));
 
 // Error Handling Middleware
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json({
-        message: 'Internal Server Error',
-        error: process.env.NODE_ENV === 'development' ? err.message : {}
-    });
-});
+const { notFound, errorHandler } = require('./middleware/errorMiddleware');
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, () => {
