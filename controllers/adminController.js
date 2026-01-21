@@ -42,9 +42,24 @@ const getAuditLogs = asyncHandler(async (req, res) => {
 const createDoctor = asyncHandler(async (req, res) => {
     const { name, email, phone } = req.body;
 
-    const userExists = await User.findOne({ email });
+    const userExists = await User.findOne({
+        $or: [
+            { email: email },
+            { phone: phone }
+        ]
+    });
+
     if (userExists) {
         res.status(400);
+        if (userExists.email === email && userExists.phone === phone) {
+            throw new Error('User with this email and phone number already exists');
+        }
+        if (userExists.email === email) {
+            throw new Error('User with this email already exists');
+        }
+        if (userExists.phone === phone) {
+            throw new Error('User with this phone number already exists');
+        }
         throw new Error('User already exists');
     }
 
@@ -167,9 +182,24 @@ const assignAppointment = asyncHandler(async (req, res) => {
 const createPatient = asyncHandler(async (req, res) => {
     const { name, email, phone } = req.body;
 
-    const userExists = await User.findOne({ email });
+    const userExists = await User.findOne({
+        $or: [
+            { email: email },
+            { phone: phone }
+        ]
+    });
+
     if (userExists) {
         res.status(400);
+        if (userExists.email === email && userExists.phone === phone) {
+            throw new Error('User with this email and phone number already exists');
+        }
+        if (userExists.email === email) {
+            throw new Error('User with this email already exists');
+        }
+        if (userExists.phone === phone) {
+            throw new Error('User with this phone number already exists');
+        }
         throw new Error('User already exists');
     }
 
