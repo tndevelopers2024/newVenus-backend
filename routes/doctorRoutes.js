@@ -9,6 +9,7 @@ const {
     searchMedications,
     getPrescriptionByAppointment,
     updatePaymentStatus,
+    reorderAppointments
 } = require('../controllers/doctorController');
 const { protect, authorize } = require('../middleware/auth');
 
@@ -23,5 +24,6 @@ router.put('/appointments/:id', updateAppointmentStatus);
 router.patch('/appointments/:id/payment', updatePaymentStatus);
 router.get('/appointments/:id/prescription', getPrescriptionByAppointment);
 router.post('/prescriptions', createPrescription);
+router.put('/appointments/reorder', reorderAppointments);
 
 module.exports = router;

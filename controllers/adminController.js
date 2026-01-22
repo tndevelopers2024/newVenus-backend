@@ -40,7 +40,7 @@ const getAuditLogs = asyncHandler(async (req, res) => {
 // @route   POST /api/admin/doctors
 // @access  Private/Admin
 const createDoctor = asyncHandler(async (req, res) => {
-    const { name, email, phone } = req.body;
+    const { name, email, phone, specialization } = req.body;
 
     const userExists = await User.findOne({
         $or: [
@@ -69,6 +69,7 @@ const createDoctor = asyncHandler(async (req, res) => {
         name,
         email,
         phone,
+        specialization,
         password,
         role: 'doctor',
         profileCreated: true
@@ -80,7 +81,7 @@ const createDoctor = asyncHandler(async (req, res) => {
         user: req.user,
         action: 'Create Doctor',
         resource: 'User Management',
-        details: `Created doctor profile for ${name} (${email})`,
+        details: `Created doctor profile for ${name} (${email}) - ${specialization || 'General'}`,
         req
     });
 
@@ -290,6 +291,23 @@ const updateInvoiceStatus = asyncHandler(async (req, res) => {
     res.json(updatedInvoice);
 });
 
+// @desc    Migrate User IDs
+// @route   POST /api/admin/migrate-ids
+// @access  Private/Admin
+const migrateUserIds = asyncHandler(async (req, res) => {
+    // Find all users without displayId
+    const users = await User.find({ displayId: { $exists: false } });
+
+    let updatedCount = 0;
+    for (const user of users) {
+        // Saving triggers the pre-save hook which generates displayId
+        await user.save();
+        updatedCount++;
+    }
+
+    res.json({ message: `Successfully migrated ${updatedCount} users`, count: updatedCount });
+});
+
 module.exports = {
     getUsers,
     createDoctor,
@@ -301,5 +319,6 @@ module.exports = {
     assignAppointment,
     getAppointments,
     deleteAppointment,
-    updateInvoiceStatus
+    updateInvoiceStatus,
+    migrateUserIds
 };

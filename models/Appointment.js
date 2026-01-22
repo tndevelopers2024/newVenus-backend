@@ -15,6 +15,7 @@ const appointmentSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    sessionStartTime: Date, // Valid when status is 'Accepted' or 'Completed'
     type: {
         type: String,
         enum: ['In-person', 'Online'],
@@ -34,6 +35,10 @@ const appointmentSchema = new mongoose.Schema({
         pulse: String,
         weight: String
     },
+    order: {
+        type: Number,
+        default: 0
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Appointment', appointmentSchema);

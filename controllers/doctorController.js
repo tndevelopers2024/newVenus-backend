@@ -12,7 +12,8 @@ const { logAction } = require('../utils/logger');
 // @access  Private/Doctor
 const getDoctorAppointments = asyncHandler(async (req, res) => {
     const appointments = await Appointment.find({ doctor: req.user._id })
-        .populate('patient', 'name email phone');
+        .populate('patient', 'name email phone displayId')
+        .populate('doctor', 'name');
 
     const appointmentsWithPayment = await Promise.all(appointments.map(async (appt) => {
         const invoice = await Invoice.findOne({ appointment: appt._id });
@@ -38,6 +39,7 @@ const updateAppointmentStatus = asyncHandler(async (req, res) => {
         if (appointment) {
             appointment.status = status || appointment.status;
             if (date) appointment.date = date;
+            if (req.body.sessionStartTime) appointment.sessionStartTime = req.body.sessionStartTime;
 
             const updatedAppointment = await appointment.save();
 
@@ -80,7 +82,7 @@ const updateAppointmentStatus = asyncHandler(async (req, res) => {
 // @route   POST /api/doctor/prescriptions
 // @access  Private/Doctor
 const createPrescription = asyncHandler(async (req, res) => {
-    const { patientId, appointmentId, medications, notes, diagnosis, clinicalNotes, vitals, consultationFee, paymentStatus } = req.body;
+    const { patientId, appointmentId, medications, notes, diagnosis, clinicalNotes, vitals, consultationFee, paymentStatus, followUpDate } = req.body;
 
     // Create Prescription
     const prescription = await Prescription.create({
@@ -89,6 +91,7 @@ const createPrescription = asyncHandler(async (req, res) => {
         appointment: appointmentId,
         medications,
         notes,
+        followUpDate,
         isImmutable: true,
     });
 
@@ -137,14 +140,14 @@ const getPrescriptionByAppointment = asyncHandler(async (req, res) => {
     }
 
     // Verify ownership
-    if (appointment.doctor.toString() !== req.user._id.toString()) {
+    if (req.user.role !== 'superadmin' && appointment.doctor.toString() !== req.user._id.toString()) {
         res.status(403);
         throw new Error('Unauthorized access to this prescription');
     }
 
     const prescription = await Prescription.findOne({ appointment: req.params.id })
         .populate('doctor', 'name')
-        .populate('patient', 'name email phone');
+        .populate('patient', 'name email phone displayId');
 
     res.json({
         prescription,
@@ -277,6 +280,32 @@ const updatePaymentStatus = asyncHandler(async (req, res) => {
     res.json({ success: true, status: invoice.status });
 });
 
+// @desc    Reorder appointments
+// @route   PUT /api/doctor/appointments/reorder
+// @access  Private/Doctor
+const reorderAppointments = asyncHandler(async (req, res) => {
+    const { orderedIds } = req.body;
+
+    if (!orderedIds || !Array.isArray(orderedIds)) {
+        res.status(400);
+        throw new Error('Invalid data');
+    }
+
+    // Bulk update approach
+    const bulkOps = orderedIds.map((id, index) => ({
+        updateOne: {
+            filter: { _id: id, doctor: req.user._id },
+            update: { $set: { order: index } }
+        }
+    }));
+
+    if (bulkOps.length > 0) {
+        await Appointment.bulkWrite(bulkOps);
+    }
+
+    res.json({ success: true });
+});
+
 module.exports = {
     getDoctorAppointments,
     updateAppointmentStatus,
@@ -286,4 +315,5 @@ module.exports = {
     createPrescription,
     searchMedications,
     getPrescriptionByAppointment,
+    reorderAppointments
 };

@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
         enum: ['patient', 'doctor', 'superadmin'],
         default: 'patient',
     },
+    specialization: {
+        type: String,
+        required: false,
+    },
     profileCreated: {
         type: Boolean,
         default: false,
@@ -32,6 +36,11 @@ const userSchema = new mongoose.Schema({
     otp: {
         code: String,
         expiresAt: Date,
+    },
+    displayId: {
+        type: String,
+        unique: true,
+        sparse: true
     },
     isDeleted: {
         type: Boolean,
@@ -44,7 +53,23 @@ const userSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // Hash password before saving
+// Hash password before saving
 userSchema.pre('save', async function () {
+    // Generate displayId if not present
+    if (!this.displayId && this.name) {
+        const prefix = this.name.slice(0, 3).toUpperCase();
+
+        let suffix;
+        if (this._id) {
+            const idStr = this._id.toString();
+            const decimal = parseInt(idStr.slice(-4), 16);
+            suffix = (decimal % 1000).toString().padStart(3, '0');
+        } else {
+            suffix = Math.floor(100 + Math.random() * 900).toString();
+        }
+        this.displayId = `${prefix}-${suffix}`;
+    }
+
     if (!this.isModified('password')) return;
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);

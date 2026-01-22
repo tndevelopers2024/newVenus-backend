@@ -11,8 +11,10 @@ const {
     getAppointments,
     deleteAppointment,
     updateInvoiceStatus,
-    restoreUser
+    restoreUser,
+    migrateUserIds
 } = require('../controllers/adminController');
+const { getPrescriptionByAppointment } = require('../controllers/doctorController');
 const { protect, authorize } = require('../middleware/auth');
 
 router.use(protect);
@@ -28,6 +30,8 @@ router.post('/patients', createPatient);
 router.post('/appointments', assignAppointment);
 router.get('/appointments', getAppointments);
 router.delete('/appointments/:id', deleteAppointment);
+router.get('/appointments/:id/prescription', getPrescriptionByAppointment);
 router.patch('/invoices/:id/status', updateInvoiceStatus);
+router.post('/migrate-ids', migrateUserIds); // Temporary Migration Route
 
 module.exports = router;

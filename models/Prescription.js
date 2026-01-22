@@ -21,8 +21,10 @@ const prescriptionSchema = new mongoose.Schema({
         dosage: String,
         frequency: String,
         duration: String,
+        instruction: String, // e.g., "Before Food", "After Food"
     }],
     notes: String,
+    followUpDate: Date,
     pdfUrl: String, // URL to generated PDF in storage
     isImmutable: {
         type: Boolean,
