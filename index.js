@@ -25,12 +25,6 @@ const allowedOrigins = [
     'https://www.newvenusclinic.online'
 ];
 
-// Debug Middleware to see what's hitting the server
-app.use((req, res, next) => {
-    console.log(`[DEBUG] ${req.method} ${req.url} - Origin: ${req.headers.origin}`);
-    next();
-});
-
 app.use(cors({
     origin: function (origin, callback) {
         if (!origin) return callback(null, true);
@@ -42,8 +36,7 @@ app.use(cors({
         if (matchedOrigin) {
             callback(null, matchedOrigin);
         } else {
-            console.log(`[CORS] Rejected Origin: ${origin}`);
-            // Still allow with echoing back to help debug what the browser sees
+            // Echo back first origin for compatibility
             callback(null, origins[0]);
         }
     },

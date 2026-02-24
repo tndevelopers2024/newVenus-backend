@@ -74,33 +74,24 @@ const getPatientAppointments = asyncHandler(async (req, res) => {
 // @route   POST /api/patient/reports
 // @access  Private/Patient
 const uploadReport = asyncHandler(async (req, res) => {
-    try {
-        const { title } = req.body;
+    const { title } = req.body;
 
-        if (!req.file) {
-            console.log('[UPLOAD] No file received');
-            res.status(400);
-            throw new Error('No file uploaded');
-        }
-
-        console.log('[UPLOAD] Received file:', req.file.filename);
-
-        // Correct file URL using BACKEND_URL from environment or fallback to request host
-        const baseUrl = process.env.BACKEND_URL || `${req.protocol}://${req.get('host')}`;
-        const fileUrl = `${baseUrl}/uploads/${req.file.filename}`;
-
-        const report = await TestReport.create({
-            patient: req.user._id,
-            title,
-            fileUrl,
-        });
-
-        console.log('[UPLOAD] Report created in DB:', report._id);
-        res.status(201).json(report);
-    } catch (error) {
-        console.error('[UPLOAD] Error:', error);
-        throw error; // Rethrow for the main error handler
+    if (!req.file) {
+        res.status(400);
+        throw new Error('No file uploaded');
     }
+
+    // Correct file URL using BACKEND_URL from environment or fallback to request host
+    const baseUrl = process.env.BACKEND_URL || `${req.protocol}://${req.get('host')}`;
+    const fileUrl = `${baseUrl}/uploads/${req.file.filename}`;
+
+    const report = await TestReport.create({
+        patient: req.user._id,
+        title,
+        fileUrl,
+    });
+
+    res.status(201).json(report);
 });
 
 module.exports = {
