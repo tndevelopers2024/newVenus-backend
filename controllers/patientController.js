@@ -81,8 +81,9 @@ const uploadReport = asyncHandler(async (req, res) => {
         throw new Error('No file uploaded');
     }
 
-    // Correct file URL for local storage
-    const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+    // Correct file URL using BACKEND_URL from environment or fallback to request host
+    const baseUrl = process.env.BACKEND_URL || `${req.protocol}://${req.get('host')}`;
+    const fileUrl = `${baseUrl}/uploads/${req.file.filename}`;
 
     const report = await TestReport.create({
         patient: req.user._id,
