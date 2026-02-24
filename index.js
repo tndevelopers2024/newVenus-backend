@@ -25,19 +25,19 @@ const allowedOrigins = [
     'https://new-venus-clinic.vercel.app'
 ];
 
-app.use(cors({
-    origin: function (origin, callback) {
-        // More resilient origin check
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            // For now, allow but log if it's unexpected (better for debugging than crashing)
-            console.log('CORS blocked origin:', origin);
-            callback(null, true); // Temporarily allow all to see if it fixes the block
-        }
-    },
-    credentials: true
-}));
+// app.use(cors({
+//     origin: function (origin, callback) {
+//         // More resilient origin check
+//         if (!origin || allowedOrigins.includes(origin)) {
+//             callback(null, true);
+//         } else {
+//             // For now, allow but log if it's unexpected (better for debugging than crashing)
+//             console.log('CORS blocked origin:', origin);
+//             callback(null, true); // Temporarily allow all to see if it fixes the block
+//         }
+//     },
+//     credentials: true
+// }));
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -81,7 +81,7 @@ const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5003;
 const server = app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
