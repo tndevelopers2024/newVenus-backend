@@ -33,12 +33,18 @@ app.use((req, res, next) => {
 
 app.use(cors({
     origin: function (origin, callback) {
-        // Mirrored CORS: If origin is in our list or missing (local), allow it
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
+        if (!origin) return callback(null, true);
+
+        // Handle comma-separated origins (sometimes happens with proxies like OpenLiteSpeed)
+        const origins = origin.split(',').map(o => o.trim());
+        const matchedOrigin = origins.find(o => allowedOrigins.includes(o));
+
+        if (matchedOrigin) {
+            callback(null, matchedOrigin);
         } else {
             console.log(`[CORS] Rejected Origin: ${origin}`);
-            callback(null, true); // Still allow for now to debug "No header" issue
+            // Still allow with echoing back to help debug what the browser sees
+            callback(null, origins[0]);
         }
     },
     credentials: true,
