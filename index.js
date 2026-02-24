@@ -25,19 +25,11 @@ const allowedOrigins = [
     'https://new-venus-clinic.vercel.app'
 ];
 
-// app.use(cors({
-//     origin: function (origin, callback) {
-//         // More resilient origin check
-//         if (!origin || allowedOrigins.includes(origin)) {
-//             callback(null, true);
-//         } else {
-//             // For now, allow but log if it's unexpected (better for debugging than crashing)
-//             console.log('CORS blocked origin:', origin);
-//             callback(null, true); // Temporarily allow all to see if it fixes the block
-//         }
-//     },
-//     credentials: true
-// }));
+app.use(cors({
+    origin: allowedOrigins,
+    credentials: true,
+    optionsSuccessStatus: 200
+}));
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
