@@ -20,13 +20,27 @@ app.use(helmet({
 
 const allowedOrigins = [
     'http://localhost:5173',
+    'https://new-venus-clinic.vercel.app',
     'https://newvenusclinic.online',
-    'https://www.newvenusclinic.online',
-    'https://new-venus-clinic.vercel.app'
+    'https://www.newvenusclinic.online'
 ];
 
+// Debug Middleware to see what's hitting the server
+app.use((req, res, next) => {
+    console.log(`[DEBUG] ${req.method} ${req.url} - Origin: ${req.headers.origin}`);
+    next();
+});
+
 app.use(cors({
-    origin: allowedOrigins,
+    origin: function (origin, callback) {
+        // Mirrored CORS: If origin is in our list or missing (local), allow it
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            console.log(`[CORS] Rejected Origin: ${origin}`);
+            callback(null, true); // Still allow for now to debug "No header" issue
+        }
+    },
     credentials: true,
     optionsSuccessStatus: 200
 }));
