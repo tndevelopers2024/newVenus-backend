@@ -55,8 +55,8 @@ app.use(cors({
     maxAge: 86400 // Cache preflight for 24 hours
 }));
 
-// Explicitly handle pre-flight requests
-app.options('*', cors());
+// Explicitly handle pre-flight requests (Modern Express syntax)
+app.options('(.*)', cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
