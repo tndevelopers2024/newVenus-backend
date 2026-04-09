@@ -42,6 +42,11 @@ const getAuditLogs = asyncHandler(async (req, res) => {
 const createDoctor = asyncHandler(async (req, res) => {
     const { name, email, phone, specialization } = req.body;
 
+    if (!email) {
+        res.status(400);
+        throw new Error('Email is required for doctors');
+    }
+
     const userExists = await User.findOne({
         $or: [
             { email: email },
@@ -146,7 +151,7 @@ const restoreUser = asyncHandler(async (req, res) => {
 // @route   POST /api/admin/appointments
 // @access  Private/Admin
 const assignAppointment = asyncHandler(async (req, res) => {
-    const { patientId, doctorId, date, type, reason } = req.body;
+    const { patientId, doctorId, date, type, reason, vitals } = req.body;
 
     const appointment = await Appointment.create({
         patient: patientId,
@@ -154,6 +159,7 @@ const assignAppointment = asyncHandler(async (req, res) => {
         date,
         type,
         reason,
+        vitals,
         status: 'Accepted' // Assigned by admin, so pre-accepted
     });
 
@@ -183,12 +189,12 @@ const assignAppointment = asyncHandler(async (req, res) => {
 const createPatient = asyncHandler(async (req, res) => {
     const { name, email, phone } = req.body;
 
-    const userExists = await User.findOne({
-        $or: [
-            { email: email },
-            { phone: phone }
-        ]
-    });
+    const query = { $or: [{ phone: phone }] };
+    if (email) {
+        query.$or.push({ email: email });
+    }
+
+    const userExists = await User.findOne(query);
 
     if (userExists) {
         res.status(400);
@@ -208,14 +214,17 @@ const createPatient = asyncHandler(async (req, res) => {
 
     const patient = await User.create({
         name,
-        email,
+        email: email || undefined,
         phone,
         password,
         role: 'patient',
         profileCreated: true
     });
 
-    await sendWelcomeEmail(email, name, password, 'patient');
+    // For patients, we don't send emails as the portal is disabled
+    if (patient.role === 'doctor') {
+        await sendWelcomeEmail(email, name, password, 'doctor');
+    }
 
     await logAction({
         user: req.user,

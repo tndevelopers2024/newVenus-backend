@@ -82,15 +82,30 @@ const updateAppointmentStatus = asyncHandler(async (req, res) => {
 // @route   POST /api/doctor/prescriptions
 // @access  Private/Doctor
 const createPrescription = asyncHandler(async (req, res) => {
-    const { patientId, appointmentId, medications, notes, diagnosis, clinicalNotes, vitals, consultationFee, paymentStatus, followUpDate } = req.body;
+    let { patientId, appointmentId, medications, notes, diagnosis, clinicalNotes, vitals, consultationFee, paymentStatus, followUpDate } = req.body;
+
+    // Handle multipart/form-data parsing (if strings)
+    if (typeof medications === 'string') medications = JSON.parse(medications);
+    if (typeof vitals === 'string') vitals = JSON.parse(vitals);
+
+    // Get image path if uploaded (Normalized for the unified upload middleware)
+    const image = req.file ? `/uploads/${req.file.filename}` : null;
+
+    // VALIDATION FAILSAFE: If handwriting mode but no image received, throw error
+    if (!image && medications.length === 0 && !notes) {
+        // This is likely a failed upload in handwritten mode
+        res.status(400);
+        throw new Error('Prescription image was not received by the server. Please try again or check your internet connection.');
+    }
 
     // Create Prescription
     const prescription = await Prescription.create({
         doctor: req.user._id,
         patient: patientId,
         appointment: appointmentId,
-        medications,
+        medications: medications || [],
         notes,
+        image,
         followUpDate,
         isImmutable: true,
     });
@@ -125,7 +140,11 @@ const createPrescription = asyncHandler(async (req, res) => {
         req
     });
 
-    res.status(201).json(prescription);
+    const populatedPrescription = await Prescription.findById(prescription._id)
+        .populate('patient', 'name email phone displayId')
+        .populate('doctor', 'name');
+
+    res.status(201).json(populatedPrescription);
 });
 
 // @desc    Get prescription by appointment ID
@@ -306,6 +325,58 @@ const reorderAppointments = asyncHandler(async (req, res) => {
     res.json({ success: true });
 });
 
+const {
+    sendPrescriptionEmail
+} = require('../utils/emailHelper');
+
+const { generatePrescriptionPDF } = require('../utils/pdfHelper');
+
+// @desc    Share prescription via email
+// @route   POST /api/doctor/prescriptions/:id/share
+// @access  Private/Doctor
+const sharePrescription = asyncHandler(async (req, res) => {
+    const { email } = req.body;
+    const prescription = await Prescription.findById(req.params.id)
+        .populate('doctor', 'name')
+        .populate('patient', 'name email');
+
+    if (!prescription) {
+        res.status(404);
+        throw new Error('Prescription not found');
+    }
+
+    const appointment = await Appointment.findById(prescription.appointment);
+
+    const emailData = {
+        prescription: prescription.toObject ? prescription.toObject() : prescription,
+        clinicalDetails: {
+            diagnosis: appointment?.diagnosis,
+            clinicalNotes: appointment?.clinicalNotes,
+            vitals: appointment?.vitals
+        },
+        doctorName: prescription.doctor?.name || 'Medical Officer',
+        patientName: prescription.patient?.name || 'Patient',
+        dateStr: new Date(prescription.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
+    };
+
+    let pdfBuffer = null;
+    try {
+        pdfBuffer = await generatePrescriptionPDF(emailData);
+    } catch (pdfError) {
+        console.error('[DOCTOR CONTROLLER] PDF Generation Failed:', pdfError);
+        // Continue sending email even if PDF generation fails
+    }
+
+    const success = await sendPrescriptionEmail(email || prescription.patient.email, emailData, pdfBuffer);
+
+    if (success) {
+        res.json({ message: 'Prescription shared successfully' });
+    } else {
+        res.status(500);
+        throw new Error('Failed to send email');
+    }
+});
+
 module.exports = {
     getDoctorAppointments,
     updateAppointmentStatus,
@@ -315,5 +386,6 @@ module.exports = {
     createPrescription,
     searchMedications,
     getPrescriptionByAppointment,
-    reorderAppointments
+    reorderAppointments,
+    sharePrescription
 };

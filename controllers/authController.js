@@ -112,6 +112,18 @@ const authUser = asyncHandler(async (req, res) => {
         throw new Error('Your account has been archived. Please contact administration.');
     }
 
+    if (user.role === 'patient') {
+        await logAction({
+            user: null,
+            action: 'Login Failed',
+            resource: 'Authentication',
+            details: `Failed login attempt (Disabled Patient Portal) for: ${email}`,
+            req
+        });
+        res.status(403);
+        throw new Error('Patient portal access is currently disabled. Please contact clinic administration.');
+    }
+
     if (await user.comparePassword(password)) {
         res.json({
             _id: user._id,

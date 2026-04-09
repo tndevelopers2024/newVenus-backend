@@ -24,6 +24,7 @@ const prescriptionSchema = new mongoose.Schema({
         instruction: String, // e.g., "Before Food", "After Food"
     }],
     notes: String,
+    image: String, // URL/Path to uploaded handwritten prescription image
     followUpDate: Date,
     pdfUrl: String, // URL to generated PDF in storage
     isImmutable: {
