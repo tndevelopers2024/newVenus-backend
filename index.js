@@ -22,27 +22,28 @@ const allowedOrigins = [
     'http://localhost:5173',
     'https://new-venus-clinic.vercel.app',
     'https://newvenusclinic.online',
-    'https://www.newvenusclinic.online'
+    'https://www.newvenusclinic.online',
+    'https://new-venus-clinic-git-main-tndevelopers2024s-projects.vercel.app' // Extra vercel preview just in case
 ];
 
 app.use(cors({
     origin: function (origin, callback) {
+        // allow requests with no origin (like mobile apps or curl requests)
         if (!origin) return callback(null, true);
-
-        // Handle comma-separated origins (sometimes happens with proxies like OpenLiteSpeed)
-        const origins = origin.split(',').map(o => o.trim());
-        const matchedOrigin = origins.find(o => allowedOrigins.includes(o));
-
-        if (matchedOrigin) {
-            callback(null, matchedOrigin);
+        
+        if (allowedOrigins.indexOf(origin) !== -1 || origin.endsWith('.vercel.app')) {
+            callback(null, true);
         } else {
-            // Echo back first origin for compatibility
-            callback(null, origins[0]);
+            callback(new Error('Not allowed by CORS'));
         }
     },
     credentials: true,
-    optionsSuccessStatus: 200
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// Explicitly handle pre-flight requests
+app.options('*', cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
