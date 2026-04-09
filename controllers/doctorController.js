@@ -82,70 +82,82 @@ const updateAppointmentStatus = asyncHandler(async (req, res) => {
 // @route   POST /api/doctor/prescriptions
 // @access  Private/Doctor
 const createPrescription = asyncHandler(async (req, res) => {
-    let { patientId, appointmentId, medications, notes, diagnosis, clinicalNotes, vitals, consultationFee, paymentStatus, followUpDate } = req.body;
+    try {
+        let { patientId, appointmentId, medications, notes, diagnosis, clinicalNotes, vitals, consultationFee, paymentStatus, followUpDate } = req.body;
 
-    // Handle multipart/form-data parsing (if strings)
-    if (typeof medications === 'string') medications = JSON.parse(medications);
-    if (typeof vitals === 'string') vitals = JSON.parse(vitals);
+        // Handle multipart/form-data parsing (if strings)
+        if (typeof medications === 'string') {
+            try { medications = JSON.parse(medications); } 
+            catch (e) { console.error('[CreatePrescription] Medications JSON Parse Error:', e, 'Raw:', medications); }
+        }
+        if (typeof vitals === 'string') {
+            try { vitals = JSON.parse(vitals); }
+            catch (e) { console.error('[CreatePrescription] Vitals JSON Parse Error:', e, 'Raw:', vitals); }
+        }
 
-    // Get image path if uploaded (Normalized for the unified upload middleware)
-    const image = req.file ? `/uploads/${req.file.filename}` : null;
+        // Get image path if uploaded (Normalized for the unified upload middleware)
+        const image = req.file ? `/uploads/${req.file.filename}` : null;
 
-    // VALIDATION FAILSAFE: If handwriting mode but no image received, throw error
-    if (!image && medications.length === 0 && !notes) {
-        // This is likely a failed upload in handwritten mode
-        res.status(400);
-        throw new Error('Prescription image was not received by the server. Please try again or check your internet connection.');
+        // VALIDATION FAILSAFE: If handwriting mode but no image received, throw error
+        if (!image && (!medications || medications.length === 0) && !notes) {
+            console.warn('[CreatePrescription] Empty prescription attempt blocked (Handwritten mode failure?)');
+            res.status(400);
+            throw new Error('Prescription image was not received by the server. Please try again or check your internet connection.');
+        }
+
+        // Create Prescription
+        const prescription = await Prescription.create({
+            doctor: req.user._id,
+            patient: patientId,
+            appointment: appointmentId,
+            medications: medications || [],
+            notes,
+            image,
+            followUpDate,
+            isImmutable: true,
+        });
+
+        // Update Appointment with clinical details
+        const appointment = await Appointment.findById(appointmentId);
+        if (appointment) {
+            appointment.diagnosis = diagnosis;
+            appointment.clinicalNotes = clinicalNotes;
+            appointment.vitals = vitals;
+            appointment.status = 'Completed';
+            await appointment.save();
+        }
+
+        // CREATE INVOICE (Dynamic Fee)
+        const finalFee = consultationFee || 500;
+        const invoiceNumber = `INV-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+        await Invoice.create({
+            invoiceNumber,
+            patient: patientId,
+            appointment: appointmentId,
+            items: [{ description: 'Consultation Fee', amount: finalFee }],
+            totalAmount: finalFee,
+            status: paymentStatus || 'Unpaid'
+        });
+
+        await logAction({
+            user: req.user,
+            action: 'Create Prescription',
+            resource: 'Clinical Consultation',
+            details: `Finalized clinical record and issued prescription for appointment ${appointmentId}`,
+            req
+        });
+
+        const populatedPrescription = await Prescription.findById(prescription._id)
+            .populate('patient', 'name email phone displayId')
+            .populate('doctor', 'name');
+
+        res.status(201).json(populatedPrescription);
+    } catch (error) {
+        console.error('[CRITICAL] createPrescription failed at controller level:', error);
+        throw error;
     }
-
-    // Create Prescription
-    const prescription = await Prescription.create({
-        doctor: req.user._id,
-        patient: patientId,
-        appointment: appointmentId,
-        medications: medications || [],
-        notes,
-        image,
-        followUpDate,
-        isImmutable: true,
-    });
-
-    // Update Appointment with clinical details
-    const appointment = await Appointment.findById(appointmentId);
-    if (appointment) {
-        appointment.diagnosis = diagnosis;
-        appointment.clinicalNotes = clinicalNotes;
-        appointment.vitals = vitals;
-        appointment.status = 'Completed';
-        await appointment.save();
-    }
-
-    // CREATE INVOICE (Dynamic Fee)
-    const finalFee = consultationFee || 500;
-    const invoiceNumber = `INV-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
-    await Invoice.create({
-        invoiceNumber,
-        patient: patientId,
-        appointment: appointmentId,
-        items: [{ description: 'Consultation Fee', amount: finalFee }],
-        totalAmount: finalFee,
-        status: paymentStatus || 'Unpaid'
-    });
-
-    await logAction({
-        user: req.user,
-        action: 'Create Prescription',
-        resource: 'Clinical Consultation',
-        details: `Finalized clinical record and issued prescription for appointment ${appointmentId}`,
-        req
-    });
-
-    const populatedPrescription = await Prescription.findById(prescription._id)
-        .populate('patient', 'name email phone displayId')
-        .populate('doctor', 'name');
-
-    res.status(201).json(populatedPrescription);
 });
+
 
 // @desc    Get prescription by appointment ID
 // @route   GET /api/doctor/appointments/:id/prescription
