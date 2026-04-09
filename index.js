@@ -28,18 +28,31 @@ const allowedOrigins = [
 
 app.use(cors({
     origin: function (origin, callback) {
-        // allow requests with no origin (like mobile apps or curl requests)
+        console.log('[DEBUG] CORS Request Origin:', origin);
+        
+        // Allow requests with no origin (like mobile apps or curl)
         if (!origin) return callback(null, true);
         
-        if (allowedOrigins.indexOf(origin) !== -1 || origin.endsWith('.vercel.app')) {
+        const isAllowed = allowedOrigins.includes(origin) || 
+                         origin.endsWith('.vercel.app') || 
+                         origin.includes('vercel.app') ||
+                         origin.includes('localhost');
+
+        if (isAllowed) {
+            console.log('[DEBUG] CORS Status: ALLOWED');
             callback(null, true);
         } else {
-            callback(new Error('Not allowed by CORS'));
+            console.warn('[DEBUG] CORS Status: REJECTED', origin);
+            // Instead of throwing an error which might strip headers, 
+            // just return false to let the cors middleware handle it standardly
+            callback(null, false);
         }
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+    exposedHeaders: ['Content-Range', 'X-Content-Range'],
+    maxAge: 86400 // Cache preflight for 24 hours
 }));
 
 // Explicitly handle pre-flight requests
