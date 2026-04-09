@@ -28,7 +28,12 @@ const allowedOrigins = [
 
 // Conflict-Avoiding CORS Middleware
 app.use((req, res, next) => {
-    const origin = req.headers.origin;
+    const rawOrigin = req.headers.origin;
+    
+    // Handle cases where the proxy might duplicate the Origin header
+    // e.g. "https://domain.com, https://domain.com"
+    const origin = rawOrigin ? rawOrigin.split(',')[0].trim() : null;
+
     const isAllowed = !origin || 
                       allowedOrigins.includes(origin) || 
                       origin.endsWith('.vercel.app') || 
