@@ -110,7 +110,7 @@ const generatePrescriptionPDF = async (data) => {
             // --- Header Section ---
             doc.fillColor(BLACK).fontSize(14).font('Helvetica-Bold').text(`DR. ${doctorName.toUpperCase()}`, 40, 40, { width: 300 });
 
-            const logoPath = path.join(__dirname, '..', '..', 'venus-frontend', 'public', 'images', 'venus-logo.png');
+            const logoPath = path.join(__dirname, '..', 'assets', 'venus-logo.png');
             if (fs.existsSync(logoPath)) {
                 doc.image(logoPath, 365, 30, { width: 190, align: 'right' });
             }

@@ -97,7 +97,7 @@ const sendPrescriptionEmail = async (patientEmail, data, pdfBuffer = null) => {
                         content: pdfBuffer
                     });
                 }
-                const logoPath = path.join(__dirname, '..', '..', 'venus-frontend', 'public', 'images', 'venus-logo.png');
+                const logoPath = path.join(__dirname, '..', 'assets', 'venus-logo.png');
                 if (fs.existsSync(logoPath)) {
                     att.push({
                         filename: 'venus-logo.png',
