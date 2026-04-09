@@ -95,6 +95,10 @@ const createPrescription = asyncHandler(async (req, res) => {
             catch (e) { console.error('[CreatePrescription] Vitals JSON Parse Error:', e, 'Raw:', vitals); }
         }
 
+        // DIAGNOSTIC LOGGING
+        console.log('[CreatePrescription] Raw req.file:', req.file);
+        console.log('[CreatePrescription] Raw req.body keys:', Object.keys(req.body));
+
         // Get image path if uploaded (Normalized for the unified upload middleware)
         const image = req.file ? `/uploads/${req.file.filename}` : null;
 

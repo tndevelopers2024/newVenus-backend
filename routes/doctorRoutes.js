@@ -25,7 +25,19 @@ router.put('/appointments/reorder', authorize('doctor'), reorderAppointments);
 router.put('/appointments/:id', authorize('doctor'), updateAppointmentStatus);
 router.patch('/appointments/:id/payment', authorize('doctor'), updatePaymentStatus);
 router.get('/appointments/:id/prescription', authorize('doctor'), getPrescriptionByAppointment);
-router.post('/prescriptions', authorize('doctor'), upload.single('image'), createPrescription);
+router.post('/prescriptions', 
+    authorize('doctor'), 
+    (req, res, next) => {
+        console.log('[INSPECTION] Upload Request Headers:', {
+            contentType: req.headers['content-type'],
+            origin: req.headers['origin'],
+            length: req.headers['content-length']
+        });
+        next();
+    },
+    upload.single('image'), 
+    createPrescription
+);
 router.post('/prescriptions/:id/share', authorize('doctor', 'superadmin'), sharePrescription);
 
 module.exports = router;
