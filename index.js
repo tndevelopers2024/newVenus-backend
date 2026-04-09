@@ -26,34 +26,31 @@ const allowedOrigins = [
     'https://new-venus-clinic-git-main-tndevelopers2024s-projects.vercel.app' // Extra vercel preview just in case
 ];
 
-app.use(cors({
-    origin: function (origin, callback) {
-        console.log('[DEBUG] CORS Request Origin:', origin);
-        
-        // Allow requests with no origin (like mobile apps or curl)
-        if (!origin) return callback(null, true);
-        
-        const isAllowed = allowedOrigins.includes(origin) || 
-                         origin.endsWith('.vercel.app') || 
-                         origin.includes('vercel.app') ||
-                         origin.includes('localhost');
+// Conflict-Avoiding CORS Middleware
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    const isAllowed = !origin || 
+                      allowedOrigins.includes(origin) || 
+                      origin.endsWith('.vercel.app') || 
+                      origin.includes('vercel.app') ||
+                      origin.includes('localhost');
 
-        if (isAllowed) {
-            console.log('[DEBUG] CORS Status: ALLOWED');
-            callback(null, true);
-        } else {
-            console.warn('[DEBUG] CORS Status: REJECTED', origin);
-            // Instead of throwing an error which might strip headers, 
-            // just return false to let the cors middleware handle it standardly
-            callback(null, false);
+    if (isAllowed && origin) {
+        // Only set header if NOT already set by Proxy (OpenLiteSpeed/Nginx)
+        if (!res.getHeader('Access-Control-Allow-Origin')) {
+            res.setHeader('Access-Control-Allow-Origin', origin);
+            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+            res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Accept');
+            res.setHeader('Access-Control-Allow-Credentials', 'true');
         }
-    },
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
-    exposedHeaders: ['Content-Range', 'X-Content-Range'],
-    maxAge: 86400 // Cache preflight for 24 hours
-}));
+    }
+    
+    // Handle Preflight
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+    next();
+});
 
 // app.options() is no longer needed as app.use(cors()) handles OPTIONS automatically
 app.use(morgan('dev'));
