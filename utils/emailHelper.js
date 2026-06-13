@@ -36,13 +36,13 @@ const sendPrescriptionEmail = async (patientEmail, data, pdfBuffer = null) => {
         const imagePart = '';
 
         const mailOptions = {
-            from: `"Venus Healthcare" <${process.env.EMAIL_USER}>`,
+            from: `"New Venus Clinic" <${process.env.EMAIL_USER}>`,
             to: patientEmail,
-            subject: `Digital Prescription - ${dateStr} - Venus Healthcare`,
+            subject: `Digital Prescription - ${dateStr} - New Venus Clinic`,
             html: `
                 <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: auto; padding: 30px; border: 1px solid #e2e8f0; border-radius: 24px; color: #1e293b;">
                     <div style="text-align: center; margin-bottom: 30px;">
-                        <img src="cid:venus-logo" alt="Venus Healthcare Logo" style="height: 60px; max-width: 100%; object-fit: contain; margin: 0 auto;" />
+                        <img src="cid:venus-logo" alt="New Venus clinic Logo" style="height: 60px; max-width: 100%; object-fit: contain; margin: 0 auto;" />
                     </div>
 
                     <div style="background-color: #f0fdfa; border-radius: 16px; padding: 20px; margin-bottom: 30px;">
@@ -84,7 +84,7 @@ const sendPrescriptionEmail = async (patientEmail, data, pdfBuffer = null) => {
 
                     <div style="margin-top: 40px; border-top: 1px solid #e2e8f0; padding-top: 20px; text-align: center;">
                         <p style="font-size: 11px; color: #94a3b8; margin: 0;">This is an automated health record. For any emergencies, please visit the clinic directly.</p>
-                        <p style="font-size: 14px; font-weight: bold; color: #0d9488; margin-top: 15px;">Venus Healthcare Clinic</p>
+                        <p style="font-size: 14px; font-weight: bold; color: #0d9488; margin-top: 15px;">New Venus Clinic</p>
                         <p style="font-size: 11px; color: #64748b;">Chennai, Tamil Nadu</p>
                     </div>
                 </div>
@@ -123,12 +123,12 @@ module.exports = {
     sendOTP: async (email, otp) => {
         const transporter = createTransporter();
         const mailOptions = {
-            from: `"Venus Healthcare" <${process.env.EMAIL_USER}>`,
+            from: `"New Venus Clinic" <${process.env.EMAIL_USER}>`,
             to: email,
-            subject: 'Your Venus Healthcare OTP',
+            subject: 'Your New Venus Clinic OTP',
             html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px;">
-                    <h2 style="color: #0d9488; text-align: center;">Venus Healthcare Portal</h2>
+                    <h2 style="color: #0d9488; text-align: center;">New Venus Clinic Portal</h2>
                     <p>Your verification code is:</p>
                     <div style="background-color: #f0fdfa; padding: 20px; text-align: center; border-radius: 8px; margin: 20px 0;">
                         <span style="font-size: 32px; font-weight: bold; letter-spacing: 10px; color: #0f766e;">${otp}</span>
@@ -141,7 +141,7 @@ module.exports = {
     sendWelcomeEmail: async (email, name, password, role) => {
         const transporter = createTransporter();
         const mailOptions = {
-            from: `"Venus Healthcare" <${process.env.EMAIL_USER}>`,
+            from: `"New Venus Clinic" <${process.env.EMAIL_USER}>`,
             to: email,
             subject: 'Welcome to New Venus Clinic Portal',
             html: `

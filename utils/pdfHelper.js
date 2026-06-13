@@ -86,7 +86,7 @@ const generatePrescriptionPDF = async (data) => {
             const doc = new PDFDocument({ 
                 margin: 40, 
                 size: 'A4',
-                info: { Title: `Prescription - ${patientName}`, Author: 'Venus Healthcare' }
+                info: { Title: `Prescription - ${patientName}`, Author: 'New Venus Clinic' }
             });
 
             const buffers = [];

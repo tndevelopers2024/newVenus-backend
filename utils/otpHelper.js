@@ -19,22 +19,22 @@ const sendOTP = async (email, otp) => {
         });
 
         const mailOptions = {
-            from: `"Venus Healthcare" <${process.env.EMAIL_USER}>`,
+            from: `"New Venus Clinic" <${process.env.EMAIL_USER}>`,
             to: email,
-            subject: 'Your Venus Healthcare OTP',
+            subject: 'Your New Venus Clinic OTP',
             text: `Your OTP for registration is: ${otp}. It will expire in 10 minutes.`,
             html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e2e8f0; rounded-lg: 12px;">
-          <h2 style="color: #0d9488; text-align: center;">Venus Healthcare Portal</h2>
+          <h2 style="color: #0d9488; text-align: center;">New Venus Clinic Portal</h2>
           <p>Hello,</p>
-          <p>Your verification code for the Venus Healthcare Portal is:</p>
+          <p>Your verification code for the New Venus Clinic Portal is:</p>
           <div style="background-color: #f0fdfa; padding: 20px; text-align: center; border-radius: 8px; margin: 20px 0;">
             <span style="font-size: 32px; font-weight: bold; letter-spacing: 10px; color: #0f766e;">${otp}</span>
           </div>
           <p>This code will expire in 10 minutes.</p>
           <p>If you didn't request this code, please ignore this email.</p>
           <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
-          <p style="font-size: 12px; color: #64748b; text-align: center;">&copy; 2026 Venus Healthcare. All rights reserved.</p>
+          <p style="font-size: 12px; color: #64748b; text-align: center;">&copy; 2026 New Venus Clinic. All rights reserved.</p>
         </div>
       `,
         };
@@ -70,7 +70,7 @@ const sendWelcomeEmail = async (email, name, password, role) => {
         });
 
         const mailOptions = {
-            from: `"Venus Healthcare" <${process.env.EMAIL_USER}>`,
+            from: `"New Venus Clinic" <${process.env.EMAIL_USER}>`,
             to: email,
             subject: 'Welcome to New Venus Clinic Portal',
             text: `Hello ${name}, your account as a ${role} has been created. Your password is: ${password}`,
@@ -87,7 +87,7 @@ const sendWelcomeEmail = async (email, name, password, role) => {
           <p>Please change your password after your first login for security reasons.</p>
           <a href="${process.env.FRONTEND_URL || 'http://localhost:3000'}/login" style="display: block; width: 200px; margin: 30px auto; padding: 12px; background-color: #0d9488; color: white; text-decoration: none; text-align: center; border-radius: 8px; font-weight: bold;">Login Now</a>
           <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
-          <p style="font-size: 12px; color: #64748b; text-align: center;">&copy; 2026 Venus Healthcare. All rights reserved.</p>
+          <p style="font-size: 12px; color: #64748b; text-align: center;">&copy; 2026 New Venus Clinic. All rights reserved.</p>
         </div>
       `,
         };
