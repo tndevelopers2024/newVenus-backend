@@ -17,16 +17,16 @@ const { protect, authorize } = require('../middleware/auth');
 
 router.use(protect);
 
-router.get('/appointments', authorize('doctor'), getDoctorAppointments);
-router.get('/patients', authorize('doctor'), getDoctorPatients);
-router.get('/patients/:id/history', authorize('doctor'), getPatientHistoryForDoctor);
-router.get('/medications/search', authorize('doctor'), searchMedications);
-router.put('/appointments/reorder', authorize('doctor'), reorderAppointments);
-router.put('/appointments/:id', authorize('doctor'), updateAppointmentStatus);
-router.patch('/appointments/:id/payment', authorize('doctor'), updatePaymentStatus);
-router.get('/appointments/:id/prescription', authorize('doctor'), getPrescriptionByAppointment);
+router.get('/appointments', authorize('doctor', 'superadmin'), getDoctorAppointments);
+router.get('/patients', authorize('doctor', 'superadmin'), getDoctorPatients);
+router.get('/patients/:id/history', authorize('doctor', 'superadmin'), getPatientHistoryForDoctor);
+router.get('/medications/search', authorize('doctor', 'superadmin'), searchMedications);
+router.put('/appointments/reorder', authorize('doctor', 'superadmin'), reorderAppointments);
+router.put('/appointments/:id', authorize('doctor', 'superadmin'), updateAppointmentStatus);
+router.patch('/appointments/:id/payment', authorize('doctor', 'superadmin'), updatePaymentStatus);
+router.get('/appointments/:id/prescription', authorize('doctor', 'superadmin'), getPrescriptionByAppointment);
 router.post('/prescriptions', 
-    authorize('doctor'), 
+    authorize('doctor', 'superadmin'), 
     (req, res, next) => {
         console.log('[INSPECTION] Upload Request Headers:', {
             contentType: req.headers['content-type'],

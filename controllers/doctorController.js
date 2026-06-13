@@ -11,7 +11,10 @@ const { logAction } = require('../utils/logger');
 // @route   GET /api/doctor/appointments
 // @access  Private/Doctor
 const getDoctorAppointments = asyncHandler(async (req, res) => {
-    const appointments = await Appointment.find({ doctor: req.user._id })
+    const doctorId = (req.user.role === 'superadmin' && (req.headers['x-doctor-id'] || req.query.doctorId))
+        ? (req.headers['x-doctor-id'] || req.query.doctorId)
+        : req.user._id;
+    const appointments = await Appointment.find({ doctor: doctorId })
         .populate('patient', 'name email phone displayId')
         .populate('doctor', 'name');
 
@@ -109,9 +112,12 @@ const createPrescription = asyncHandler(async (req, res) => {
             throw new Error('Prescription image was not received by the server. Please try again or check your internet connection.');
         }
 
+        const doctorId = (req.user.role === 'superadmin' && (req.headers['x-doctor-id'] || req.body.doctorId || req.query.doctorId))
+            ? (req.headers['x-doctor-id'] || req.body.doctorId || req.query.doctorId)
+            : req.user._id;
         // Create Prescription
         const prescription = await Prescription.create({
-            doctor: req.user._id,
+            doctor: doctorId,
             patient: patientId,
             appointment: appointmentId,
             medications: medications || [],
@@ -175,7 +181,7 @@ const getPrescriptionByAppointment = asyncHandler(async (req, res) => {
     }
 
     // Verify ownership
-    if (req.user.role !== 'superadmin' && appointment.doctor.toString() !== req.user._id.toString()) {
+    if (req.user.role !== 'superadmin' && req.user.role !== 'admin' && appointment.doctor.toString() !== req.user._id.toString()) {
         res.status(403);
         throw new Error('Unauthorized access to this prescription');
     }
@@ -219,7 +225,10 @@ const searchMedications = asyncHandler(async (req, res) => {
 // @route   GET /api/doctor/patients
 // @access  Private/Doctor
 const getDoctorPatients = asyncHandler(async (req, res) => {
-    const patients = await Appointment.find({ doctor: req.user._id }).distinct('patient');
+    const doctorId = (req.user.role === 'superadmin' && (req.headers['x-doctor-id'] || req.query.doctorId))
+        ? (req.headers['x-doctor-id'] || req.query.doctorId)
+        : req.user._id;
+    const patients = await Appointment.find({ doctor: doctorId }).distinct('patient');
 
     const patientDetails = await User.find({
         _id: { $in: patients },
@@ -227,7 +236,7 @@ const getDoctorPatients = asyncHandler(async (req, res) => {
     }).select('name email phone createdAt');
 
     const patientList = await Promise.all(patientDetails.map(async (p) => {
-        const lastAppt = await Appointment.findOne({ doctor: req.user._id, patient: p._id })
+        const lastAppt = await Appointment.findOne({ doctor: doctorId, patient: p._id })
             .sort({ date: -1 });
         return {
             ...p._doc,
@@ -243,8 +252,11 @@ const getDoctorPatients = asyncHandler(async (req, res) => {
 // @access  Private/Doctor
 const getPatientHistoryForDoctor = asyncHandler(async (req, res) => {
     try {
+        const doctorId = (req.user.role === 'superadmin' && (req.headers['x-doctor-id'] || req.query.doctorId))
+            ? (req.headers['x-doctor-id'] || req.query.doctorId)
+            : req.user._id;
         // Verify link: check if doctor has at least one appointment with this patient
-        const hasLink = await Appointment.findOne({ doctor: req.user._id, patient: req.params.id });
+        const hasLink = await Appointment.findOne({ doctor: doctorId, patient: req.params.id });
 
         if (!hasLink) {
             res.status(403);
@@ -320,6 +332,9 @@ const updatePaymentStatus = asyncHandler(async (req, res) => {
 // @access  Private/Doctor
 const reorderAppointments = asyncHandler(async (req, res) => {
     const { orderedIds } = req.body;
+    const doctorId = (req.user.role === 'superadmin' && (req.headers['x-doctor-id'] || req.body.doctorId || req.query.doctorId))
+        ? (req.headers['x-doctor-id'] || req.body.doctorId || req.query.doctorId)
+        : req.user._id;
 
     if (!orderedIds || !Array.isArray(orderedIds)) {
         res.status(400);
@@ -329,7 +344,7 @@ const reorderAppointments = asyncHandler(async (req, res) => {
     // Bulk update approach
     const bulkOps = orderedIds.map((id, index) => ({
         updateOne: {
-            filter: { _id: id, doctor: req.user._id },
+            filter: { _id: id, doctor: doctorId },
             update: { $set: { order: index } }
         }
     }));

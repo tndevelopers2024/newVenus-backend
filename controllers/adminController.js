@@ -11,7 +11,11 @@ const { logAction } = require('../utils/logger');
 // @route   GET /api/admin/users
 // @access  Private/Admin
 const getUsers = asyncHandler(async (req, res) => {
-    const users = await User.find({}).select('-password');
+    let filter = {};
+    if (req.user.role === 'admin') {
+        filter = { role: { $in: ['patient', 'doctor'] } };
+    }
+    const users = await User.find(filter).select('-password');
     res.json(users);
 });
 
@@ -317,8 +321,21 @@ const migrateUserIds = asyncHandler(async (req, res) => {
     res.json({ message: `Successfully migrated ${updatedCount} users`, count: updatedCount });
 });
 
+// @desc    Get user by ID
+// @route   GET /api/admin/users/:id
+// @access  Private/Admin
+const getUserById = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id).select('-password');
+    if (!user) {
+        res.status(404);
+        throw new Error('User not found');
+    }
+    res.json(user);
+});
+
 module.exports = {
     getUsers,
+    getUserById,
     createDoctor,
     createPatient,
     deleteUser,
@@ -331,3 +348,4 @@ module.exports = {
     updateInvoiceStatus,
     migrateUserIds
 };
+

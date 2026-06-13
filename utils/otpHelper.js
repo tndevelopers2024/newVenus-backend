@@ -72,11 +72,11 @@ const sendWelcomeEmail = async (email, name, password, role) => {
         const mailOptions = {
             from: `"Venus Healthcare" <${process.env.EMAIL_USER}>`,
             to: email,
-            subject: 'Welcome to Venus Healthcare Portal',
+            subject: 'Welcome to New Venus Clinic Portal',
             text: `Hello ${name}, your account as a ${role} has been created. Your password is: ${password}`,
             html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px;">
-          <h2 style="color: #0d9488; text-align: center;">Welcome to Venus Healthcare</h2>
+          <h2 style="color: #0d9488; text-align: center;">Welcome to New Venus Clinic</h2>
           <p>Hello <strong>${name}</strong>,</p>
           <p>Your account has been successfully created as a <strong>${role}</strong> on our portal.</p>
           <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px dashed #cbd5e1;">

@@ -143,10 +143,10 @@ module.exports = {
         const mailOptions = {
             from: `"Venus Healthcare" <${process.env.EMAIL_USER}>`,
             to: email,
-            subject: 'Welcome to Venus Healthcare Portal',
+            subject: 'Welcome to New Venus Clinic Portal',
             html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px;">
-                    <h2 style="color: #0d9488; text-align: center;">Welcome to Venus Healthcare</h2>
+                    <h2 style="color: #0d9488; text-align: center;">Welcome to New Venus Clinic</h2>
                     <p>Hello <strong>${name}</strong>, your account has been created as a <strong>${role}</strong>.</p>
                     <p>Password: <code>${password}</code></p>
                 </div>
