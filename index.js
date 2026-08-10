@@ -38,7 +38,8 @@ app.use((req, res, next) => {
                       allowedOrigins.includes(origin) || 
                       origin.endsWith('.vercel.app') || 
                       origin.includes('vercel.app') ||
-                      origin.includes('localhost');
+                      origin.includes('localhost') ||
+                      origin.endsWith('newvenusclinic.online');
 
     if (isAllowed && origin) {
         // Only set header if NOT already set by Proxy (OpenLiteSpeed/Nginx)
