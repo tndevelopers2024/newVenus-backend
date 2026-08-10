@@ -33,7 +33,8 @@ const appointmentSchema = new mongoose.Schema({
         bloodPressure: String,
         temperature: String,
         pulse: String,
-        weight: String
+        weight: String,
+        spo2: String
     },
     order: {
         type: Number,

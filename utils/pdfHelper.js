@@ -84,9 +84,10 @@ const generatePrescriptionPDF = async (data) => {
 
             // --- STANDARD TEMPLATE (FALLBACK) ---
             const doc = new PDFDocument({ 
-                margin: 40, 
+                margins: { top: 40, bottom: 15, left: 40, right: 40 },
                 size: 'A4',
-                info: { Title: `Prescription - ${patientName}`, Author: 'New Venus Clinic' }
+                info: { Title: `Prescription - ${patientName}`, Author: 'New Venus Clinic' },
+                bufferPages: true
             });
 
             const buffers = [];
@@ -98,113 +99,150 @@ const generatePrescriptionPDF = async (data) => {
             });
 
             // Define colors
-            const BRAND_BLUE = '#1e3a8a';
+            const BRAND_BLUE = '#004b93';
             const BLACK = '#000000';
             const TEXT_GRAY = '#4b5563';
+            const LIGHT_GRAY = '#cccccc';
 
             // Helper function for full width lines
-            const drawHorizontalLine = (yPos, thickness = 2) => {
-                doc.strokeColor(BLACK).lineWidth(thickness).moveTo(40, yPos).lineTo(555, yPos).stroke();
+            const drawHorizontalLine = (yPos, thickness = 1.5, color = BRAND_BLUE, isDashed = false) => {
+                doc.strokeColor(color).lineWidth(thickness);
+                if (isDashed) {
+                    doc.dash(2, { space: 2 });
+                } else {
+                    doc.undash();
+                }
+                doc.moveTo(40, yPos).lineTo(555, yPos).stroke();
+                doc.undash();
             };
 
             // --- Header Section ---
-            doc.fillColor(BLACK).fontSize(14).font('Helvetica-Bold').text(`DR. ${doctorName.toUpperCase()}`, 40, 40, { width: 300 });
-
             const logoPath = path.join(__dirname, '..', 'assets', 'venus-logo.png');
             if (fs.existsSync(logoPath)) {
-                doc.image(logoPath, 365, 30, { width: 190, align: 'right' });
+                // Approximate centering logic for logo (width approx 180, A4 width 595 => center is ~207)
+                doc.image(logoPath, 207, 30, { height: 40 });
             }
             
-            doc.font('Helvetica').fontSize(7).fillColor(TEXT_GRAY);
-            doc.text('200, Sri Subiksham Flats, Chitlapakkam Main Road,', 300, 75, { align: 'right', width: 255 });
-            doc.text('Ganesh Nagar, Selaiyur, Chennai - 600 073', 300, 85, { align: 'right', width: 255 });
-            doc.text('Ph: 7708317826, 7010315857', 300, 95, { align: 'right', width: 255 });
-
-            doc.moveDown(1.5);
-            let currentY = 120;
+            let currentY = 85;
+            // Removed 'continued: true' because it breaks with 'align: center'. Using a single string instead.
+            doc.fillColor(BRAND_BLUE).fontSize(13).font('Helvetica-Bold').text('Dr. C.R. MADHU PRABHU DOSS, M.B.B.S., M.D., D.M., Cardiology', 40, currentY, { align: 'center' });
+            
+            currentY += 18;
+            // (Tamil font omitted due to PDFKit standard font limitations, using English instead)
+            doc.font('Helvetica').fontSize(10).text('Interventions (Canada), FESC (Europe), FSCAI (US)', 40, currentY, { align: 'center' });
+            currentY += 14;
+            doc.font('Helvetica').text('SENIOR CONSULTANT INTERVENTIONAL CARDIOLOGIST', 40, currentY, { align: 'center' });
+            
+            currentY += 20;
             drawHorizontalLine(currentY);
+            currentY += 5;
+            
+            doc.fillColor(BRAND_BLUE).font('Helvetica-Bold').fontSize(10);
+            doc.text('Regd. No. 65582', 40, currentY);
+            doc.text('APOLLO HOSPITALS - OMR', 350, currentY, { width: 205, align: 'right' });
+            
+            currentY += 15;
+            drawHorizontalLine(currentY);
+            currentY += 15;
 
             // --- Patient Info Row ---
-            currentY += 10;
-            doc.font('Helvetica-Bold').fontSize(8).fillColor(BLACK);
-            doc.text(`ID: ${patientId} - ${patientName.toUpperCase()}`, 40, currentY);
-            doc.text(`MOB. NO.: ${patientPhone}`, 180, currentY);
-            doc.text(`DATE: ${dateStr.toUpperCase()}`, 400, currentY, { align: 'right', width: 155 });
-
-            currentY += 15;
-            const v = clinicalDetails?.vitals || {};
-            doc.text(`WEIGHT (KG): ${v.weight || '-'}, HEIGHT (CM): ${v.height || '-'}, BP: ${v.bloodPressure || '-'} MMHG`, 40, currentY);
-
-            currentY += 15;
-            drawHorizontalLine(currentY);
-
-            // --- Diagnosis & Notes ---
-            currentY += 10;
-            doc.font('Helvetica-Bold').fontSize(8);
-            doc.text('CHIEF COMPLAINTS', 40, currentY, { underline: true });
-            doc.text('CLINICAL FINDINGS', 300, currentY, { underline: true });
+            const pGender = prescription?.patient?.gender ? `(${prescription.patient.gender[0]})` : '';
+            const pAge = prescription?.patient?.age ? `${prescription.patient.age} Y` : '-';
             
-            currentY += 12;
-            doc.font('Helvetica-Bold').fontSize(7);
+            doc.fillColor(BRAND_BLUE).font('Helvetica-Bold').fontSize(12);
+            doc.text('Name : ', 40, currentY, { continued: true });
+            doc.fillColor(BLACK).font('Helvetica').text(` ${patientName} ${pGender}`);
+            
+            // Fixed the date wrapping by manually aligning text blocks instead of using continued
+            doc.fillColor(BRAND_BLUE).font('Helvetica-Bold').text('Date : ', 400, currentY, { width: 45, align: 'right' });
+            doc.fillColor(BLACK).font('Helvetica').text(` ${dateStr}`, 445, currentY, { width: 110, align: 'left' });
+            
+            currentY += 20;
+            doc.fillColor(BRAND_BLUE).font('Helvetica-Bold').text('Age : ', 40, currentY, { continued: true });
+            doc.fillColor(BLACK).font('Helvetica').text(` ${pAge}`);
+            
+            currentY += 25;
+            const v = clinicalDetails?.vitals || {};
+            doc.fillColor(TEXT_GRAY).font('Helvetica-Bold').fontSize(9).text('Vitals: ', 40, currentY, { continued: true });
+            doc.font('Helvetica').text(`BP: ${v.bloodPressure || '-'} mmHg, Pulse: ${v.pulse || '-'} bpm, SPO2: ${v.spo2 || '-'}%, Temp: ${v.temperature || '-'} °F, Weight: ${v.weight || '-'} Kg`);
+            
+            currentY += 25;
+            
+            // --- Diagnosis & Notes ---
+            doc.fillColor(BLACK).font('Helvetica-Bold').fontSize(10);
+            doc.text('Chief Complaints', 40, currentY, { underline: true });
+            doc.text('Clinical Findings', 300, currentY, { underline: true });
+            
+            currentY += 15;
+            doc.font('Helvetica').fontSize(10);
             doc.text(clinicalDetails?.diagnosis || '-', 40, currentY, { width: 240 });
             doc.text(clinicalDetails?.clinicalNotes || '-', 300, currentY, { width: 240 });
-
-            currentY += Math.max(doc.heightOfString(clinicalDetails?.diagnosis || '-', { width: 240 }), doc.heightOfString(clinicalDetails?.clinicalNotes || '-', { width: 240 }));
-            currentY += 10;
-            drawHorizontalLine(currentY);
-
+            
+            const diagHeight = doc.heightOfString(clinicalDetails?.diagnosis || '-', { width: 240 });
+            const notesHeight = doc.heightOfString(clinicalDetails?.clinicalNotes || '-', { width: 240 });
+            currentY += Math.max(diagHeight, notesHeight) + 15;
+            
             // --- Rx Section ---
-            currentY += 10;
-            doc.font('Helvetica-Bold').fontSize(14).text('Rx', 40, currentY);
-            currentY += 25;
-            doc.font('Helvetica-Bold').fontSize(8);
-            doc.text('MEDICINE NAME', 40, currentY);
-            doc.text('FREQUENCY', 280, currentY);
-            doc.text('DURATION', 440, currentY);
-
+            doc.font('Times-Bold').fontSize(18).text('Rx', 40, currentY);
+            currentY += 30;
+            doc.font('Helvetica-Bold').fontSize(10);
+            doc.text('Medicine Name', 40, currentY);
+            doc.text('Frequency', 320, currentY);
+            doc.text('Duration', 460, currentY);
+            
+            currentY += 15;
+            drawHorizontalLine(currentY, 1.5, BLACK);
             currentY += 12;
-            drawHorizontalLine(currentY);
-            currentY += 10;
-
+            
             if (prescription?.medications && prescription.medications.length > 0) {
                 prescription.medications.forEach((med, index) => {
-                    doc.font('Helvetica-Bold').fontSize(8).fillColor(BLACK);
-                    doc.text(`${index + 1}) ${med.name.toUpperCase()}`, 40, currentY, { width: 230 });
-                    doc.text(med.frequency, 280, currentY);
-                    if (med.instruction) {
-                        doc.font('Helvetica').fontSize(7).fillColor(TEXT_GRAY);
-                        doc.text(`(${med.instruction})`, 280, currentY + 10);
+                    // Check page break manually
+                    if (currentY > 720) {
+                        doc.addPage();
+                        currentY = 50;
                     }
-                    doc.font('Helvetica-Bold').fontSize(8).fillColor(BLACK);
-                    doc.text(`${med.duration} Days`, 440, currentY);
-                    currentY += 22;
+
+                    doc.font('Helvetica-Bold').fontSize(10).fillColor(BLACK);
+                    doc.text(`${index + 1}) ${med.name}`, 40, currentY, { width: 270 });
+                    doc.font('Helvetica').text(med.frequency, 320, currentY);
+                    if (med.instruction) {
+                        doc.font('Helvetica').fontSize(8).fillColor(TEXT_GRAY);
+                        doc.text(`(${med.instruction})`, 320, currentY + 12);
+                    }
+                    doc.font('Helvetica').fontSize(10).fillColor(BLACK);
+                    doc.text(`${med.duration} Days`, 460, currentY);
+                    
+                    currentY += Math.max(25, doc.heightOfString(`${index + 1}) ${med.name}`, { width: 270 }) + 10);
+                    drawHorizontalLine(currentY, 1, LIGHT_GRAY, true);
+                    currentY += 12;
                 });
             } else {
-                doc.font('Helvetica').fontSize(8).fillColor(TEXT_GRAY).text('No medications listed.', 40, currentY);
+                doc.font('Helvetica').fontSize(10).fillColor(TEXT_GRAY).text('No medications listed.', 40, currentY);
                 currentY += 20;
-            }
-
-            currentY += 5;
-            drawHorizontalLine(currentY);
-
-            if (prescription?.notes) {
-                currentY += 15;
-                doc.font('Helvetica-Bold').fontSize(8).fillColor(BLACK).text('ADVICE:', 40, currentY, { underline: true });
+                drawHorizontalLine(currentY, 1, LIGHT_GRAY, true);
                 currentY += 12;
-                doc.font('Helvetica-Bold').fontSize(7);
-                const notesText = prescription.notes.toUpperCase();
-                doc.text(notesText, 40, currentY, { width: 515, lineGap: 3 });
             }
-
+            
+            if (prescription?.notes) {
+                if (currentY > 700) { doc.addPage(); currentY = 50; }
+                currentY += 10;
+                doc.font('Helvetica-Bold').fontSize(10).fillColor(BLACK).text('ADVICE:', 40, currentY, { underline: true });
+                currentY += 15;
+                doc.font('Helvetica').fontSize(10);
+                doc.text(prescription.notes, 40, currentY, { width: 515, lineGap: 3 });
+            }
+            
             // Footer
             const pageCount = doc.bufferedPageRange().count;
             for (let i = 0; i < pageCount; i++) {
                 doc.switchToPage(i);
-                drawHorizontalLine(775, 1);
-                doc.font('Helvetica-Bold').fontSize(6).fillColor(TEXT_GRAY);
-                doc.text('SUBSTITUTE WITH EQUIVALENT GENERICS AS REQUIRED.', 40, 765, { align: 'center', width: 515 });
                 doc.font('Helvetica-Bold').fontSize(8).fillColor(BRAND_BLUE);
-                doc.text('NEWVENUSCLINIC.COM', 40, 785, { align: 'center', width: 515, characterSpacing: 2 });
+                drawHorizontalLine(780, 1.5, BRAND_BLUE);
+                
+                // Use absolute positioning with lineBreak: false to bypass auto-page wrapping
+                doc.text('CLINIC: 200, Sri Subiksham Flats, Chitlapakkam Main Road, Ganesh Nagar, Selaiyur, Chennai - 600 073.', 40, 790, { align: 'center', width: 515, lineBreak: false });
+                doc.text('Ph. 70103 15857 / 77083 17826 / 81480 70207', 40, 803, { align: 'center', width: 515, lineBreak: false });
+                doc.text('TIMING: Morning - 10am to 12.30 pm / Evening - 6.00 pm to 9.00 pm', 40, 816, { align: 'center', width: 515, lineBreak: false });
             }
 
             doc.end();

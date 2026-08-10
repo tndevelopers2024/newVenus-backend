@@ -1,9 +1,11 @@
 const asyncHandler = require('express-async-handler');
 const Appointment = require('../models/Appointment');
 const Prescription = require('../models/Prescription');
+const PrescriptionTemplate = require('../models/PrescriptionTemplate');
 const Invoice = require('../models/Invoice');
 const TestReport = require('../models/TestReport');
 const User = require('../models/User');
+const Drug = require('../models/Drug');
 const io = require('../socket'); // Import socket
 const { logAction } = require('../utils/logger');
 
@@ -11,18 +13,27 @@ const { logAction } = require('../utils/logger');
 // @route   GET /api/doctor/appointments
 // @access  Private/Doctor
 const getDoctorAppointments = asyncHandler(async (req, res) => {
-    const doctorId = (req.user.role === 'superadmin' && (req.headers['x-doctor-id'] || req.query.doctorId))
-        ? (req.headers['x-doctor-id'] || req.query.doctorId)
-        : req.user._id;
-    const appointments = await Appointment.find({ doctor: doctorId })
+    let query = {};
+    if (req.user.role === 'superadmin') {
+        const doctorId = req.headers['x-doctor-id'] || req.query.doctorId;
+        if (doctorId) {
+            query.doctor = doctorId;
+        }
+    } else {
+        query.doctor = req.user._id;
+    }
+
+    const appointments = await Appointment.find(query)
         .populate('patient', 'name email phone displayId')
         .populate('doctor', 'name');
 
     const appointmentsWithPayment = await Promise.all(appointments.map(async (appt) => {
         const invoice = await Invoice.findOne({ appointment: appt._id });
+        const draft = await Prescription.findOne({ appointment: appt._id, isDraft: true });
         return {
-            ...appt._doc,
-            paymentStatus: invoice ? invoice.status : 'Unpaid'
+            ...appt.toObject(),
+            paymentStatus: invoice ? invoice.status : 'Pending',
+            hasDraft: !!draft
         };
     }));
 
@@ -187,6 +198,7 @@ const getPrescriptionByAppointment = asyncHandler(async (req, res) => {
     }
 
     const prescription = await Prescription.findOne({ appointment: req.params.id })
+        .sort({ createdAt: -1 })
         .populate('doctor', 'name')
         .populate('patient', 'name email phone displayId');
 
@@ -205,17 +217,17 @@ const getPrescriptionByAppointment = asyncHandler(async (req, res) => {
 // @access  Private/Doctor
 const searchMedications = asyncHandler(async (req, res) => {
     const { query } = req.query;
-    // Mock drug database for premium feature
-    const drugDatabase = [
-        'Paracetamol 500mg', 'Amoxicillin 250mg', 'Ibuprofen 400mg',
-        'Metformin 500mg', 'Atorvastatin 10mg', 'Amlodipine 5mg',
-        'Omeprazole 20mg', 'Losartan 50mg', 'Albuterol Inhaler',
-        'Azithromycin 250mg', 'Gabapentin 300mg', 'Lisinopril 10mg'
-    ];
+    
+    let filter = {};
+    if (query) {
+        // Escape regex special characters properly for MongoDB
+        const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        filter = { name: { $regex: escapedQuery, $options: 'i' } };
+    }
 
-    const results = drugDatabase.filter(d =>
-        d.toLowerCase().includes(query?.toLowerCase() || '')
-    );
+    const drugs = await Drug.find(filter).limit(20);
+    
+    const results = drugs.map(d => d.name);
 
     res.json(results);
 });
@@ -408,6 +420,113 @@ const sharePrescription = asyncHandler(async (req, res) => {
     }
 });
 
+// @desc    Save prescription as draft
+// @route   POST /api/doctor/appointments/:id/draft
+// @access  Private/Doctor
+const saveDraftPrescription = asyncHandler(async (req, res) => {
+    const { medications, notes, diagnosis, clinicalNotes, vitals, patientId } = req.body;
+    const appointmentId = req.params.id;
+    const doctorId = (req.user.role === 'superadmin' && req.headers['x-doctor-id'])
+        ? req.headers['x-doctor-id']
+        : req.user._id;
+
+    // Save clinical details to the Appointment document
+    const appointment = await Appointment.findById(appointmentId);
+    if (appointment) {
+        if (vitals) appointment.vitals = vitals;
+        if (clinicalNotes !== undefined) appointment.clinicalNotes = clinicalNotes;
+        if (diagnosis !== undefined) appointment.diagnosis = diagnosis;
+        await appointment.save();
+    }
+
+    // Create or update a draft Prescription document
+    let draft = await Prescription.findOne({ appointment: appointmentId, isDraft: true });
+    
+    if (draft) {
+        draft.medications = medications || [];
+        draft.notes = notes || '';
+        draft.diagnosis = diagnosis || '';
+        await draft.save();
+    } else {
+        draft = await Prescription.create({
+            appointment: appointmentId,
+            doctor: doctorId,
+            patient: appointment ? appointment.patient : patientId,
+            medications: medications || [],
+            notes: notes || '',
+            diagnosis: diagnosis || '',
+            isDraft: true
+        });
+    }
+
+    res.json(draft);
+});
+
+// @desc    Save prescription as a global template
+// @route   POST /api/doctor/templates
+// @access  Private/Doctor
+const savePrescriptionTemplate = asyncHandler(async (req, res) => {
+    const { name, medications, notes, diagnosis, doctorId: bodyDoctorId } = req.body;
+    const doctorId = (req.user.role === 'superadmin' && (req.headers['x-doctor-id'] || bodyDoctorId))
+        ? (req.headers['x-doctor-id'] || bodyDoctorId)
+        : req.user._id;
+
+    const template = await PrescriptionTemplate.create({
+        doctor: doctorId,
+        name,
+        medications,
+        notes,
+        diagnosis
+    });
+
+    res.status(201).json(template);
+});
+
+// @desc    Get all global templates for doctor
+// @route   GET /api/doctor/templates
+// @access  Private/Doctor
+const getPrescriptionTemplates = asyncHandler(async (req, res) => {
+    // Fetch all templates clinic-wide regardless of which doctor created them
+    const templates = await PrescriptionTemplate.find({}).sort({ createdAt: -1 });
+    res.json(templates);
+});
+
+// @desc    Update a global template
+// @route   PUT /api/doctor/templates/:id
+// @access  Private/Doctor
+const updatePrescriptionTemplate = asyncHandler(async (req, res) => {
+    const { name, medications, notes, diagnosis } = req.body;
+    const template = await PrescriptionTemplate.findById(req.params.id);
+
+    if (!template) {
+        res.status(404);
+        throw new Error('Template not found');
+    }
+
+    template.name = name || template.name;
+    template.medications = medications || template.medications;
+    template.notes = notes !== undefined ? notes : template.notes;
+    template.diagnosis = diagnosis !== undefined ? diagnosis : template.diagnosis;
+
+    const updatedTemplate = await template.save();
+    res.json(updatedTemplate);
+});
+
+// @desc    Delete a global template
+// @route   DELETE /api/doctor/templates/:id
+// @access  Private/Doctor
+const deletePrescriptionTemplate = asyncHandler(async (req, res) => {
+    const template = await PrescriptionTemplate.findById(req.params.id);
+
+    if (!template) {
+        res.status(404);
+        throw new Error('Template not found');
+    }
+
+    await template.deleteOne();
+    res.json({ message: 'Template removed' });
+});
+
 module.exports = {
     getDoctorAppointments,
     updateAppointmentStatus,
@@ -418,5 +537,10 @@ module.exports = {
     searchMedications,
     getPrescriptionByAppointment,
     reorderAppointments,
-    sharePrescription
+    sharePrescription,
+    saveDraftPrescription,
+    savePrescriptionTemplate,
+    getPrescriptionTemplates,
+    updatePrescriptionTemplate,
+    deletePrescriptionTemplate
 };

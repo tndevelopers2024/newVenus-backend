@@ -27,6 +27,10 @@ const prescriptionSchema = new mongoose.Schema({
     image: String, // URL/Path to uploaded handwritten prescription image
     followUpDate: Date,
     pdfUrl: String, // URL to generated PDF in storage
+    isDraft: {
+        type: Boolean,
+        default: false,
+    },
     isImmutable: {
         type: Boolean,
         default: true, // As per requirements: "Prescription Immutable"

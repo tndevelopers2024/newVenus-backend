@@ -10,7 +10,12 @@ const {
     getPrescriptionByAppointment,
     updatePaymentStatus,
     reorderAppointments,
-    sharePrescription
+    sharePrescription,
+    saveDraftPrescription,
+    savePrescriptionTemplate,
+    getPrescriptionTemplates,
+    updatePrescriptionTemplate,
+    deletePrescriptionTemplate
 } = require('../controllers/doctorController');
 const upload = require('../middleware/uploadMiddleware');
 const { protect, authorize } = require('../middleware/auth');
@@ -25,6 +30,11 @@ router.put('/appointments/reorder', authorize('doctor', 'superadmin'), reorderAp
 router.put('/appointments/:id', authorize('doctor', 'superadmin'), updateAppointmentStatus);
 router.patch('/appointments/:id/payment', authorize('doctor', 'superadmin'), updatePaymentStatus);
 router.get('/appointments/:id/prescription', authorize('doctor', 'superadmin'), getPrescriptionByAppointment);
+router.post('/appointments/:id/draft', authorize('doctor', 'superadmin'), saveDraftPrescription);
+router.post('/templates', authorize('doctor', 'superadmin'), savePrescriptionTemplate);
+router.get('/templates', authorize('doctor', 'superadmin'), getPrescriptionTemplates);
+router.put('/templates/:id', authorize('doctor', 'superadmin'), updatePrescriptionTemplate);
+router.delete('/templates/:id', authorize('doctor', 'superadmin'), deletePrescriptionTemplate);
 router.post('/prescriptions', 
     authorize('doctor', 'superadmin'), 
     (req, res, next) => {

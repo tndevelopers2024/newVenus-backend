@@ -44,11 +44,16 @@ const getAuditLogs = asyncHandler(async (req, res) => {
 // @route   POST /api/admin/doctors
 // @access  Private/Admin
 const createDoctor = asyncHandler(async (req, res) => {
-    const { name, email, phone, specialization } = req.body;
+    const { name, email, phone, specialization, age, gender } = req.body;
 
     if (!email) {
         res.status(400);
         throw new Error('Email is required for doctors');
+    }
+
+    if (!age || !gender) {
+        res.status(400);
+        throw new Error('Age and Gender are required fields');
     }
 
     const userExists = await User.findOne({
@@ -79,6 +84,8 @@ const createDoctor = asyncHandler(async (req, res) => {
         email,
         phone,
         specialization,
+        age,
+        gender,
         password,
         role: 'doctor',
         profileCreated: true
@@ -191,27 +198,19 @@ const assignAppointment = asyncHandler(async (req, res) => {
 // @route   POST /api/admin/patients
 // @access  Private/Admin
 const createPatient = asyncHandler(async (req, res) => {
-    const { name, email, phone } = req.body;
+    const { name, email, phone, age, gender, occupation } = req.body;
 
-    const query = { $or: [{ phone: phone }] };
-    if (email) {
-        query.$or.push({ email: email });
+    if (!age || !gender) {
+        res.status(400);
+        throw new Error('Age and Gender are required fields');
     }
 
-    const userExists = await User.findOne(query);
-
-    if (userExists) {
-        res.status(400);
-        if (userExists.email === email && userExists.phone === phone) {
-            throw new Error('User with this email and phone number already exists');
-        }
-        if (userExists.email === email) {
+    if (email) {
+        const userExists = await User.findOne({ email });
+        if (userExists) {
+            res.status(400);
             throw new Error('User with this email already exists');
         }
-        if (userExists.phone === phone) {
-            throw new Error('User with this phone number already exists');
-        }
-        throw new Error('User already exists');
     }
 
     const password = generateRandomPassword(name);
@@ -220,6 +219,9 @@ const createPatient = asyncHandler(async (req, res) => {
         name,
         email: email || undefined,
         phone,
+        age,
+        gender,
+        occupation: occupation || undefined,
         password,
         role: 'patient',
         profileCreated: true
@@ -234,7 +236,7 @@ const createPatient = asyncHandler(async (req, res) => {
         user: req.user,
         action: 'Create Patient',
         resource: 'User Management',
-        details: `Registered new patient ${name} (${email}) through portal manager`,
+        details: `Registered new patient ${name} ${email ? `(${email})` : ''} through portal manager`,
         req
     });
 
