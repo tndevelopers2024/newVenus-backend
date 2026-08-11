@@ -126,17 +126,36 @@ const createPrescription = asyncHandler(async (req, res) => {
         const doctorId = (req.user.role === 'superadmin' && (req.headers['x-doctor-id'] || req.body.doctorId || req.query.doctorId))
             ? (req.headers['x-doctor-id'] || req.body.doctorId || req.query.doctorId)
             : req.user._id;
-        // Create Prescription
-        const prescription = await Prescription.create({
-            doctor: doctorId,
-            patient: patientId,
-            appointment: appointmentId,
-            medications: medications || [],
-            notes,
-            image,
-            followUpDate,
-            isImmutable: true,
-        });
+
+        // Check if an existing finalized prescription exists
+        let prescription = await Prescription.findOne({ appointment: appointmentId, isDraft: false });
+
+        if (prescription) {
+            prescription.medications = medications || [];
+            if (notes !== undefined) prescription.notes = notes;
+            if (image) prescription.image = image;
+            if (followUpDate !== undefined) prescription.followUpDate = followUpDate;
+            await prescription.save();
+            
+            // Delete draft if any
+            await Prescription.deleteOne({ appointment: appointmentId, isDraft: true });
+        } else {
+            // Create Prescription
+            prescription = await Prescription.create({
+                doctor: doctorId,
+                patient: patientId,
+                appointment: appointmentId,
+                medications: medications || [],
+                notes,
+                image,
+                followUpDate,
+                isImmutable: false, // Set to false to allow editing
+            });
+            
+            // Delete draft if any
+            await Prescription.deleteOne({ appointment: appointmentId, isDraft: true });
+        }
+
 
         // Update Appointment with clinical details
         const appointment = await Appointment.findById(appointmentId);
@@ -148,17 +167,21 @@ const createPrescription = asyncHandler(async (req, res) => {
             await appointment.save();
         }
 
-        // CREATE INVOICE (Dynamic Fee)
-        const finalFee = consultationFee || 500;
-        const invoiceNumber = `INV-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
-        await Invoice.create({
-            invoiceNumber,
-            patient: patientId,
-            appointment: appointmentId,
-            items: [{ description: 'Consultation Fee', amount: finalFee }],
-            totalAmount: finalFee,
-            status: paymentStatus || 'Unpaid'
-        });
+        // CREATE INVOICE (Dynamic Fee) only if it's a new prescription
+        // (Assuming if we updated an existing prescription, the invoice already exists)
+        if (prescription.createdAt && prescription.createdAt.getTime() === prescription.updatedAt.getTime()) {
+            const finalFee = consultationFee || 500;
+            const invoiceNumber = `INV-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+            await Invoice.create({
+                invoiceNumber,
+                patient: patientId,
+                appointment: appointmentId,
+                items: [{ description: 'Consultation Fee', amount: finalFee }],
+                totalAmount: finalFee,
+                status: paymentStatus || 'Unpaid'
+            });
+        }
+
 
         await logAction({
             user: req.user,
