@@ -167,6 +167,27 @@ const createPrescription = asyncHandler(async (req, res) => {
             await appointment.save();
         }
 
+        // Save new drugs for future autocomplete
+        if (medications && Array.isArray(medications) && medications.length > 0) {
+            try {
+                const uniqueDrugNames = [...new Set(medications.map(m => (m.name || '').trim()).filter(Boolean))];
+                
+                const bulkOps = uniqueDrugNames.map(name => ({
+                    updateOne: {
+                        filter: { name: new RegExp(`^${name}$`, 'i') },
+                        update: { $setOnInsert: { name: name } },
+                        upsert: true
+                    }
+                }));
+
+                if (bulkOps.length > 0) {
+                    await Drug.bulkWrite(bulkOps, { ordered: false });
+                }
+            } catch (drugErr) {
+                console.error('[CreatePrescription] Failed to save new drugs:', drugErr);
+            }
+        }
+
         // CREATE INVOICE (Dynamic Fee) only if it's a new prescription
         // (Assuming if we updated an existing prescription, the invoice already exists)
         if (prescription.createdAt && prescription.createdAt.getTime() === prescription.updatedAt.getTime()) {
