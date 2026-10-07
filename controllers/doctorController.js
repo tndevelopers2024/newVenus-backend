@@ -468,7 +468,7 @@ const sharePrescription = asyncHandler(async (req, res) => {
 // @route   POST /api/doctor/appointments/:id/draft
 // @access  Private/Doctor
 const saveDraftPrescription = asyncHandler(async (req, res) => {
-    const { medications, notes, diagnosis, clinicalNotes, vitals, patientId } = req.body;
+    const { medications, notes, diagnosis, clinicalNotes, followUpDate, vitals, patientId } = req.body;
     const appointmentId = req.params.id;
     const doctorId = (req.user.role === 'superadmin' && req.headers['x-doctor-id'])
         ? req.headers['x-doctor-id']
@@ -490,6 +490,7 @@ const saveDraftPrescription = asyncHandler(async (req, res) => {
         draft.medications = medications || [];
         draft.notes = notes || '';
         draft.diagnosis = diagnosis || '';
+        if (followUpDate !== undefined) draft.followUpDate = followUpDate;
         await draft.save();
     } else {
         draft = await Prescription.create({
@@ -499,6 +500,7 @@ const saveDraftPrescription = asyncHandler(async (req, res) => {
             medications: medications || [],
             notes: notes || '',
             diagnosis: diagnosis || '',
+            followUpDate,
             isDraft: true
         });
     }
