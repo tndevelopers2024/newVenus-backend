@@ -188,9 +188,11 @@ const generatePrescriptionPDF = async (data) => {
             doc.font('Helvetica-Bold').fontSize(10);
             doc.text('Medicine Name', 40, currentY);
             doc.text('Frequency', 320, currentY);
+            doc.font('Helvetica').fontSize(8).fillColor(TEXT_GRAY).text('(Morning-Afternoon-Evening)', 320, currentY + 12);
+            doc.font('Helvetica-Bold').fontSize(10).fillColor(BLACK);
             doc.text('Duration', 460, currentY);
             
-            currentY += 15;
+            currentY += 22;
             drawHorizontalLine(currentY, 1.5, BLACK);
             currentY += 12;
             
@@ -203,7 +205,7 @@ const generatePrescriptionPDF = async (data) => {
                     }
 
                     doc.font('Helvetica-Bold').fontSize(10).fillColor(BLACK);
-                    doc.text(`${index + 1}) ${med.name}`, 40, currentY, { width: 270 });
+                    doc.text(`${index + 1}) ${med.name ? med.name.toUpperCase() : ''}`, 40, currentY, { width: 270 });
                     doc.font('Helvetica').text(med.frequency, 320, currentY);
                     if (med.instruction) {
                         doc.font('Helvetica').fontSize(8).fillColor(TEXT_GRAY);
