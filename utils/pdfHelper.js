@@ -138,7 +138,7 @@ const generatePrescriptionPDF = async (data) => {
             currentY += 5;
             
             doc.fillColor(BRAND_BLUE).font('Helvetica-Bold').fontSize(10);
-            doc.text('Regd. No. 65582', 40, currentY);
+            doc.text('Regd. No. 65502', 40, currentY);
             doc.text('APOLLO HOSPITALS - OMR', 350, currentY, { width: 205, align: 'right' });
             
             currentY += 15;

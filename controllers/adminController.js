@@ -133,6 +133,60 @@ const deleteUser = asyncHandler(async (req, res) => {
     res.json({ message: 'User removed from active registry' });
 });
 
+// @desc    Update user details
+// @route   PUT /api/admin/users/:id
+// @access  Private/Admin
+const updateUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+        res.status(404);
+        throw new Error('User not found');
+    }
+
+    const { name, email, phone, age, gender, occupation, specialization } = req.body;
+    
+    // Check if email or phone is taken by another user
+    if (email && email !== user.email) {
+        const emailExists = await User.findOne({ email });
+        if (emailExists) {
+            res.status(400);
+            throw new Error('Email already taken');
+        }
+    }
+    
+    if (phone && phone !== user.phone) {
+        const phoneExists = await User.findOne({ phone });
+        if (phoneExists) {
+            res.status(400);
+            throw new Error('Phone number already taken');
+        }
+    }
+
+    user.name = name || user.name;
+    user.email = email || user.email;
+    user.phone = phone || user.phone;
+    user.age = age || user.age;
+    user.gender = gender || user.gender;
+    
+    if (user.role === 'patient') {
+        user.occupation = occupation || user.occupation;
+    } else if (user.role === 'doctor') {
+        user.specialization = specialization || user.specialization;
+    }
+
+    const updatedUser = await user.save();
+
+    await logAction({
+        user: req.user,
+        action: 'Update User',
+        resource: 'User Management',
+        details: `Updated details for ${updatedUser.name} (${updatedUser.email || updatedUser.phone})`,
+        req
+    });
+
+    res.json(updatedUser);
+});
+
 // @desc    Restore a soft-deleted user
 // @route   PUT /api/admin/users/:id/restore
 // @access  Private/Admin
@@ -335,12 +389,42 @@ const getUserById = asyncHandler(async (req, res) => {
     res.json(user);
 });
 
+// @desc    Toggle lock status of user
+// @route   PUT /api/admin/users/:id/lock
+// @access  Private/Admin
+const toggleUserLock = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+        res.status(404);
+        throw new Error('User not found');
+    }
+    if (user.role === 'superadmin') {
+        res.status(403);
+        throw new Error('Superadmin accounts cannot be locked');
+    }
+
+    user.isLocked = !user.isLocked;
+    await user.save();
+
+    await logAction({
+        user: req.user,
+        action: user.isLocked ? 'Lock User' : 'Unlock User',
+        resource: 'User Management',
+        details: `${user.isLocked ? 'Locked' : 'Unlocked'} user ${user.name} (${user.email})`,
+        req
+    });
+
+    res.json(user);
+});
+
 module.exports = {
     getUsers,
     getUserById,
     createDoctor,
     createPatient,
     deleteUser,
+    toggleUserLock,
+    updateUser,
     restoreUser,
     getInvoices,
     getAuditLogs,

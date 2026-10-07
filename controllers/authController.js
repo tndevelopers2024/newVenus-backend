@@ -112,6 +112,11 @@ const authUser = asyncHandler(async (req, res) => {
         throw new Error('Your account has been archived. Please contact administration.');
     }
 
+    if (user.isLocked) {
+        res.status(403);
+        throw new Error('Your account is currently locked. Please contact administration.');
+    }
+
     if (user.role === 'patient') {
         await logAction({
             user: null,

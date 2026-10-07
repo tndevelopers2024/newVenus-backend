@@ -24,7 +24,7 @@ const getDoctorAppointments = asyncHandler(async (req, res) => {
     }
 
     const appointments = await Appointment.find(query)
-        .populate('patient', 'name email phone displayId')
+        .populate('patient', 'name email phone displayId age gender')
         .populate('doctor', 'name');
 
     const appointmentsWithPayment = await Promise.all(appointments.map(async (appt) => {
@@ -213,7 +213,7 @@ const createPrescription = asyncHandler(async (req, res) => {
         });
 
         const populatedPrescription = await Prescription.findById(prescription._id)
-            .populate('patient', 'name email phone displayId')
+            .populate('patient', 'name email phone displayId age gender')
             .populate('doctor', 'name');
 
         res.status(201).json(populatedPrescription);
@@ -244,7 +244,7 @@ const getPrescriptionByAppointment = asyncHandler(async (req, res) => {
     const prescription = await Prescription.findOne({ appointment: req.params.id })
         .sort({ createdAt: -1 })
         .populate('doctor', 'name')
-        .populate('patient', 'name email phone displayId');
+        .populate('patient', 'name email phone displayId age gender');
 
     res.json({
         prescription,
@@ -425,7 +425,7 @@ const sharePrescription = asyncHandler(async (req, res) => {
     const { email } = req.body;
     const prescription = await Prescription.findById(req.params.id)
         .populate('doctor', 'name')
-        .populate('patient', 'name email');
+        .populate('patient', 'name email age gender displayId');
 
     if (!prescription) {
         res.status(404);
