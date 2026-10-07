@@ -97,7 +97,7 @@ const updateAppointmentStatus = asyncHandler(async (req, res) => {
 // @access  Private/Doctor
 const createPrescription = asyncHandler(async (req, res) => {
     try {
-        let { patientId, appointmentId, medications, notes, diagnosis, clinicalNotes, vitals, consultationFee, paymentStatus, followUpDate } = req.body;
+        let { patientId, appointmentId, medications, notes, diagnosis, clinicalNotes, vitals, consultationFee, paymentStatus, followUpDate, prescriptionMode, clearImage } = req.body;
 
         // Handle multipart/form-data parsing (if strings)
         if (typeof medications === 'string') {
@@ -133,7 +133,11 @@ const createPrescription = asyncHandler(async (req, res) => {
         if (prescription) {
             prescription.medications = medications || [];
             if (notes !== undefined) prescription.notes = notes;
-            if (image) prescription.image = image;
+            if (prescriptionMode === 'digital' || clearImage === 'true') {
+                prescription.image = '';
+            } else if (image) {
+                prescription.image = image;
+            }
             if (followUpDate !== undefined) prescription.followUpDate = followUpDate;
             await prescription.save();
             
@@ -468,7 +472,7 @@ const sharePrescription = asyncHandler(async (req, res) => {
 // @route   POST /api/doctor/appointments/:id/draft
 // @access  Private/Doctor
 const saveDraftPrescription = asyncHandler(async (req, res) => {
-    const { medications, notes, diagnosis, clinicalNotes, followUpDate, vitals, patientId } = req.body;
+    const { medications, notes, diagnosis, clinicalNotes, followUpDate, vitals, patientId, prescriptionMode, clearImage } = req.body;
     const appointmentId = req.params.id;
     const doctorId = (req.user.role === 'superadmin' && req.headers['x-doctor-id'])
         ? req.headers['x-doctor-id']
@@ -490,6 +494,7 @@ const saveDraftPrescription = asyncHandler(async (req, res) => {
         draft.medications = medications || [];
         draft.notes = notes || '';
         draft.diagnosis = diagnosis || '';
+        if (prescriptionMode === 'digital' || clearImage) draft.image = '';
         if (followUpDate !== undefined) draft.followUpDate = followUpDate;
         await draft.save();
     } else {
