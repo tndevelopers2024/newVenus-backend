@@ -12,6 +12,7 @@ const {
     assignAppointment,
     getAppointments,
     deleteAppointment,
+    updateAppointmentDate,
     updateInvoiceStatus,
     restoreUser,
     updateUser,
@@ -34,6 +35,7 @@ router.post('/doctors', authorize('superadmin'), createDoctor);
 router.post('/patients', authorize('superadmin', 'admin'), createPatient);
 router.post('/appointments', authorize('superadmin', 'admin'), assignAppointment);
 router.get('/appointments', authorize('superadmin', 'admin'), getAppointments);
+router.put('/appointments/:id/date', authorize('superadmin', 'admin'), updateAppointmentDate);
 router.delete('/appointments/:id', authorize('superadmin', 'admin'), deleteAppointment);
 router.get('/appointments/:id/prescription', authorize('superadmin', 'admin', 'doctor'), getPrescriptionByAppointment);
 router.patch('/invoices/:id/status', authorize('superadmin', 'admin'), updateInvoiceStatus);

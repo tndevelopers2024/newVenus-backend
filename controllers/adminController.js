@@ -334,6 +334,47 @@ const deleteAppointment = asyncHandler(async (req, res) => {
     res.json({ message: 'Appointment removed' });
 });
 
+// @desc    Update appointment date
+// @route   PUT /api/admin/appointments/:id/date
+// @access  Private/Admin
+const updateAppointmentDate = asyncHandler(async (req, res) => {
+    const { date } = req.body;
+    const appointment = await Appointment.findById(req.params.id);
+
+    if (!appointment) {
+        res.status(404);
+        throw new Error('Appointment not found');
+    }
+
+    if (!date) {
+        res.status(400);
+        throw new Error('Date is required');
+    }
+
+    appointment.date = date;
+    const updatedAppointment = await appointment.save();
+
+    await logAction({
+        user: req.user,
+        action: 'Update Appointment Date',
+        resource: 'Appointment Management',
+        details: `Updated date of appointment ID ${req.params.id} to ${date}`,
+        req
+    });
+
+    // Notify the doctor
+    if (appointment.doctor) {
+        io.getIO().emit('notification', {
+            action: 'UPDATE_APPOINTMENT',
+            doctorId: appointment.doctor.toString(),
+            message: `Appointment date updated to ${date}`,
+            data: updatedAppointment
+        });
+    }
+
+    res.json(updatedAppointment);
+});
+
 // @desc    Update invoice status
 // @route   PATCH /api/admin/invoices/:id/status
 // @access  Private/Admin
@@ -430,6 +471,7 @@ module.exports = {
     getAuditLogs,
     assignAppointment,
     getAppointments,
+    updateAppointmentDate,
     deleteAppointment,
     updateInvoiceStatus,
     migrateUserIds
