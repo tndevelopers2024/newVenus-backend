@@ -36,9 +36,9 @@ const bookAppointment = asyncHandler(async (req, res) => {
 // @route   GET /api/patient/history
 // @access  Private/Patient
 const getMedicalHistory = asyncHandler(async (req, res) => {
-    const prescriptions = await Prescription.find({ patient: req.user._id }).populate('doctor', 'name');
+    const prescriptions = await Prescription.find({ patient: req.user._id }).populate('doctor', 'name doctorDetails');
     const reports = await TestReport.find({ patient: req.user._id });
-    const appointments = await Appointment.find({ patient: req.user._id }).populate('doctor', 'name');
+    const appointments = await Appointment.find({ patient: req.user._id }).populate('doctor', 'name doctorDetails');
     const invoices = await Invoice.find({ patient: req.user._id }).populate('appointment', 'date');
 
     res.json({ prescriptions, reports, appointments, invoices });
@@ -65,7 +65,7 @@ const getDepartments = asyncHandler(async (req, res) => {
 // @access  Private/Patient
 const getPatientAppointments = asyncHandler(async (req, res) => {
     const appointments = await Appointment.find({ patient: req.user._id })
-        .populate('doctor', 'name email')
+        .populate('doctor', 'name email doctorDetails')
         .sort({ date: -1 });
     res.json(appointments);
 });

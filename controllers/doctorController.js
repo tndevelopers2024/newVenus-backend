@@ -25,7 +25,7 @@ const getDoctorAppointments = asyncHandler(async (req, res) => {
 
     const appointments = await Appointment.find(query)
         .populate('patient', 'name email phone displayId age gender')
-        .populate('doctor', 'name');
+        .populate('doctor', 'name doctorDetails');
 
     const appointmentsWithPayment = await Promise.all(appointments.map(async (appt) => {
         const invoice = await Invoice.findOne({ appointment: appt._id });
@@ -218,7 +218,7 @@ const createPrescription = asyncHandler(async (req, res) => {
 
         const populatedPrescription = await Prescription.findById(prescription._id)
             .populate('patient', 'name email phone displayId age gender')
-            .populate('doctor', 'name');
+            .populate('doctor', 'name doctorDetails');
 
         res.status(201).json(populatedPrescription);
     } catch (error) {
@@ -247,7 +247,7 @@ const getPrescriptionByAppointment = asyncHandler(async (req, res) => {
 
     const prescription = await Prescription.findOne({ appointment: req.params.id })
         .sort({ createdAt: -1 })
-        .populate('doctor', 'name')
+        .populate('doctor', 'name doctorDetails')
         .populate('patient', 'name email phone displayId age gender');
 
     res.json({
@@ -323,13 +323,13 @@ const getPatientHistoryForDoctor = asyncHandler(async (req, res) => {
             throw new Error('Access denied. No clinical relationship found with this patient.');
         }
 
-        const prescriptions = await Prescription.find({ patient: req.params.id }).populate('doctor', 'name');
+        const prescriptions = await Prescription.find({ patient: req.params.id }).populate('doctor', 'name doctorDetails');
         const reports = await TestReport.find({ patient: req.params.id });
         // Only show Completed appointments in history
         const appointments = await Appointment.find({
             patient: req.params.id,
             status: 'Completed'
-        }).populate('doctor', 'name');
+        }).populate('doctor', 'name doctorDetails');
         const invoices = await Invoice.find({ patient: req.params.id });
 
         res.json({ prescriptions, reports, appointments, invoices });
@@ -428,7 +428,7 @@ const { generatePrescriptionPDF } = require('../utils/pdfHelper');
 const sharePrescription = asyncHandler(async (req, res) => {
     const { email } = req.body;
     const prescription = await Prescription.findById(req.params.id)
-        .populate('doctor', 'name')
+        .populate('doctor', 'name doctorDetails')
         .populate('patient', 'name email age gender displayId');
 
     if (!prescription) {

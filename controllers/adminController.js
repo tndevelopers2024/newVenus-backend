@@ -44,7 +44,7 @@ const getAuditLogs = asyncHandler(async (req, res) => {
 // @route   POST /api/admin/doctors
 // @access  Private/Admin
 const createDoctor = asyncHandler(async (req, res) => {
-    const { name, email, phone, specialization, age, gender } = req.body;
+    const { name, email, phone, specialization, age, gender, doctorDetails } = req.body;
 
     if (!email) {
         res.status(400);
@@ -88,7 +88,8 @@ const createDoctor = asyncHandler(async (req, res) => {
         gender,
         password,
         role: 'doctor',
-        profileCreated: true
+        profileCreated: true,
+        doctorDetails
     });
 
     await sendWelcomeEmail(email, name, password, 'doctor');
@@ -143,7 +144,7 @@ const updateUser = asyncHandler(async (req, res) => {
         throw new Error('User not found');
     }
 
-    const { name, email, phone, age, gender, occupation, specialization } = req.body;
+    const { name, email, phone, age, gender, occupation, specialization, doctorDetails } = req.body;
     
     // Check if email or phone is taken by another user
     if (email && email !== user.email) {
@@ -172,6 +173,15 @@ const updateUser = asyncHandler(async (req, res) => {
         user.occupation = occupation || user.occupation;
     } else if (user.role === 'doctor') {
         user.specialization = specialization || user.specialization;
+        if (doctorDetails) {
+            user.doctorDetails = {
+                qualification: doctorDetails.qualification || user.doctorDetails?.qualification,
+                nameTamil: doctorDetails.nameTamil || user.doctorDetails?.nameTamil,
+                additionalQualifications: doctorDetails.additionalQualifications || user.doctorDetails?.additionalQualifications,
+                roleTitle: doctorDetails.roleTitle || user.doctorDetails?.roleTitle,
+                regdNo: doctorDetails.regdNo || user.doctorDetails?.regdNo
+            };
+        }
     }
 
     const updatedUser = await user.save();
@@ -303,7 +313,7 @@ const createPatient = asyncHandler(async (req, res) => {
 const getAppointments = asyncHandler(async (req, res) => {
     const appointments = await Appointment.find({})
         .populate('patient', 'name email')
-        .populate('doctor', 'name email')
+        .populate('doctor', 'name email doctorDetails')
         .sort({ createdAt: -1 });
     res.json(appointments);
 });

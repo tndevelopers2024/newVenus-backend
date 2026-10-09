@@ -42,6 +42,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
+    doctorDetails: {
+        qualification: { type: String, required: false },
+        nameTamil: { type: String, required: false },
+        additionalQualifications: { type: String, required: false },
+        roleTitle: { type: String, required: false },
+        regdNo: { type: String, required: false }
+    },
     profileCreated: {
         type: Boolean,
         default: false,
