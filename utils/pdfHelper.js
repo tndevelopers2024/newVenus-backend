@@ -120,20 +120,22 @@ const generatePrescriptionPDF = async (data) => {
             const logoPath = path.join(__dirname, '..', 'assets', 'venus-logo.png');
             if (fs.existsSync(logoPath)) {
                 // Approximate centering logic for logo (width approx 180, A4 width 595 => center is ~207)
-                doc.image(logoPath, 207, 30, { height: 40 });
+                doc.image(logoPath, 207, 25, { height: 38 });
             }
             
-            let currentY = 85;
-            // Removed 'continued: true' because it breaks with 'align: center'. Using a single string instead.
-            doc.fillColor(BRAND_BLUE).fontSize(13).font('Helvetica-Bold').text('Dr. C.R. MADHU PRABHU DOSS, M.B.B.S., M.D., D.M., Cardiology', 40, currentY, { align: 'center' });
+            let currentY = 64;
+            doc.fillColor(BRAND_BLUE).fontSize(24).font('Times-Bold').text('NEW VENUS CLINIC', 40, currentY, { align: 'center' });
             
-            currentY += 18;
+            currentY += 22;
+            doc.fillColor(BRAND_BLUE).fontSize(12).font('Helvetica-Bold').text('Dr. C.R. MADHU PRABHU DOSS, M.B.B.S., M.D., D.M., Cardiology', 40, currentY, { align: 'center' });
+            
+            currentY += 16;
             // (Tamil font omitted due to PDFKit standard font limitations, using English instead)
-            doc.font('Helvetica').fontSize(10).text('Interventions (Canada), FESC (Europe), FSCAI (US)', 40, currentY, { align: 'center' });
-            currentY += 14;
+            doc.font('Helvetica').fontSize(9.5).text('Interventions (Canada), FESC (Europe), FSCAI (US)', 40, currentY, { align: 'center' });
+            currentY += 13;
             doc.font('Helvetica').text('SENIOR CONSULTANT INTERVENTIONAL CARDIOLOGIST', 40, currentY, { align: 'center' });
             
-            currentY += 20;
+            currentY += 18;
             drawHorizontalLine(currentY);
             currentY += 5;
             
@@ -183,18 +185,18 @@ const generatePrescriptionPDF = async (data) => {
             currentY += Math.max(diagHeight, notesHeight) + 15;
             
             // --- Rx Section ---
-            doc.font('Times-Bold').fontSize(18).text('Rx', 40, currentY);
-            currentY += 30;
-            doc.font('Helvetica-Bold').fontSize(10);
+            doc.font('Times-Bold').fontSize(16).text('Rx', 40, currentY);
+            currentY += 18;
+            doc.font('Helvetica-Bold').fontSize(9.5);
             doc.text('Medicine Name', 40, currentY);
             doc.text('Frequency', 320, currentY);
-            doc.font('Helvetica').fontSize(8).fillColor(TEXT_GRAY).text('(Morning-Afternoon-Evening)', 320, currentY + 12);
-            doc.font('Helvetica-Bold').fontSize(10).fillColor(BLACK);
+            doc.font('Helvetica').fontSize(8).fillColor(TEXT_GRAY).text('(Morning-Afternoon-Evening)', 320, currentY + 11);
+            doc.font('Helvetica-Bold').fontSize(9.5).fillColor(BLACK);
             doc.text('Duration', 460, currentY);
             
-            currentY += 22;
-            drawHorizontalLine(currentY, 1.5, BLACK);
-            currentY += 12;
+            currentY += 18;
+            drawHorizontalLine(currentY, 1.2, BLACK);
+            currentY += 8;
             
             if (prescription?.medications && prescription.medications.length > 0) {
                 prescription.medications.forEach((med, index) => {
@@ -204,19 +206,19 @@ const generatePrescriptionPDF = async (data) => {
                         currentY = 50;
                     }
 
-                    doc.font('Helvetica-Bold').fontSize(10).fillColor(BLACK);
+                    doc.font('Helvetica-Bold').fontSize(9.5).fillColor(BLACK);
                     doc.text(`${index + 1}) ${med.name ? med.name.toUpperCase() : ''}`, 40, currentY, { width: 270 });
-                    doc.font('Helvetica').text(med.frequency, 320, currentY);
+                    doc.font('Helvetica').fontSize(9.5).text(med.frequency, 320, currentY);
                     if (med.instruction) {
                         doc.font('Helvetica').fontSize(8).fillColor(TEXT_GRAY);
-                        doc.text(`(${med.instruction})`, 320, currentY + 12);
+                        doc.text(`(${med.instruction})`, 320, currentY + 11);
                     }
-                    doc.font('Helvetica').fontSize(10).fillColor(BLACK);
+                    doc.font('Helvetica').fontSize(9.5).fillColor(BLACK);
                     doc.text(`${med.duration} Days`, 460, currentY);
                     
-                    currentY += Math.max(25, doc.heightOfString(`${index + 1}) ${med.name}`, { width: 270 }) + 10);
-                    drawHorizontalLine(currentY, 1, LIGHT_GRAY, true);
-                    currentY += 12;
+                    currentY += Math.max(18, doc.heightOfString(`${index + 1}) ${med.name}`, { width: 270 }) + 5);
+                    drawHorizontalLine(currentY, 0.8, LIGHT_GRAY, true);
+                    currentY += 6;
                 });
             } else {
                 doc.font('Helvetica').fontSize(10).fillColor(TEXT_GRAY).text('No medications listed.', 40, currentY);
