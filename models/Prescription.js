@@ -22,6 +22,10 @@ const prescriptionSchema = new mongoose.Schema({
         frequency: String,
         unit: String,
         duration: String,
+        durationUnit: {
+            type: String,
+            default: 'Days',
+        },
         instruction: String, // e.g., "Before Food", "After Food"
     }],
     notes: String,

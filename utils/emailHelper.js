@@ -12,6 +12,35 @@ const createTransporter = () => {
     });
 };
 
+const formatMedDuration = (duration, durationUnit = 'Days') => {
+    if (!duration && duration !== 0) return '-';
+    let durStr = String(duration).trim();
+    if (!durStr) return '-';
+
+    durStr = durStr.replace(/\b(days?|weeks?|months?)(\s+\1)+\b/gi, '$1');
+
+    const match = durStr.match(/^(\d+)\s*(days?|weeks?|months?)$/i);
+    if (match) {
+        const num = parseInt(match[1], 10);
+        const u = match[2].toLowerCase();
+        if (u.startsWith('day')) return `${num} ${num === 1 ? 'Day' : 'Days'}`;
+        if (u.startsWith('week')) return `${num} ${num === 1 ? 'Week' : 'Weeks'}`;
+        if (u.startsWith('month')) return `${num} ${num === 1 ? 'Month' : 'Months'}`;
+        return durStr;
+    }
+
+    const num = parseInt(durStr, 10);
+    if (!isNaN(num)) {
+        const unit = (durationUnit || 'Days').trim().toLowerCase();
+        if (unit.startsWith('day')) return `${num} ${num === 1 ? 'Day' : 'Days'}`;
+        if (unit.startsWith('week')) return `${num} ${num === 1 ? 'Week' : 'Weeks'}`;
+        if (unit.startsWith('month')) return `${num} ${num === 1 ? 'Month' : 'Months'}`;
+        return `${num} ${durationUnit || 'Days'}`;
+    }
+
+    return durStr;
+};
+
 const sendPrescriptionEmail = async (patientEmail, data, pdfBuffer = null) => {
     try {
         const { prescription, clinicalDetails, doctorName, patientName, dateStr } = data;
@@ -24,7 +53,7 @@ const sendPrescriptionEmail = async (patientEmail, data, pdfBuffer = null) => {
                 <tr>
                     <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0;">
                         <div style="font-weight: bold; color: #1e293b; font-size: 14px;">${idx + 1}. ${med.name}</div>
-                        <div style="font-size: 12px; color: #64748b; margin-top: 4px;">${med.frequency} | ${med.duration} Days | ${med.instruction || 'After Food'}</div>
+                        <div style="font-size: 12px; color: #64748b; margin-top: 4px;">${med.frequency} | ${formatMedDuration(med.duration, med.durationUnit)} | ${med.instruction || 'After Food'}</div>
                     </td>
                 </tr>
             `).join('')

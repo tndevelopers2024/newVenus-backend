@@ -27,6 +27,38 @@ const findImageField = (obj) => {
 };
 
 /**
+ * Format duration (e.g., "5 Days", "2 Weeks", "1 Month") and prevent duplicates
+ */
+const formatMedDuration = (duration, durationUnit = 'Days') => {
+    if (!duration && duration !== 0) return '-';
+    let durStr = String(duration).trim();
+    if (!durStr) return '-';
+
+    durStr = durStr.replace(/\b(days?|weeks?|months?)(\s+\1)+\b/gi, '$1');
+
+    const match = durStr.match(/^(\d+)\s*(days?|weeks?|months?)$/i);
+    if (match) {
+        const num = parseInt(match[1], 10);
+        const u = match[2].toLowerCase();
+        if (u.startsWith('day')) return `${num} ${num === 1 ? 'Day' : 'Days'}`;
+        if (u.startsWith('week')) return `${num} ${num === 1 ? 'Week' : 'Weeks'}`;
+        if (u.startsWith('month')) return `${num} ${num === 1 ? 'Month' : 'Months'}`;
+        return durStr;
+    }
+
+    const num = parseInt(durStr, 10);
+    if (!isNaN(num)) {
+        const unit = (durationUnit || 'Days').trim().toLowerCase();
+        if (unit.startsWith('day')) return `${num} ${num === 1 ? 'Day' : 'Days'}`;
+        if (unit.startsWith('week')) return `${num} ${num === 1 ? 'Week' : 'Weeks'}`;
+        if (unit.startsWith('month')) return `${num} ${num === 1 ? 'Month' : 'Months'}`;
+        return `${num} ${durationUnit || 'Days'}`;
+    }
+
+    return durStr;
+};
+
+/**
  * Generates a professional PDF for a prescription
  */
 const generatePrescriptionPDF = async (data) => {
@@ -117,17 +149,11 @@ const generatePrescriptionPDF = async (data) => {
             };
 
             // --- Header Section ---
-            const logoPath = path.join(__dirname, '..', 'assets', 'venus-logo.png');
-            if (fs.existsSync(logoPath)) {
-                // Approximate centering logic for logo (width approx 180, A4 width 595 => center is ~207)
-                doc.image(logoPath, 207, 25, { height: 38 });
-            }
-            
-            let currentY = 64;
+            let currentY = 35;
             doc.fillColor(BRAND_BLUE).fontSize(24).font('Times-Bold').text('NEW VENUS CLINIC', 40, currentY, { align: 'center' });
             
             currentY += 22;
-            doc.fillColor(BRAND_BLUE).fontSize(12).font('Helvetica-Bold').text('Dr. C.R. MADHU PRABHU DOSS, M.B.B.S., M.D., D.M., Cardiology', 40, currentY, { align: 'center' });
+            doc.fillColor(BRAND_BLUE).fontSize(12).font('Helvetica-Bold').text('DR. C.R. MADHU PRABHU DOSS, M.B.B.S., M.D., D.M., Cardiology', 40, currentY, { align: 'center' });
             
             currentY += 16;
             // (Tamil font omitted due to PDFKit standard font limitations, using English instead)
@@ -214,7 +240,7 @@ const generatePrescriptionPDF = async (data) => {
                         doc.text(`(${med.instruction})`, 320, currentY + 11);
                     }
                     doc.font('Helvetica').fontSize(9.5).fillColor(BLACK);
-                    doc.text(`${med.duration} Days`, 460, currentY);
+                    doc.text(formatMedDuration(med.duration, med.durationUnit), 460, currentY);
                     
                     currentY += Math.max(18, doc.heightOfString(`${index + 1}) ${med.name}`, { width: 270 }) + 5);
                     drawHorizontalLine(currentY, 0.8, LIGHT_GRAY, true);
@@ -238,15 +264,24 @@ const generatePrescriptionPDF = async (data) => {
             
             // Footer
             const pageCount = doc.bufferedPageRange().count;
+            const footerLogoPath = path.join(__dirname, '..', 'assets', 'venus-logo.png');
             for (let i = 0; i < pageCount; i++) {
                 doc.switchToPage(i);
-                doc.font('Helvetica-Bold').fontSize(8).fillColor(BRAND_BLUE);
+                doc.font('Helvetica-Bold').fontSize(7.5).fillColor(BRAND_BLUE);
                 drawHorizontalLine(780, 1.5, BRAND_BLUE);
                 
+                const hasLogo = fs.existsSync(footerLogoPath);
+                if (hasLogo) {
+                    doc.image(footerLogoPath, 40, 786, { height: 34 });
+                }
+                
+                const textX = hasLogo ? 170 : 40;
+                const textWidth = hasLogo ? 385 : 515;
+
                 // Use absolute positioning with lineBreak: false to bypass auto-page wrapping
-                doc.text('CLINIC: 200, Sri Subiksham Flats, Chitlapakkam Main Road, Ganesh Nagar, Selaiyur, Chennai - 600 073.', 40, 790, { align: 'center', width: 515, lineBreak: false });
-                doc.text('Ph. 70103 15857 / 77083 17826 / 81480 70207', 40, 803, { align: 'center', width: 515, lineBreak: false });
-                doc.text('TIMING: Morning - 10am to 12.30 pm / Evening - 6.00 pm to 9.00 pm', 40, 816, { align: 'center', width: 515, lineBreak: false });
+                doc.text('CLINIC: 200, Sri Subiksham Flats, Chitlapakkam Main Road, Ganesh Nagar, Selaiyur, Chennai - 600 073.', textX, 789, { align: 'center', width: textWidth, lineBreak: false });
+                doc.text('Ph. 70103 15857 / 77083 17826 / 81480 70207', textX, 801, { align: 'center', width: textWidth, lineBreak: false });
+                doc.text('TIMING: Morning - 10am to 12.30 pm / Evening - 6.00 pm to 9.00 pm', textX, 813, { align: 'center', width: textWidth, lineBreak: false });
             }
 
             doc.end();
