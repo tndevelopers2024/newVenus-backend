@@ -280,7 +280,7 @@ const generatePrescriptionPDF = async (data) => {
 
                 // Use absolute positioning with lineBreak: false to bypass auto-page wrapping
                 doc.text('CLINIC: 200, Sri Subiksham Flats, Chitlapakkam Main Road, Ganesh Nagar, Selaiyur, Chennai - 600 073.', textX, 789, { align: 'center', width: textWidth, lineBreak: false });
-                doc.text('Ph. 70103 15857 / 77083 17826 / 81480 70207', textX, 801, { align: 'center', width: textWidth, lineBreak: false });
+                doc.text('Ph. 70103 15857 / 77083 17826', textX, 801, { align: 'center', width: textWidth, lineBreak: false });
                 doc.text('TIMING: Morning - 10am to 12.30 pm / Evening - 6.00 pm to 9.00 pm', textX, 813, { align: 'center', width: textWidth, lineBreak: false });
             }
 
