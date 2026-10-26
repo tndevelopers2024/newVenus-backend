@@ -293,7 +293,7 @@ const getDoctorPatients = asyncHandler(async (req, res) => {
     const patientDetails = await User.find({
         _id: { $in: patients },
         isDeleted: { $ne: true }
-    }).select('name email phone createdAt');
+    }).select('name email phone displayId age gender createdAt');
 
     const patientList = await Promise.all(patientDetails.map(async (p) => {
         const lastAppt = await Appointment.findOne({ doctor: doctorId, patient: p._id })
@@ -316,14 +316,19 @@ const getPatientHistoryForDoctor = asyncHandler(async (req, res) => {
             ? (req.headers['x-doctor-id'] || req.query.doctorId)
             : req.user._id;
         // Verify link: check if doctor has at least one appointment with this patient
-        const hasLink = await Appointment.findOne({ doctor: doctorId, patient: req.params.id });
+        const hasLink = (req.user.role === 'superadmin' || req.user.role === 'admin')
+            ? true
+            : await Appointment.findOne({ doctor: doctorId, patient: req.params.id });
 
         if (!hasLink) {
             res.status(403);
             throw new Error('Access denied. No clinical relationship found with this patient.');
         }
 
-        const prescriptions = await Prescription.find({ patient: req.params.id }).populate('doctor', 'name doctorDetails');
+        const prescriptions = await Prescription.find({ patient: req.params.id })
+            .sort({ createdAt: -1 })
+            .populate('doctor', 'name doctorDetails')
+            .populate('appointment', 'diagnosis clinicalNotes vitals date');
         const reports = await TestReport.find({ patient: req.params.id });
         // Only show Completed appointments in history
         const appointments = await Appointment.find({

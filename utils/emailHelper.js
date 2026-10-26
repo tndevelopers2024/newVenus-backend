@@ -13,9 +13,14 @@ const createTransporter = () => {
 };
 
 const formatMedDuration = (duration, durationUnit = 'Days') => {
-    if (!duration && duration !== 0) return '-';
-    let durStr = String(duration).trim();
-    if (!durStr) return '-';
+    const unitStr = String(durationUnit || '').trim();
+    let durStr = duration !== undefined && duration !== null ? String(duration).trim() : '';
+
+    if (unitStr.toLowerCase().includes('review') || durStr.toLowerCase().includes('review')) {
+        return 'Till Review';
+    }
+
+    if (!durStr && durStr !== '0') return '-';
 
     durStr = durStr.replace(/\b(days?|weeks?|months?)(\s+\1)+\b/gi, '$1');
 
@@ -31,7 +36,7 @@ const formatMedDuration = (duration, durationUnit = 'Days') => {
 
     const num = parseInt(durStr, 10);
     if (!isNaN(num)) {
-        const unit = (durationUnit || 'Days').trim().toLowerCase();
+        const unit = unitStr.toLowerCase();
         if (unit.startsWith('day')) return `${num} ${num === 1 ? 'Day' : 'Days'}`;
         if (unit.startsWith('week')) return `${num} ${num === 1 ? 'Week' : 'Weeks'}`;
         if (unit.startsWith('month')) return `${num} ${num === 1 ? 'Month' : 'Months'}`;
