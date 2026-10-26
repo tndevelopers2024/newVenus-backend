@@ -266,14 +266,13 @@ const getPrescriptionByAppointment = asyncHandler(async (req, res) => {
 const searchMedications = asyncHandler(async (req, res) => {
     const { query } = req.query;
     
-    let filter = {};
-    if (query) {
-        // Escape regex special characters properly for MongoDB
-        const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        filter = { name: { $regex: escapedQuery, $options: 'i' } };
+    const filter = { isActive: { $ne: false } };
+    if (query && query.trim()) {
+        const escapedQuery = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        filter.name = { $regex: escapedQuery, $options: 'i' };
     }
 
-    const drugs = await Drug.find(filter).limit(20);
+    const drugs = await Drug.find(filter).sort({ name: 1 }).limit(30);
     
     const results = drugs.map(d => d.name);
 

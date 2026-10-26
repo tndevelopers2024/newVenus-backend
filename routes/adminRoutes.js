@@ -16,6 +16,7 @@ const {
     updateInvoiceStatus,
     restoreUser,
     updateUser,
+    createPharmacyUser,
     migrateUserIds
 } = require('../controllers/adminController');
 const { getPrescriptionByAppointment } = require('../controllers/doctorController');
@@ -33,6 +34,7 @@ router.put('/users/:id/lock', authorize('superadmin'), toggleUserLock);
 router.put('/users/:id/restore', authorize('superadmin'), restoreUser); // Restore route
 router.post('/doctors', authorize('superadmin'), createDoctor);
 router.post('/patients', authorize('superadmin', 'admin'), createPatient);
+router.post('/pharmacy', authorize('superadmin'), createPharmacyUser);
 router.post('/appointments', authorize('superadmin', 'admin'), assignAppointment);
 router.get('/appointments', authorize('superadmin', 'admin'), getAppointments);
 router.put('/appointments/:id/date', authorize('superadmin', 'admin'), updateAppointmentDate);

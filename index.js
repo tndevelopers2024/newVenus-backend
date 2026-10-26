@@ -78,6 +78,10 @@ const connectDB = async () => {
         console.log('Connecting to:', process.env.MONGODB_URI ? process.env.MONGODB_URI.replace(/:([^@]+)@/, ':****@') : 'undefined');
         await mongoose.connect(process.env.MONGODB_URI);
         console.log('MongoDB Connected...');
+        const seedPharmacyUser = require('./utils/seedPharmacy');
+        await seedPharmacyUser();
+        const syncDoctorDrugs = require('./utils/syncDoctorDrugs');
+        await syncDoctorDrugs();
     } catch (err) {
         console.error('Database connection failed:', err.message);
         process.exit(1);
@@ -96,6 +100,7 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/doctor', require('./routes/doctorRoutes'));
 app.use('/api/patient', require('./routes/patientRoutes'));
 app.use('/api/admin', require('./routes/adminRoutes'));
+app.use('/api/pharmacy', require('./routes/pharmacyRoutes'));
 
 // Error Handling Middleware
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');

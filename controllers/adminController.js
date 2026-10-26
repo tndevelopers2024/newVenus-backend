@@ -13,7 +13,7 @@ const { logAction } = require('../utils/logger');
 const getUsers = asyncHandler(async (req, res) => {
     let filter = {};
     if (req.user.role === 'admin') {
-        filter = { role: { $in: ['patient', 'doctor'] } };
+        filter = { role: { $in: ['patient', 'doctor', 'pharmacy'] } };
     }
     const users = await User.find(filter).select('-password');
     res.json(users);
@@ -468,11 +468,62 @@ const toggleUserLock = asyncHandler(async (req, res) => {
     res.json(user);
 });
 
+// @desc    Create Pharmacy User
+// @route   POST /api/admin/pharmacy
+// @access  Private/Superadmin
+const createPharmacyUser = asyncHandler(async (req, res) => {
+    const { name, email, phone, password } = req.body;
+
+    if (!name || !email || !phone) {
+        res.status(400);
+        throw new Error('Name, email, and phone are required');
+    }
+
+    const userExists = await User.findOne({
+        $or: [{ email }, { phone }]
+    });
+
+    if (userExists) {
+        res.status(400);
+        if (userExists.email === email) throw new Error('User with this email already exists');
+        if (userExists.phone === phone) throw new Error('User with this phone number already exists');
+        throw new Error('User already exists');
+    }
+
+    const userPassword = password || generateRandomPassword(name);
+
+    const pharmacyUser = await User.create({
+        name,
+        email,
+        phone,
+        password: userPassword,
+        role: 'pharmacy',
+        profileCreated: true
+    });
+
+    try {
+        await sendWelcomeEmail(email, name, userPassword, 'pharmacy');
+    } catch (err) {
+        console.warn('Welcome email skipped:', err.message);
+    }
+
+    await logAction({
+        user: req.user,
+        action: 'Create Pharmacy User',
+        resource: 'User Management',
+        details: `Created pharmacy staff profile for ${name} (${email})`,
+        req
+    });
+
+    res.status(201).json(pharmacyUser);
+});
+
 module.exports = {
     getUsers,
     getUserById,
     createDoctor,
     createPatient,
+    createPharmacyUser,
     deleteUser,
     toggleUserLock,
     updateUser,
