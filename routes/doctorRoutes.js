@@ -5,6 +5,7 @@ const {
     updateAppointmentStatus,
     getDoctorPatients,
     getPatientHistoryForDoctor,
+    createDoctorAppointment,
     createPrescription,
     searchMedications,
     getPrescriptionByAppointment,
@@ -25,6 +26,7 @@ router.use(protect);
 router.get('/appointments', authorize('doctor', 'superadmin'), getDoctorAppointments);
 router.get('/patients', authorize('doctor', 'superadmin'), getDoctorPatients);
 router.get('/patients/:id/history', authorize('doctor', 'superadmin'), getPatientHistoryForDoctor);
+router.post('/patients/:id/appointments', authorize('doctor', 'superadmin'), createDoctorAppointment);
 router.get('/medications/search', authorize('doctor', 'superadmin'), searchMedications);
 router.put('/appointments/reorder', authorize('doctor', 'superadmin'), reorderAppointments);
 router.put('/appointments/:id', authorize('doctor', 'superadmin'), updateAppointmentStatus);

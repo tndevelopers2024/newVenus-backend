@@ -324,19 +324,18 @@ const getPatientHistoryForDoctor = asyncHandler(async (req, res) => {
             throw new Error('Access denied. No clinical relationship found with this patient.');
         }
 
+        const patient = await User.findById(req.params.id).select('name email phone displayId age gender createdAt bloodGroup address');
         const prescriptions = await Prescription.find({ patient: req.params.id })
             .sort({ createdAt: -1 })
             .populate('doctor', 'name doctorDetails')
-            .populate('appointment', 'diagnosis clinicalNotes vitals date');
+            .populate('appointment', 'diagnosis clinicalNotes vitals date status reason');
         const reports = await TestReport.find({ patient: req.params.id });
-        // Only show Completed appointments in history
         const appointments = await Appointment.find({
-            patient: req.params.id,
-            status: 'Completed'
-        }).populate('doctor', 'name doctorDetails');
+            patient: req.params.id
+        }).sort({ date: -1 }).populate('doctor', 'name doctorDetails');
         const invoices = await Invoice.find({ patient: req.params.id });
 
-        res.json({ prescriptions, reports, appointments, invoices });
+        res.json({ patient, prescriptions, reports, appointments, invoices });
     } catch (error) {
         console.error('[DoctorController] Get History Error:', error);
         res.status(500);
@@ -582,12 +581,34 @@ const deletePrescriptionTemplate = asyncHandler(async (req, res) => {
     res.json({ message: 'Template removed' });
 });
 
+// @desc    Create an appointment for a patient by doctor
+// @route   POST /api/doctor/patients/:id/appointments
+// @access  Private/Doctor
+const createDoctorAppointment = asyncHandler(async (req, res) => {
+    const patientId = req.params.id;
+    const doctorId = (req.user.role === 'superadmin' && (req.headers['x-doctor-id'] || req.query.doctorId))
+        ? (req.headers['x-doctor-id'] || req.query.doctorId)
+        : req.user._id;
+
+    const appointment = await Appointment.create({
+        patient: patientId,
+        doctor: doctorId,
+        date: req.body.date || new Date(),
+        type: req.body.type || 'In-person',
+        reason: req.body.reason || 'Consultation',
+        status: 'Accepted'
+    });
+
+    res.status(201).json(appointment);
+});
+
 module.exports = {
     getDoctorAppointments,
     updateAppointmentStatus,
     updatePaymentStatus,
     getDoctorPatients,
     getPatientHistoryForDoctor,
+    createDoctorAppointment,
     createPrescription,
     searchMedications,
     getPrescriptionByAppointment,
