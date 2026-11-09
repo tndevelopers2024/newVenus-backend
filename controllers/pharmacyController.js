@@ -23,9 +23,16 @@ const getDrugs = asyncHandler(async (req, res) => {
 
     // Source filter (Doctor Uploaded vs Pharmacy)
     if (source === 'doctor') {
-        filter.uploadedByDoctor = true;
+        filter.$or = [
+            { uploadedByDoctor: true },
+            { uploadedByDoctor: 'true' },
+            { doctorName: { $exists: true, $nin: ['', null, '—', '-'] } },
+            { source: { $regex: /doctor/i } }
+        ];
     } else if (source === 'pharmacy') {
-        filter.uploadedByDoctor = { $ne: true };
+        filter.uploadedByDoctor = { $nin: [true, 'true'] };
+        filter.doctorName = { $in: ['', null, '—', '-', undefined] };
+        filter.source = { $not: /doctor/i };
     }
 
     // Search query on name, category, dosageForm, strength, manufacturer, doctorName
@@ -398,7 +405,14 @@ const getPharmacyStats = asyncHandler(async (req, res) => {
         Drug.countDocuments(),
         Drug.countDocuments({ isActive: { $ne: false } }),
         Drug.countDocuments({ isActive: false }),
-        Drug.countDocuments({ uploadedByDoctor: true }),
+        Drug.countDocuments({
+            $or: [
+                { uploadedByDoctor: true },
+                { uploadedByDoctor: 'true' },
+                { doctorName: { $exists: true, $nin: ['', null, '—', '-'] } },
+                { source: { $regex: /doctor/i } }
+            ]
+        }),
         Drug.distinct('category'),
         Drug.distinct('dosageForm'),
         Drug.find().sort({ createdAt: -1 }).limit(5).select('name dosageForm category strength uploadedByDoctor doctorName createdAt')

@@ -101,7 +101,7 @@ const createPrescription = asyncHandler(async (req, res) => {
 
         // Handle multipart/form-data parsing (if strings)
         if (typeof medications === 'string') {
-            try { medications = JSON.parse(medications); } 
+            try { medications = JSON.parse(medications); }
             catch (e) { console.error('[CreatePrescription] Medications JSON Parse Error:', e, 'Raw:', medications); }
         }
         if (typeof vitals === 'string') {
@@ -140,7 +140,7 @@ const createPrescription = asyncHandler(async (req, res) => {
             }
             if (followUpDate !== undefined) prescription.followUpDate = followUpDate;
             await prescription.save();
-            
+
             // Delete draft if any
             await Prescription.deleteOne({ appointment: appointmentId, isDraft: true });
         } else {
@@ -155,7 +155,7 @@ const createPrescription = asyncHandler(async (req, res) => {
                 followUpDate,
                 isImmutable: false, // Set to false to allow editing
             });
-            
+
             // Delete draft if any
             await Prescription.deleteOne({ appointment: appointmentId, isDraft: true });
         }
@@ -175,11 +175,30 @@ const createPrescription = asyncHandler(async (req, res) => {
         if (medications && Array.isArray(medications) && medications.length > 0) {
             try {
                 const uniqueDrugNames = [...new Set(medications.map(m => (m.name || '').trim()).filter(Boolean))];
-                
+
+                let docName = 'Doctor';
+                if (req.user && req.user.name && req.user.role === 'doctor') {
+                    docName = req.user.name.toLowerCase().startsWith('dr') ? req.user.name : `Dr. ${req.user.name}`;
+                } else if (doctorId) {
+                    const docUser = await User.findById(doctorId).select('name');
+                    if (docUser?.name) {
+                        docName = docUser.name.toLowerCase().startsWith('dr') ? docUser.name : `Dr. ${docUser.name}`;
+                    }
+                }
+
                 const bulkOps = uniqueDrugNames.map(name => ({
                     updateOne: {
-                        filter: { name: new RegExp(`^${name}$`, 'i') },
-                        update: { $setOnInsert: { name: name } },
+                        filter: { name: new RegExp('^' + name + '$', 'i') },
+                        update: {
+                            $setOnInsert: {
+                                name: name,
+                                uploadedByDoctor: true,
+                                doctorName: docName,
+                                source: 'Doctor Prescription',
+                                addedBy: doctorId,
+                                isActive: true
+                            }
+                        },
                         upsert: true
                     }
                 }));
@@ -315,7 +334,7 @@ const rankDrugResults = (drugs, query) => {
 // @access  Private/Doctor
 const searchMedications = asyncHandler(async (req, res) => {
     const { query } = req.query;
-    
+
     const filter = { isActive: { $ne: false } };
     if (query && query.trim()) {
         const escapedQuery = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -324,7 +343,7 @@ const searchMedications = asyncHandler(async (req, res) => {
 
     // Read-only candidate fetch (NO modification to database records)
     const drugs = await Drug.find(filter).select('name').limit(150).lean();
-    
+
     const drugNames = drugs.map(d => d.name);
     const results = rankDrugResults(drugNames, query).slice(0, 30);
 
@@ -541,7 +560,7 @@ const saveDraftPrescription = asyncHandler(async (req, res) => {
 
     // Create or update a draft Prescription document
     let draft = await Prescription.findOne({ appointment: appointmentId, isDraft: true });
-    
+
     if (draft) {
         draft.medications = medications || [];
         draft.notes = notes || '';
