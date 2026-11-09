@@ -334,7 +334,7 @@ const generatePrescriptionPDF = async (data) => {
                     const nameText = `${index + 1}) ${med.name ? med.name.toUpperCase() : ''}`;
                     const nameH = doc.heightOfString(nameText, { width: nameW });
                     doc.font('Helvetica').fontSize(rowSize);
-                    const freqH = doc.heightOfString(freqText, { width: freqW }) + 11;
+                    const freqH = doc.heightOfString(freqText, { width: freqW }) + (med.instruction && med.instruction !== '-' ? 11 : 0);
                     const rowH = Math.max(nameH, freqH, 16);
 
                     if (y + rowH > BODY_LIMIT) {
@@ -344,7 +344,7 @@ const generatePrescriptionPDF = async (data) => {
 
                     doc.font('Helvetica-Bold').fontSize(rowSize).fillColor(BLACK).text(nameText, colName, y, { width: nameW });
                     doc.font('Helvetica').fontSize(rowSize).fillColor(BLACK).text(freqText, colFreq, y, { width: freqW });
-                    doc.font('Helvetica').fontSize(11 * PX).fillColor(TEXT_GRAY).text(`(${med.instruction || 'After Food'})`, colFreq, y + doc.heightOfString(freqText, { width: freqW }) , { width: freqW });
+                    if (med.instruction && med.instruction !== '-') { doc.font('Helvetica').fontSize(11 * PX).fillColor(TEXT_GRAY).text(`(${med.instruction})`, colFreq, y + doc.heightOfString(freqText, { width: freqW }) , { width: freqW }); }
                     doc.font('Helvetica').fontSize(rowSize).fillColor(BLACK).text(formatMedDuration(med.duration, med.durationUnit), colDur, y, { width: INNER_X + INNER_W - colDur });
 
                     y += rowH + 5;

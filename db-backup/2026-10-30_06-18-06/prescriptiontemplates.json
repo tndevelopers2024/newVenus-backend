@@ -1,0 +1,99 @@
+[
+  {
+    "_id": "6a79a683ccbacd4ea2e429bf",
+    "name": "test template",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "medications": [
+      {
+        "name": "Aciclovir (Zovirax)",
+        "frequency": "1-1-1",
+        "duration": "4",
+        "instruction": "After Food",
+        "_id": "6a79a3fb984d40c59515596b"
+      }
+    ],
+    "diagnosis": "test",
+    "notes": "test new setup",
+    "createdAt": "2026-08-10T10:22:59.469Z",
+    "updatedAt": "2026-10-02T08:32:01.274Z",
+    "__v": 1
+  },
+  {
+    "_id": "6a79b7b522f9d549a2d0df2e",
+    "name": "Viral Fever",
+    "doctor": "6a55b29cec4ad96badf80899",
+    "medications": [
+      {
+        "name": "Aciclovir (Zovirax)",
+        "frequency": "1-1-1",
+        "duration": "3",
+        "instruction": "After Food",
+        "_id": "6a79a3fb984d40c59515596b"
+      },
+      {
+        "name": "Acrivastine",
+        "frequency": "1-1-1",
+        "duration": "3",
+        "instruction": "After Food",
+        "_id": "6a79a760ccbacd4ea2e42a34"
+      }
+    ],
+    "diagnosis": "test",
+    "notes": "",
+    "createdAt": "2026-08-10T11:36:21.993Z",
+    "updatedAt": "2026-08-10T13:28:54.509Z",
+    "__v": 1
+  },
+  {
+    "_id": "6a7c24db58611d6b8a6d7c3e",
+    "name": "Cold",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "medications": [
+      {
+        "name": "Dolo",
+        "frequency": "1-1-1",
+        "duration": "5",
+        "instruction": "After Food",
+        "_id": "6a7c23432ae89186a4494ba9"
+      }
+    ],
+    "diagnosis": "",
+    "notes": "",
+    "createdAt": "2026-08-12T07:46:35.343Z",
+    "updatedAt": "2026-08-12T07:46:35.343Z",
+    "__v": 0
+  },
+  {
+    "_id": "6abf509ce41d26b39119b7c7",
+    "name": "Cardio Setup",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "medications": [
+      {
+        "name": "Aciclovir (Zovirax)",
+        "frequency": "1-1-1",
+        "duration": "3",
+        "instruction": "After Food",
+        "_id": "6a79a3fb984d40c59515596b"
+      },
+      {
+        "name": "Acrivastine",
+        "frequency": "1-1-1",
+        "duration": "3",
+        "instruction": "After Food",
+        "_id": "6a79a760ccbacd4ea2e42a34"
+      },
+      {
+        "name": "Dolo",
+        "frequency": "1-1-1",
+        "duration": "5",
+        "instruction": "After Food",
+        "_id": "6abf507fe41d26b39119b729"
+      }
+    ],
+    "diagnosis": "test new setup",
+    "notes": "test new setup",
+    "createdAt": "2026-10-02T06:35:08.922Z",
+    "updatedAt": "2026-10-02T06:35:08.922Z",
+    "__v": 0
+  }
+]

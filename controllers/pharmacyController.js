@@ -421,15 +421,16 @@ const getPharmacyStats = asyncHandler(async (req, res) => {
 // @route   GET /api/pharmacy/sample-csv
 // @access  Private/Pharmacy, Superadmin, Admin
 const getSampleCsv = asyncHandler(async (req, res) => {
-    const sampleCsv = `Drug Name,Category,Dosage Form,Strength,Manufacturer,Notes
-Paracetamol 650mg,Analgesics & Antipyretics,Tablet,650mg,Micro Labs,Take after food for fever or pain
-Amoxicillin 500mg,Antibiotics,Capsule,500mg,GlaxoSmithKline,Complete full antibiotic course
-Cetirizine 10mg,Antihistamines,Tablet,10mg,Cipla,Take once daily at bedtime
-Pantoprazole 40mg,Antacids & PPIs,Tablet,40mg,Sun Pharma,Take 30 mins before breakfast
-Azithromycin 500mg,Antibiotics,Tablet,500mg,Alkem,Take once daily for 3 days
-Cough Syrup Dextromethorphan,Respiratory,Syrup,100ml,Abbott,5ml twice a day
-Metformin 500mg,Antidiabetics,Tablet,500mg,USV,Take with meals
-Atorvastatin 10mg,Cardiovascular,Tablet,10mg,Zydus Cadila,Take at night`;
+    const sampleCsv = `Drug Name
+TAB. CILACAR 5 MG
+CAP. URIMAX 0.4 MG
+TAB. ROSUVAS 20 MG
+TAB. BRILINTA 60 MG
+CAP. ABFLO 100 MG
+TAB. NEUROBION FORTE
+TAB. ALDACTONE 25 MG
+TAB. ATORVA 40 MG
+PARACETAMOL 650 MG`;
 
     res.setHeader('Content-Type', 'text/csv');
     res.setHeader('Content-Disposition', 'attachment; filename="venus_drugs_sample_template.csv"');

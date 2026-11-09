@@ -1,0 +1,2194 @@
+[
+  {
+    "_id": "6ac62409c37af28985f04d09",
+    "patient": "6abf68e3e41d26b39119bfe2",
+    "doctor": "6ac6154344082c1c8ae4fa5c",
+    "appointment": "6ac62297c37af28985f04a22",
+    "medications": [
+      {
+        "name": "Omeprazole",
+        "frequency": "1-1-1",
+        "duration": "3",
+        "instruction": "After Food",
+        "_id": "6ac622b6c37af28985f04a54"
+      }
+    ],
+    "notes": "Test Instruction",
+    "image": "",
+    "followUpDate": "2026-10-12T00:00:00.000Z",
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-07T10:50:49.550Z",
+    "updatedAt": "2026-10-07T10:52:08.165Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ac87f7f579d060d5fa34a6b",
+    "patient": "6abf52c4e41d26b39119b9fb",
+    "doctor": "6ac879c6fd1b4cc0533d5477",
+    "appointment": "6ac87a06fd1b4cc0533d5480",
+    "medications": [
+      {
+        "name": "Alkof DX Syrup",
+        "frequency": "10-0-10",
+        "unit": "ml",
+        "duration": "4",
+        "instruction": "After Food",
+        "_id": "6ac87a8bfd1b4cc0533d54cb"
+      },
+      {
+        "name": "Amoxicillin",
+        "frequency": "1-1-1",
+        "unit": "tab",
+        "duration": "3",
+        "instruction": "After Food",
+        "_id": "6ac87c66fd1b4cc0533d5b43"
+      }
+    ],
+    "notes": "test Instrunction",
+    "image": "",
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-09T05:45:35.942Z",
+    "updatedAt": "2026-10-09T05:52:20.275Z",
+    "__v": 1
+  },
+  {
+    "_id": "6ac8aa4b57c5085307a2a292",
+    "patient": "6abf52c4e41d26b39119b9fb",
+    "doctor": "6ac879c6fd1b4cc0533d5477",
+    "appointment": "6ac87a06fd1b4cc0533d5480",
+    "medications": [
+      {
+        "name": "Alkof DX Syrup",
+        "frequency": "10-0-10",
+        "duration": "4",
+        "instruction": "After Food",
+        "_id": "6ac87a8bfd1b4cc0533d54cb"
+      },
+      {
+        "name": "Amoxicillin",
+        "frequency": "1-1-1",
+        "duration": "3",
+        "instruction": "After Food",
+        "_id": "6ac87c66fd1b4cc0533d5b43"
+      }
+    ],
+    "notes": "test Instrunction",
+    "followUpDate": null,
+    "isDraft": true,
+    "isImmutable": true,
+    "createdAt": "2026-10-09T08:48:11.352Z",
+    "updatedAt": "2026-10-09T08:49:08.405Z",
+    "__v": 0,
+    "image": ""
+  },
+  {
+    "_id": "6ac8d7af01434212da185993",
+    "patient": "6abf68e3e41d26b39119bfe2",
+    "doctor": "6ac879c6fd1b4cc0533d5477",
+    "appointment": "6ac8d72f01434212da18574d",
+    "medications": [
+      {
+        "name": "Alkof DX Syrup",
+        "frequency": "10ml-10ml-10ml",
+        "duration": "2 Days",
+        "instruction": "After Food",
+        "_id": "6ac8d7af01434212da185994"
+      }
+    ],
+    "notes": "test new setup",
+    "image": null,
+    "followUpDate": "2026-10-20T00:00:00.000Z",
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-09T12:01:51.221Z",
+    "updatedAt": "2026-10-09T12:01:51.221Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ac8d9a101434212da185a1d",
+    "patient": "6a2c051d0fc20531048bb150",
+    "doctor": "6ac879c6fd1b4cc0533d5477",
+    "appointment": "6ac8d98d01434212da1859d4",
+    "medications": [
+      {
+        "name": "Aciclovir (Zovirax)",
+        "frequency": "1-1-1",
+        "duration": "3",
+        "instruction": "After Food",
+        "_id": "6a79a3fb984d40c59515596b"
+      },
+      {
+        "name": "Acrivastine",
+        "frequency": "1-1-1",
+        "duration": "3",
+        "instruction": "After Food",
+        "_id": "6a79a760ccbacd4ea2e42a34"
+      },
+      {
+        "name": "Dolo",
+        "frequency": "1-1-1",
+        "duration": "5",
+        "instruction": "After Food",
+        "_id": "6abf507fe41d26b39119b729"
+      }
+    ],
+    "notes": "test new setup",
+    "followUpDate": null,
+    "isDraft": true,
+    "isImmutable": true,
+    "createdAt": "2026-10-09T12:10:09.782Z",
+    "updatedAt": "2026-10-09T12:12:25.564Z",
+    "__v": 3,
+    "image": ""
+  },
+  {
+    "_id": "6ad0bd6257c5085307a2c238",
+    "patient": "6abf68e3e41d26b39119bfe2",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ad0bd4157c5085307a2c1fa",
+    "medications": [
+      {
+        "name": "Aciclovir (Zovirax)",
+        "frequency": "1-1-1",
+        "duration": "3",
+        "instruction": "After Food",
+        "_id": "6a79a3fb984d40c59515596b"
+      },
+      {
+        "name": "Acrivastine",
+        "frequency": "1-1-1",
+        "duration": "3",
+        "instruction": "After Food",
+        "_id": "6a79a760ccbacd4ea2e42a34"
+      },
+      {
+        "name": "Dolo",
+        "frequency": "1-1-1",
+        "duration": "5",
+        "instruction": "After Food",
+        "_id": "6abf507fe41d26b39119b729"
+      }
+    ],
+    "notes": "test new setup",
+    "image": "",
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-15T11:47:46.593Z",
+    "updatedAt": "2026-10-15T12:09:46.695Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad0c2c357c5085307a2c341",
+    "patient": "6abf68e3e41d26b39119bfe2",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ad0bd4157c5085307a2c1fa",
+    "medications": [
+      {
+        "name": "Aciclovir (Zovirax)",
+        "frequency": "1-1-1",
+        "duration": "3",
+        "instruction": "After Food",
+        "_id": "6a79a3fb984d40c59515596b"
+      },
+      {
+        "name": "Acrivastine",
+        "frequency": "1-1-1",
+        "duration": "3",
+        "instruction": "After Food",
+        "_id": "6a79a760ccbacd4ea2e42a34"
+      },
+      {
+        "name": "Dolo",
+        "frequency": "1-1-1",
+        "duration": "5",
+        "instruction": "After Food",
+        "_id": "6abf507fe41d26b39119b729"
+      }
+    ],
+    "notes": "test new setup",
+    "followUpDate": null,
+    "isDraft": true,
+    "isImmutable": true,
+    "createdAt": "2026-10-15T12:10:43.249Z",
+    "updatedAt": "2026-10-15T12:10:46.804Z",
+    "__v": 0,
+    "image": ""
+  },
+  {
+    "_id": "6ad0c31957c5085307a2c4c2",
+    "patient": "6abf68e3e41d26b39119bfe2",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ac78deb62d95ab1fe208620",
+    "medications": [
+      {
+        "name": "Aciclovir (Zovirax)",
+        "frequency": "1-1-1",
+        "duration": "3",
+        "instruction": "After Food",
+        "_id": "6a79a3fb984d40c59515596b"
+      },
+      {
+        "name": "Acrivastine",
+        "frequency": "1-1-1",
+        "duration": "3",
+        "instruction": "After Food",
+        "_id": "6a79a760ccbacd4ea2e42a34"
+      },
+      {
+        "name": "Dolo",
+        "frequency": "1-1-1",
+        "duration": "5",
+        "instruction": "After Food",
+        "_id": "6abf507fe41d26b39119b729"
+      },
+      {
+        "name": "Amoxicillin",
+        "frequency": "1-1-1",
+        "duration": "5",
+        "instruction": "After Food",
+        "_id": "6ad0c34357c5085307a2c584"
+      },
+      {
+        "name": "Metformin",
+        "frequency": "1-1-1",
+        "duration": "5",
+        "instruction": "After Food",
+        "_id": "6ad0c34357c5085307a2c585"
+      },
+      {
+        "name": "Omeprazole",
+        "frequency": "1-1-1",
+        "duration": "5",
+        "instruction": "After Food",
+        "_id": "6ad0c34357c5085307a2c586"
+      }
+    ],
+    "notes": "test new setup",
+    "image": "",
+    "followUpDate": "2026-10-20T00:00:00.000Z",
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-15T12:12:10.000Z",
+    "updatedAt": "2026-10-15T12:12:51.535Z",
+    "__v": 1
+  },
+  {
+    "_id": "6ad211f23ac677dc08462dee",
+    "patient": "6ad20f473ac677dc08462560",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ad20f9f3ac677dc0846256a",
+    "medications": [
+      {
+        "name": "Tab.dolo 650 mg",
+        "frequency": "1-1-1",
+        "duration": "10",
+        "instruction": "After Food",
+        "_id": "6ad211f23ac677dc08462def"
+      },
+      {
+        "name": "TAB. KORANDIL 5 MG",
+        "frequency": "1-0-1",
+        "duration": "10",
+        "instruction": "After Food",
+        "_id": "6ad211f23ac677dc08462df0"
+      }
+    ],
+    "notes": "ADVICED \r\nECG\r\nECHO \r\nTMT AFTER ECHO",
+    "image": "",
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-16T12:00:50.695Z",
+    "updatedAt": "2026-10-16T14:53:12.498Z",
+    "__v": 1
+  },
+  {
+    "_id": "6ad23de2aecf0f5285dc18c0",
+    "patient": "6ad20f473ac677dc08462560",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ad214ed3ac677dc08462e30",
+    "medications": [
+      {
+        "name": "Aciclovir (Zovirax)",
+        "frequency": "1-1-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ad23be63686fd4f2ddffd4c"
+      },
+      {
+        "name": "Omeprazole",
+        "frequency": "1-1-1",
+        "duration": "3",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ad23de2aecf0f5285dc18c2"
+      }
+    ],
+    "notes": "Test Instruction",
+    "image": "",
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-16T15:08:18.551Z",
+    "updatedAt": "2026-10-16T15:15:47.596Z",
+    "__v": 1
+  },
+  {
+    "_id": "6ad5f180d8f72b090e9b0ec7",
+    "patient": "6ad20f473ac677dc08462560",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ad214ed3ac677dc08462e30",
+    "medications": [
+      {
+        "name": "Aciclovir (Zovirax)",
+        "frequency": "1-1-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ad23be63686fd4f2ddffd4c"
+      },
+      {
+        "name": "Omeprazole",
+        "frequency": "1-1-1",
+        "duration": "3",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ad23de2aecf0f5285dc18c2"
+      }
+    ],
+    "notes": "Test Instruction",
+    "followUpDate": null,
+    "isDraft": true,
+    "isImmutable": true,
+    "createdAt": "2026-10-19T10:31:28.514Z",
+    "updatedAt": "2026-10-19T10:31:38.601Z",
+    "__v": 0,
+    "image": ""
+  },
+  {
+    "_id": "6ad764ddd8f72b090e9b671d",
+    "patient": "6ad76213d8f72b090e9b5f24",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ad76292d8f72b090e9b5f45",
+    "medications": [
+      {
+        "name": "TAB.PANTOCID 40 MG",
+        "frequency": "1-0-1",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "Before Food",
+        "_id": "6ad764ddd8f72b090e9b671e"
+      },
+      {
+        "name": "SYR.SUCRAFIL ",
+        "frequency": "2TSP-2 TSP-2TSP",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "Before Food",
+        "_id": "6ad764ddd8f72b090e9b671f"
+      },
+      {
+        "name": "TAB.ROZALET 75/10 MG",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "After Food",
+        "_id": "6ad770ddd8f72b090e9b81ee"
+      }
+    ],
+    "notes": "ADVICED - CT CORONARY ANGIOGRAM AND REVIEW",
+    "image": "",
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-20T12:55:57.346Z",
+    "updatedAt": "2026-10-20T13:47:09.398Z",
+    "__v": 1
+  },
+  {
+    "_id": "6ad76878d8f72b090e9b736e",
+    "patient": "6ad76340d8f72b090e9b5f95",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ad763c7d8f72b090e9b60c0",
+    "medications": [
+      {
+        "name": "TAB.SITANORM -M 50/500",
+        "frequency": "1-0-1",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "After Food",
+        "_id": "6ad76878d8f72b090e9b736f"
+      },
+      {
+        "name": "TAB.CILAHEART 5MG IF BP MORE THAN 140/90",
+        "frequency": "1-0-0",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "After Food",
+        "_id": "6ad76878d8f72b090e9b7370"
+      },
+      {
+        "name": "TAB.AUGMENTIN 625 MG ",
+        "frequency": "1-0-1",
+        "duration": "5",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ad76878d8f72b090e9b7371"
+      },
+      {
+        "name": "CAP.BIFILAC",
+        "frequency": "1-1-1",
+        "duration": "5",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ad76878d8f72b090e9b7372"
+      },
+      {
+        "name": "Tab.DOLO 650 mg",
+        "frequency": "1-1-1",
+        "duration": "5",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ad76878d8f72b090e9b7373"
+      },
+      {
+        "name": "TAB.PAN 40 MG",
+        "frequency": "1-0-1",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "After Food",
+        "_id": "6ad76878d8f72b090e9b7374"
+      }
+    ],
+    "notes": "DR.SARAVANAN PLASTIC SURGEON OPINION",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-20T13:11:20.504Z",
+    "updatedAt": "2026-10-20T13:11:20.504Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad76bf3d8f72b090e9b7c9c",
+    "patient": "6ad76875d8f72b090e9b7361",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ad76a2dd8f72b090e9b73e5",
+    "medications": [
+      {
+        "name": "TAB.LIPIGO F 10/160 MG",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ad76bf3d8f72b090e9b7c9d"
+      },
+      {
+        "name": "TAB.ALPRAX 0.25 MG",
+        "frequency": "0-0-1",
+        "duration": "7",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ad76bf3d8f72b090e9b7c9e"
+      }
+    ],
+    "notes": "ADVICED ECHO",
+    "image": "",
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-20T13:26:11.876Z",
+    "updatedAt": "2026-10-20T14:05:10.699Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad7775bd8f72b090e9b8869",
+    "patient": "6ad76babd8f72b090e9b7ac7",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ad76c5cd8f72b090e9b7d02",
+    "medications": [
+      {
+        "name": "TAB.ROZAVEL F 20/160",
+        "frequency": "0-0-1",
+        "duration": "3",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ad7775bd8f72b090e9b886a"
+      }
+    ],
+    "notes": "REVIEW AFTER 3 MONTHS WITH FASTING LIPID PROFILE REPORT",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-20T14:14:51.222Z",
+    "updatedAt": "2026-10-20T14:14:51.222Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad78a59d8f72b090e9bbcfd",
+    "patient": "6ad77ed5d8f72b090e9b9f53",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ad77f05d8f72b090e9b9f61",
+    "medications": [
+      {
+        "name": "TAB.ROZAVEL A 75/10 MG",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "After Food",
+        "_id": "6ad78a59d8f72b090e9bbcfe"
+      },
+      {
+        "name": "TAB.PAN 40 MG",
+        "frequency": "1-0-1-",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "Before Food",
+        "_id": "6ad78a59d8f72b090e9bbcff"
+      },
+      {
+        "name": "TAB.TELMA 40 MG IF BP MORE THAN 140/90",
+        "frequency": "1-0-1",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "After Food",
+        "_id": "6ad78a59d8f72b090e9bbd00"
+      }
+    ],
+    "notes": "TO REVIEW WITH DR.REKHA FOR FURTHER MANAGEMENT\r\nADVICED ADMISSION AND OBSERVATION\r\nADVICED BLOOD FOR TROPONIN I",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-20T15:35:53.573Z",
+    "updatedAt": "2026-10-20T15:35:53.573Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad78c2ed8f72b090e9bc419",
+    "patient": "6ad77227d8f72b090e9b824f",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ad77260d8f72b090e9b8263",
+    "medications": [
+      {
+        "name": "TAB.PAN 40 MG",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "Before Food",
+        "_id": "6ad78c2ed8f72b090e9bc41a"
+      },
+      {
+        "name": "SYR.SUCRAFIL 10 ML",
+        "frequency": "1-1-1",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "Before Food",
+        "_id": "6ad78c2ed8f72b090e9bc41b"
+      }
+    ],
+    "notes": "TO REVIEW WITH ONCOLOGIST",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-20T15:43:42.863Z",
+    "updatedAt": "2026-10-20T15:43:42.863Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad78f5dd8f72b090e9bd301",
+    "patient": "6ad778b3d8f72b090e9b8900",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ad778e9d8f72b090e9b8914",
+    "medications": [
+      {
+        "name": "TAB.KORANDIL 5MG ",
+        "frequency": "1-0-1",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "After Food",
+        "_id": "6ad78f5dd8f72b090e9bd302"
+      }
+    ],
+    "notes": "ADVICED ECHO AND REVIEW ",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-20T15:57:17.331Z",
+    "updatedAt": "2026-10-20T15:57:17.331Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad7955ad8f72b090e9bf359",
+    "patient": "6ad777e7d8f72b090e9b88e3",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ad7780dd8f72b090e9b88f7",
+    "medications": [
+      {
+        "name": "TAB.PANTOCID 40 MG",
+        "frequency": "1-0-1-",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "Before Food",
+        "_id": "6ad7955ad8f72b090e9bf35a"
+      },
+      {
+        "name": "SYR.SUCRAFIL 10 ML",
+        "frequency": "1-1-1",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "Before Food",
+        "_id": "6ad7955ad8f72b090e9bf35b"
+      }
+    ],
+    "notes": "24 HOURS HOLTER STUDY   \r\nBLOOD FOR COMPLETE HEMOGRAM, HBA1C, T3,T4,TSH, UREA, CREATININE, ELECTROLYTES, CALCIUM, MAGNESIUM\r\nREVIEW WITH RESULTS",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-20T16:22:50.897Z",
+    "updatedAt": "2026-10-20T16:22:50.897Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad85cb2d8f72b090e9c265b",
+    "patient": "6ad8566bd8f72b090e9bf515",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ad856a1d8f72b090e9bf529",
+    "medications": [
+      {
+        "name": "INJ.HUMAN MIXTARD 30/70  S/C UNITS",
+        "frequency": "20-0-10",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "Before Food",
+        "_id": "6ad85cb2d8f72b090e9c265c"
+      },
+      {
+        "name": "TAB.GLYCIPHAGE SR 500 MG ",
+        "frequency": "1-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ad85cb2d8f72b090e9c265d"
+      },
+      {
+        "name": "TAB.VOGLI 0.3 MG ",
+        "frequency": "0-1-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "With Food",
+        "_id": "6ad85cb2d8f72b090e9c265e"
+      },
+      {
+        "name": "TAB.ECOSPRIN 150 MG ",
+        "frequency": "0-1-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ad85cb2d8f72b090e9c265f"
+      },
+      {
+        "name": "TAB.LIPIGO 20 MG",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ad85cb2d8f72b090e9c2660"
+      },
+      {
+        "name": "TAB.EZEDOC 10 MG",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ad85cb2d8f72b090e9c2661"
+      },
+      {
+        "name": "TAB.DYTOR PLUS 5MG ",
+        "frequency": "1/2-0-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ad85cb2d8f72b090e9c2662"
+      },
+      {
+        "name": "TAB.PANVIE 40MG IF NEEDED",
+        "frequency": "1-0-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "Before Food",
+        "_id": "6ad85cb2d8f72b090e9c2663"
+      },
+      {
+        "name": "TAB.ATIVAN 1MG",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ad85cb2d8f72b090e9c2664"
+      },
+      {
+        "name": "TAB.THYROX 75 MCG EMPTY STOMACH",
+        "frequency": "1-0-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "Before Food",
+        "_id": "6ad85cb2d8f72b090e9c2665"
+      }
+    ],
+    "notes": "BLOOD FOR ANA, C-ANCA, ANCA -MPO(P-ANCA)\r\nREVIEW WITH RESULTS",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-21T06:33:22.678Z",
+    "updatedAt": "2026-10-21T06:33:22.678Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad8c633d8f72b090e9c3839",
+    "patient": "6ad8be10d8f72b090e9c274f",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ad8be50d8f72b090e9c275d",
+    "medications": [
+      {
+        "name": "TAB.PANVIE 40 MG ",
+        "frequency": "1-0-1",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "Before Food",
+        "_id": "6ad8c633d8f72b090e9c383a"
+      }
+    ],
+    "notes": "",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-21T14:03:31.810Z",
+    "updatedAt": "2026-10-21T14:03:31.810Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad8caffd8f72b090e9c50f8",
+    "patient": "6ad8bebfd8f72b090e9c2766",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ad8bf00d8f72b090e9c2774",
+    "medications": [
+      {
+        "name": "TAB.ECOSPRIN 75 MG",
+        "frequency": "0-1-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ad8caffd8f72b090e9c50f9"
+      },
+      {
+        "name": "TAB.CALAPTIN SR 120 MG ",
+        "frequency": "1-0-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ad8caffd8f72b090e9c50fa"
+      },
+      {
+        "name": "TAB.ROSEDAY 5MG ",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ad8caffd8f72b090e9c50fb"
+      },
+      {
+        "name": "TAB.PANTOCID 40 MG",
+        "frequency": "1-0-0",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "Before Food",
+        "_id": "6ad8caffd8f72b090e9c50fc"
+      }
+    ],
+    "notes": "TO REVIEW WITH DR.PRADHYM\r\nREVIEW AFTER 2 MONTHS",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-21T14:23:59.445Z",
+    "updatedAt": "2026-10-21T14:23:59.445Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad8cbe6d8f72b090e9c527f",
+    "patient": "6ad8bebfd8f72b090e9c2766",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ad8bf00d8f72b090e9c2774",
+    "medications": [
+      {
+        "name": "TAB.ECOSPRIN 75 MG",
+        "frequency": "0-1-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ad8caffd8f72b090e9c50f9"
+      },
+      {
+        "name": "TAB.CALAPTIN SR 120 MG ",
+        "frequency": "1-0-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ad8caffd8f72b090e9c50fa"
+      },
+      {
+        "name": "TAB.ROSEDAY 5MG ",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ad8caffd8f72b090e9c50fb"
+      },
+      {
+        "name": "TAB.PANTOCID 40 MG",
+        "frequency": "1-0-0",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "Before Food",
+        "_id": "6ad8caffd8f72b090e9c50fc"
+      }
+    ],
+    "notes": "TO REVIEW WITH DR.PRADHYM\r\nREVIEW AFTER 2 MONTHS",
+    "followUpDate": null,
+    "isDraft": true,
+    "isImmutable": true,
+    "createdAt": "2026-10-21T14:27:50.050Z",
+    "updatedAt": "2026-10-21T14:27:50.050Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ada1c87d8f72b090e9c7af0",
+    "patient": "6ada13f4d8f72b090e9c537f",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ada1435d8f72b090e9c538d",
+    "medications": [
+      {
+        "name": "TAB.NICARDIA RETARD 10 MG",
+        "frequency": "1-1-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1c87d8f72b090e9c7af1"
+      },
+      {
+        "name": "TAB.PROLOMET XL 25  MG ",
+        "frequency": "1-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1c87d8f72b090e9c7af2"
+      },
+      {
+        "name": "TAB.MINIPRESS XL 5 MG IF BP IS MORE THAN 140/90",
+        "frequency": "0-1-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1c87d8f72b090e9c7af3"
+      },
+      {
+        "name": "TAB.GLYCOMET 500MG ",
+        "frequency": "1-0-1",
+        "duration": "2",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ada1c87d8f72b090e9c7af4"
+      },
+      {
+        "name": "TAB.ROSEDAY - EZ 20/10",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1c87d8f72b090e9c7af5"
+      },
+      {
+        "name": "TAB.PAN 40 MG IF NEEDED",
+        "frequency": "1-0-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1c87d8f72b090e9c7af6"
+      }
+    ],
+    "notes": "BLOOD FOR FASTING BLOOD SUGAR, PP SUGAR, HBA1C, FASTING LIPID PROFILE",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-22T14:24:07.006Z",
+    "updatedAt": "2026-10-22T14:24:07.006Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ada1e7cd8f72b090e9c7cb2",
+    "patient": "6ada13f4d8f72b090e9c537f",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ada1435d8f72b090e9c538d",
+    "medications": [
+      {
+        "name": "TAB.NICARDIA RETARD 10 MG",
+        "frequency": "1-1-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1c87d8f72b090e9c7af1"
+      },
+      {
+        "name": "TAB.PROLOMET XL 25  MG ",
+        "frequency": "1-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1c87d8f72b090e9c7af2"
+      },
+      {
+        "name": "TAB.MINIPRESS XL 5 MG IF BP IS MORE THAN 140/90",
+        "frequency": "0-1-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1c87d8f72b090e9c7af3"
+      },
+      {
+        "name": "TAB.GLYCOMET 500MG ",
+        "frequency": "1-0-1",
+        "duration": "2",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ada1c87d8f72b090e9c7af4"
+      },
+      {
+        "name": "TAB.ROSEDAY - EZ 20/10",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1c87d8f72b090e9c7af5"
+      },
+      {
+        "name": "TAB.PAN 40 MG IF NEEDED",
+        "frequency": "1-0-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1c87d8f72b090e9c7af6"
+      }
+    ],
+    "notes": "BLOOD FOR FASTING BLOOD SUGAR, PP SUGAR, HBA1C, FASTING LIPID PROFILE",
+    "followUpDate": null,
+    "isDraft": true,
+    "isImmutable": true,
+    "createdAt": "2026-10-22T14:32:28.372Z",
+    "updatedAt": "2026-10-22T14:32:49.760Z",
+    "__v": 0,
+    "image": ""
+  },
+  {
+    "_id": "6ada1f83d8f72b090e9c8c79",
+    "patient": "6ada167dd8f72b090e9c53d8",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ada16c3d8f72b090e9c53e6",
+    "medications": [
+      {
+        "name": "TAB.NICARDIA RETARD 10 MG",
+        "frequency": "1-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1f83d8f72b090e9c8c7a"
+      },
+      {
+        "name": "TAB.PROLOMET XL 25  MG",
+        "frequency": "1-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1f83d8f72b090e9c8c7b"
+      },
+      {
+        "name": "TAB.MINIPRESS XL 5 MG IF BP IS MORE THAN 140/90",
+        "frequency": "0-1-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1f83d8f72b090e9c8c7c"
+      },
+      {
+        "name": "TAB.GLYCOMET 500MG",
+        "frequency": "1-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1f83d8f72b090e9c8c7d"
+      },
+      {
+        "name": "TAB.ROSEDAY - EZ 20/10",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1f83d8f72b090e9c8c7e"
+      },
+      {
+        "name": "TAB.PAN 40 MG IF NEEDED",
+        "frequency": "1-0-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1f83d8f72b090e9c8c7f"
+      }
+    ],
+    "notes": "BLOOD FOR FASTING BLOOD SUGAR, PP SUGAR, HBA1C, FASTING LIPID PROFILE",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-22T14:36:51.753Z",
+    "updatedAt": "2026-10-22T14:36:51.753Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ada2509d8f72b090e9ca006",
+    "patient": "6ada1858d8f72b090e9c57ef",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ada19a2d8f72b090e9c612a",
+    "medications": [
+      {
+        "name": "TAB.ELTROXIN 125 MCG EMPTY STOMACH",
+        "frequency": "1-0-0",
+        "duration": "1",
+        "durationUnit": "Months",
+        "instruction": "Before Food",
+        "_id": "6ada2509d8f72b090e9ca007"
+      }
+    ],
+    "notes": "BLOOD FOR T3,T4,TSH, FASTING LIPID PROFILE",
+    "image": "",
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-22T15:00:25.726Z",
+    "updatedAt": "2026-10-26T16:05:13.348Z",
+    "__v": 1
+  },
+  {
+    "_id": "6ada2677d8f72b090e9ca12f",
+    "patient": "6ada167dd8f72b090e9c53d8",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ada16c3d8f72b090e9c53e6",
+    "medications": [
+      {
+        "name": "TAB.NICARDIA RETARD 10 MG",
+        "frequency": "1-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1f83d8f72b090e9c8c7a"
+      },
+      {
+        "name": "TAB.PROLOMET XL 25  MG",
+        "frequency": "1-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1f83d8f72b090e9c8c7b"
+      },
+      {
+        "name": "TAB.MINIPRESS XL 5 MG IF BP IS MORE THAN 140/90",
+        "frequency": "0-1-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1f83d8f72b090e9c8c7c"
+      },
+      {
+        "name": "TAB.GLYCOMET 500MG",
+        "frequency": "1-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1f83d8f72b090e9c8c7d"
+      },
+      {
+        "name": "TAB.ROSEDAY - EZ 20/10",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1f83d8f72b090e9c8c7e"
+      },
+      {
+        "name": "TAB.PAN 40 MG IF NEEDED",
+        "frequency": "1-0-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6ada1f83d8f72b090e9c8c7f"
+      }
+    ],
+    "notes": "BLOOD FOR FASTING BLOOD SUGAR, PP SUGAR, HBA1C, FASTING LIPID PROFILE",
+    "followUpDate": null,
+    "isDraft": true,
+    "isImmutable": true,
+    "createdAt": "2026-10-22T15:06:31.451Z",
+    "updatedAt": "2026-10-22T15:06:41.116Z",
+    "__v": 0,
+    "image": ""
+  },
+  {
+    "_id": "6adb6c85d8f72b090e9ccf56",
+    "patient": "6adb65f1d8f72b090e9cb566",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6adb6652d8f72b090e9cb574",
+    "medications": [
+      {
+        "name": "TAB.PAN 40 MG",
+        "frequency": "1-0-0",
+        "duration": "7",
+        "durationUnit": "Days",
+        "instruction": "Before Food",
+        "_id": "6adb6800d8f72b090e9cb950"
+      }
+    ],
+    "notes": "ADVICED \r\nECHO \r\nBLOOD FOR TROPONIN I\r\n24 HOURS HOLTER STUDY\r\nNEUROLOGIST REVIEW\r\nREVIEW WITH RESULTS",
+    "image": "",
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-23T14:17:41.205Z",
+    "updatedAt": "2026-10-23T14:18:14.025Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adb7271d8f72b090e9cdcba",
+    "patient": "6adb6ef1d8f72b090e9cd0ca",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6adb6f30d8f72b090e9cd0d8",
+    "medications": [
+      {
+        "name": "TAB. P 500 MG ",
+        "frequency": "1-0-1",
+        "duration": "3",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6adb7271d8f72b090e9cdcbb"
+      },
+      {
+        "name": "TAB.PANVIE 40 MG",
+        "frequency": "0-0-1",
+        "duration": "7",
+        "durationUnit": "Days",
+        "instruction": "Before Food",
+        "_id": "6adb7271d8f72b090e9cdcbc"
+      }
+    ],
+    "notes": "ADVICED ECHO",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-23T14:42:57.343Z",
+    "updatedAt": "2026-10-23T14:42:57.343Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adb73e9d8f72b090e9ce45b",
+    "patient": "6adb6f71d8f72b090e9cd0e1",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6adb708cd8f72b090e9cd0ef",
+    "medications": [
+      {
+        "name": "TAB.CILAHEART 5MG IF BP MORE THAN 140/90",
+        "frequency": "0-0-1-",
+        "duration": "7",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6adb73e9d8f72b090e9ce45c"
+      }
+    ],
+    "notes": "BLOOD FOR CBC, HBA1C, UREA, CREATININE, ELECTROLYTES, T3,T4,TSH\r\nECG /ECHO AND REVIEW",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-23T14:49:13.862Z",
+    "updatedAt": "2026-10-23T14:49:13.862Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adb762fd8f72b090e9cf7f9",
+    "patient": "6adb713cd8f72b090e9cd0f8",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6adb7191d8f72b090e9cd246",
+    "medications": [
+      {
+        "name": "SYRUP DEXORANGE 5 ML",
+        "frequency": "0-0-1",
+        "duration": "1",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6adb762fd8f72b090e9cf7fa"
+      }
+    ],
+    "notes": "BLOOD - COMPLETE HEMOGRAM, PT -INR, APTT, LFT, ELECTROLYTES, TSH\r\n\r\nPLAN - ECHO / 24 HOURS HOLTER STUDY",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-23T14:58:55.954Z",
+    "updatedAt": "2026-10-23T14:58:55.954Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adb76e9d8f72b090e9cf885",
+    "patient": "6adb713cd8f72b090e9cd0f8",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6adb7191d8f72b090e9cd246",
+    "medications": [
+      {
+        "name": "SYRUP DEXORANGE 5 ML",
+        "frequency": "0-0-1",
+        "duration": "1",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6adb7708d8f72b090e9cfa0e"
+      }
+    ],
+    "notes": "BLOOD - COMPLETE HEMOGRAM, PT -INR, APTT, LFT, ELECTROLYTES, TSH\n\nPLAN - ECHO / 24 HOURS HOLTER STUDY",
+    "followUpDate": null,
+    "isDraft": true,
+    "isImmutable": true,
+    "createdAt": "2026-10-23T15:02:01.008Z",
+    "updatedAt": "2026-10-23T15:02:32.081Z",
+    "__v": 4,
+    "image": ""
+  },
+  {
+    "_id": "6adc4ec1d8f72b090e9d38cd",
+    "patient": "6adc4662d8f72b090e9cfae0",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6adc4686d8f72b090e9cfaee",
+    "medications": [
+      {
+        "name": "TAB.PROLOMET XL 25 MG IF BP MORE THAN 140/90",
+        "frequency": "1-0-0",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "After Food",
+        "_id": "6adc4f1cd8f72b090e9d3ccf"
+      },
+      {
+        "name": "TAB.AMLONG 5MG ",
+        "frequency": "0-1-0",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "After Food",
+        "_id": "6adc4f1cd8f72b090e9d3cd0"
+      },
+      {
+        "name": "TAB.IVABRAD 5MG IF PULSE RATE MORE THAN 80/MIN",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "After Food",
+        "_id": "6adc4f1cd8f72b090e9d3cd1"
+      },
+      {
+        "name": "TAB.THYRONORM 25 MCG",
+        "frequency": "1-0-0",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "After Food",
+        "_id": "6adc4f1cd8f72b090e9d3cd2"
+      },
+      {
+        "name": "TAB.PANTOCID 40 MG",
+        "frequency": "1-0-0",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "Before Food",
+        "_id": "6adc4f1cd8f72b090e9d3cd3"
+      }
+    ],
+    "notes": "REVIEW WITH DR.SURAJ\r\n24 HOURS HOLTER STUDY",
+    "image": "",
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-24T06:22:57.229Z",
+    "updatedAt": "2026-10-24T06:24:28.036Z",
+    "__v": 2
+  },
+  {
+    "_id": "6adcd07fd8f72b090e9d5594",
+    "patient": "6adcc356d8f72b090e9d3ea5",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6adcc386d8f72b090e9d3eb3",
+    "medications": [
+      {
+        "name": "TAB.CLOPILET 75 MG ",
+        "frequency": "0-1-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6adcd09cd8f72b090e9d5754"
+      },
+      {
+        "name": "TAB.ROZAVEL - EZ - 40/10 MG",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6adcd09cd8f72b090e9d5755"
+      },
+      {
+        "name": "TAB.PANTOCID 40 MG IF NEEDED",
+        "frequency": "1-0-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "Before Food",
+        "_id": "6adcd09cd8f72b090e9d5756"
+      }
+    ],
+    "notes": "BLOOD FOR LIPOPROTEIN - a, BLOOD FOR HOMOCYSTEINE. AND REVIEW\r\nADVICED CONVENTIONAL CORONARY ANGIOGRAM",
+    "image": "",
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-24T15:36:31.682Z",
+    "updatedAt": "2026-10-24T15:37:00.814Z",
+    "__v": 1
+  },
+  {
+    "_id": "6adf5912ebf93f920d8b9975",
+    "patient": "6adcc356d8f72b090e9d3ea5",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6adcc386d8f72b090e9d3eb3",
+    "medications": [
+      {
+        "name": "TAB.CLOPILET 75 MG ",
+        "frequency": "0-1-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6adcd09cd8f72b090e9d5754"
+      },
+      {
+        "name": "TAB.ROZAVEL - EZ - 40/10 MG",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "After Food",
+        "_id": "6adcd09cd8f72b090e9d5755"
+      },
+      {
+        "name": "TAB.PANTOCID 40 MG IF NEEDED",
+        "frequency": "1-0-0",
+        "duration": "2",
+        "durationUnit": "Months",
+        "instruction": "Before Food",
+        "_id": "6adcd09cd8f72b090e9d5756"
+      }
+    ],
+    "notes": "BLOOD FOR LIPOPROTEIN - a, BLOOD FOR HOMOCYSTEINE. AND REVIEW\r\nADVICED CONVENTIONAL CORONARY ANGIOGRAM",
+    "followUpDate": null,
+    "isDraft": true,
+    "isImmutable": true,
+    "createdAt": "2026-10-26T13:43:46.013Z",
+    "updatedAt": "2026-10-26T15:40:35.797Z",
+    "__v": 2,
+    "image": ""
+  },
+  {
+    "_id": "6adf6149ebf93f920d8bb57f",
+    "patient": "6adf5961ebf93f920d8b9e07",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6adf59b7ebf93f920d8b9e15",
+    "medications": [
+      {
+        "name": "TAB.LIPICARD 160 MG ",
+        "frequency": "0-0-1",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6adf6186ebf93f920d8bb8fb"
+      }
+    ],
+    "notes": "REVIEW AFTER 2 MONTHS WITH FASTING LIPID PROFILE, HBA1C",
+    "image": "",
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-26T14:18:49.106Z",
+    "updatedAt": "2026-10-26T14:19:50.428Z",
+    "__v": 1
+  },
+  {
+    "_id": "6adf676bebf93f920d8bdb7a",
+    "patient": "6adf56f2d8f72b090e9d638f",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6adf5739d8f72b090e9d639d",
+    "medications": [
+      {
+        "name": "TAB.PANTOCID 40 MG",
+        "frequency": "1-0-0",
+        "duration": "7",
+        "durationUnit": "Days",
+        "instruction": "Before Food",
+        "_id": "6adf676bebf93f920d8bdb7b"
+      }
+    ],
+    "notes": "PULMONOLOGIST OPINION\r\nNEUROLOGIST OPINION\r\n24 HOURS HOLTER STUDY",
+    "image": "",
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-26T14:44:59.236Z",
+    "updatedAt": "2026-10-28T15:28:23.038Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adf6df8ebf93f920d8bfc8d",
+    "patient": "6adf5ef2ebf93f920d8b9ea9",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6adf5f18ebf93f920d8b9eb7",
+    "medications": [
+      {
+        "name": "INJ.NOVOMIX30 HM PENFIL UNITS",
+        "frequency": "22-0-14",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "Before Food",
+        "_id": "6adf6df8ebf93f920d8bfc8e"
+      },
+      {
+        "name": "INJ.NOVORAPID UNITS",
+        "frequency": "0-8-0",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "Before Food",
+        "_id": "6adf6df8ebf93f920d8bfc8f"
+      },
+      {
+        "name": "TAB.NICARDIA RETARD 10MG",
+        "frequency": "1-1-1",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6adf6df8ebf93f920d8bfc90"
+      },
+      {
+        "name": "TAB.LABEBET 100MG",
+        "frequency": "1/2-0-0",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6adf6df8ebf93f920d8bfc91"
+      }
+    ],
+    "notes": "REVIEW AFTER 2 MONTHS",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-26T15:12:56.848Z",
+    "updatedAt": "2026-10-26T15:12:56.848Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adf718aebf93f920d8c2396",
+    "patient": "6adf65b8ebf93f920d8bbec4",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6adf65fcebf93f920d8bc35c",
+    "medications": [
+      {
+        "name": "TAB.OXRA MET XR ",
+        "frequency": "1-0-0",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6adf71a6ebf93f920d8c25ad"
+      },
+      {
+        "name": "TAB.TRAJENTA 5MG ",
+        "frequency": "1-0-0",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6adf71a6ebf93f920d8c25ae"
+      },
+      {
+        "name": "TAB.AMARYL 1MG ",
+        "frequency": "1-0-1",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "Before Food",
+        "_id": "6adf71a6ebf93f920d8c25af"
+      },
+      {
+        "name": "TAB.NOVASTAT ASP 20 ",
+        "frequency": "0-0-1",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6adf71a6ebf93f920d8c25b0"
+      },
+      {
+        "name": "TAB.CONCOR AM 5",
+        "frequency": "1-0-0",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6adf71a6ebf93f920d8c25b1"
+      },
+      {
+        "name": "TAB.KORANDIL 5MG",
+        "frequency": "1-0-1",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6adf71a6ebf93f920d8c25b2"
+      },
+      {
+        "name": "TAB.TELMA 40 MG ",
+        "frequency": "1-0-1",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6adf71a6ebf93f920d8c25b3"
+      },
+      {
+        "name": "TAB.PAN 40 MG IF NEEDED",
+        "frequency": "1-0-0",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "Before Food",
+        "_id": "6adf71a6ebf93f920d8c25b4"
+      },
+      {
+        "name": "TAB.MYMI D ",
+        "frequency": "0-1-0",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6adf71a6ebf93f920d8c25b5"
+      },
+      {
+        "name": "TAB.AUGMENTIN 625 MG ",
+        "frequency": "1-0-1",
+        "duration": "5",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6adf71a6ebf93f920d8c25b6"
+      },
+      {
+        "name": "CAP.BIFILAC",
+        "frequency": "1-1-1",
+        "duration": "5",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6adf71a6ebf93f920d8c25b7"
+      },
+      {
+        "name": "TAB.PIOZ 15 MG",
+        "frequency": "0-1/2-0-",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6adf71a6ebf93f920d8c25b8"
+      }
+    ],
+    "notes": "REVIEW AFTER 2 MONTHS",
+    "image": "",
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-26T15:28:10.935Z",
+    "updatedAt": "2026-10-26T15:28:38.420Z",
+    "__v": 1
+  },
+  {
+    "_id": "6adf741eebf93f920d8c3392",
+    "patient": "6adf6c1febf93f920d8bde03",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6adf6c43ebf93f920d8bde21",
+    "medications": [
+      {
+        "name": "TAB.LIPIGO 10 MG ",
+        "frequency": "0-0-1/2",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6adf747bebf93f920d8c3ab4"
+      },
+      {
+        "name": "MYMI NANO 60 UNITS ONCE A WEEK FOR 8 WEEKS",
+        "frequency": "",
+        "duration": "",
+        "durationUnit": "Days",
+        "instruction": "Empty Stomach",
+        "_id": "6adf747bebf93f920d8c3ab5"
+      },
+      {
+        "name": "TAB.PENTIDS 400MG ",
+        "frequency": "1-0-1",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6adf747bebf93f920d8c3ab6"
+      }
+    ],
+    "notes": "REVIEW AFTER  2 MONTHS WITH FASTING LIPID PROFILE\r\n",
+    "image": "",
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-26T15:39:10.488Z",
+    "updatedAt": "2026-10-26T15:40:43.300Z",
+    "__v": 1
+  },
+  {
+    "_id": "6adf77db435869ff52bb2201",
+    "patient": "6adf6d0debf93f920d8beaef",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6adf6df0ebf93f920d8bfbd5",
+    "medications": [
+      {
+        "name": "TAB.TELMA 20 MG IF BP IS MORE THAN 140/90",
+        "frequency": "1-0-0",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6adf77db435869ff52bb2202"
+      },
+      {
+        "name": "TAB.BILAMONT",
+        "frequency": "0-0-1-",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "After Food",
+        "_id": "6adf77db435869ff52bb2203"
+      },
+      {
+        "name": "TAB.PANTOCID 40 MG",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "Before Food",
+        "_id": "6adf77db435869ff52bb2204"
+      }
+    ],
+    "notes": "",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-26T15:55:07.310Z",
+    "updatedAt": "2026-10-26T15:55:07.310Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adf78b5435869ff52bb2367",
+    "patient": "6adf6d0debf93f920d8beaef",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6adf6df0ebf93f920d8bfbd5",
+    "medications": [
+      {
+        "name": "TAB.TELMA 20 MG IF BP IS MORE THAN 140/90",
+        "frequency": "1-0-0",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6adf78bc435869ff52bb24ab"
+      },
+      {
+        "name": "TAB.BILAMONT",
+        "frequency": "0-0-1-",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "After Food",
+        "_id": "6adf78bc435869ff52bb24ac"
+      },
+      {
+        "name": "TAB.PANTOCID 40 MG",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "Before Food",
+        "_id": "6adf78bc435869ff52bb24ad"
+      }
+    ],
+    "notes": "",
+    "followUpDate": null,
+    "isDraft": true,
+    "isImmutable": true,
+    "createdAt": "2026-10-26T15:58:45.664Z",
+    "updatedAt": "2026-10-26T15:58:52.726Z",
+    "__v": 1,
+    "image": ""
+  },
+  {
+    "_id": "6ae04146435869ff52bb3d58",
+    "patient": "6adf5961ebf93f920d8b9e07",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6adf59b7ebf93f920d8b9e15",
+    "medications": [
+      {
+        "name": "TAB.LIPICARD 160 MG ",
+        "frequency": "0-0-1",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6adf6186ebf93f920d8bb8fb"
+      }
+    ],
+    "notes": "REVIEW AFTER 2 MONTHS WITH FASTING LIPID PROFILE, HBA1C",
+    "followUpDate": null,
+    "isDraft": true,
+    "isImmutable": true,
+    "createdAt": "2026-10-27T06:14:30.517Z",
+    "updatedAt": "2026-10-27T06:14:40.351Z",
+    "__v": 0,
+    "image": ""
+  },
+  {
+    "_id": "6ae04a8c435869ff52bbdfdd",
+    "patient": "6ae03e19435869ff52bb3541",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ae03e76435869ff52bb354f",
+    "medications": [
+      {
+        "name": "TAB.PANTOCID 40 MG",
+        "frequency": "1-0-0",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "Before Food",
+        "_id": "6ae04adb435869ff52bbe47d"
+      }
+    ],
+    "notes": "",
+    "image": "",
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-27T06:54:04.054Z",
+    "updatedAt": "2026-10-27T06:55:23.974Z",
+    "__v": 1
+  },
+  {
+    "_id": "6ae04c13435869ff52bbe606",
+    "patient": "6ae03e19435869ff52bb3541",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ae03e76435869ff52bb354f",
+    "medications": [
+      {
+        "name": "TAB.PANTOCID 40 MG",
+        "frequency": "1-0-0",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "Before Food",
+        "_id": "6ae04c60435869ff52bbec5f"
+      }
+    ],
+    "notes": "",
+    "followUpDate": null,
+    "isDraft": true,
+    "isImmutable": true,
+    "createdAt": "2026-10-27T07:00:35.007Z",
+    "updatedAt": "2026-10-27T07:01:52.382Z",
+    "__v": 8,
+    "image": ""
+  },
+  {
+    "_id": "6ae0af36435869ff52bc076b",
+    "patient": "6ae0ac00435869ff52bbef6f",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ae0ad5d435869ff52bbf174",
+    "medications": [
+      {
+        "name": "TAB.LIPIGO 10 MG",
+        "frequency": "0-0-1--",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6ae0af36435869ff52bc076c"
+      },
+      {
+        "name": "CAP.HOMOCHEK ",
+        "frequency": "0-1-0",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6ae0af36435869ff52bc076d"
+      },
+      {
+        "name": "TAB.AUGMENTIN 625 MG",
+        "frequency": "1-0-1",
+        "duration": "3",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ae0af36435869ff52bc076e"
+      },
+      {
+        "name": "CAP.BIFILAC",
+        "frequency": "1-1-1",
+        "duration": "3",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ae0af36435869ff52bc076f"
+      },
+      {
+        "name": "TAB.PANVIE 40 MG",
+        "frequency": "1-0-1",
+        "duration": "5",
+        "durationUnit": "Days",
+        "instruction": "Before Food",
+        "_id": "6ae0af36435869ff52bc0770"
+      }
+    ],
+    "notes": "REVIEW AFTER 2 MONTHS WITH BLOOD FOR FASTING LIPID PROFILE, HOMOCYSTEINE REPORTS",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-27T14:03:34.176Z",
+    "updatedAt": "2026-10-27T14:03:34.176Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ae0b372435869ff52bc3839",
+    "patient": "6ae0add5435869ff52bbf222",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ae0ae32435869ff52bbf2eb",
+    "medications": [
+      {
+        "name": "TAB.PANVIE 40 MG",
+        "frequency": "1-0-1",
+        "duration": "5",
+        "durationUnit": "Days",
+        "instruction": "Before Food",
+        "_id": "6ae0b372435869ff52bc383a"
+      },
+      {
+        "name": "TAB.VERTIN 8MG ",
+        "frequency": "1-0-1",
+        "duration": "5",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ae0b372435869ff52bc383b"
+      },
+      {
+        "name": "TAB.BILAMONT",
+        "frequency": "0-0-1-",
+        "duration": "3",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ae0b372435869ff52bc383c"
+      }
+    ],
+    "notes": "",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-27T14:21:38.293Z",
+    "updatedAt": "2026-10-27T14:21:38.293Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ae0b461435869ff52bc3b05",
+    "patient": "6ae0add5435869ff52bbf222",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ae0ae32435869ff52bbf2eb",
+    "medications": [
+      {
+        "name": "TAB.PANVIE 40 MG",
+        "frequency": "1-0-1",
+        "duration": "5",
+        "durationUnit": "Days",
+        "instruction": "Before Food",
+        "_id": "6ae0b372435869ff52bc383a"
+      },
+      {
+        "name": "TAB.VERTIN 8MG ",
+        "frequency": "1-0-1",
+        "duration": "5",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ae0b372435869ff52bc383b"
+      },
+      {
+        "name": "TAB.BILAMONT",
+        "frequency": "0-0-1-",
+        "duration": "3",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ae0b372435869ff52bc383c"
+      }
+    ],
+    "notes": "",
+    "followUpDate": null,
+    "isDraft": true,
+    "isImmutable": true,
+    "createdAt": "2026-10-27T14:25:37.427Z",
+    "updatedAt": "2026-10-27T14:25:37.427Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ae0b461435869ff52bc3b0a",
+    "patient": "6ae0add5435869ff52bbf222",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ae0ae32435869ff52bbf2eb",
+    "medications": [
+      {
+        "name": "TAB.PANVIE 40 MG",
+        "frequency": "1-0-1",
+        "duration": "5",
+        "durationUnit": "Days",
+        "instruction": "Before Food",
+        "_id": "6ae0b372435869ff52bc383a"
+      },
+      {
+        "name": "TAB.VERTIN 8MG ",
+        "frequency": "1-0-1",
+        "duration": "5",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ae0b372435869ff52bc383b"
+      },
+      {
+        "name": "TAB.BILAMONT",
+        "frequency": "0-0-1-",
+        "duration": "3",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ae0b372435869ff52bc383c"
+      }
+    ],
+    "notes": "",
+    "followUpDate": null,
+    "isDraft": true,
+    "isImmutable": true,
+    "createdAt": "2026-10-27T14:25:37.677Z",
+    "updatedAt": "2026-10-27T14:25:37.677Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ae3081b60c0a4868c53ed28",
+    "patient": "6ae3079160c0a4868c53ec11",
+    "doctor": "6abf54c9e41d26b39119be07",
+    "appointment": "6ae307cc60c0a4868c53ec1b",
+    "medications": [
+      {
+        "name": "Aciclovir (Zovirax)",
+        "frequency": "1-1-1",
+        "duration": "4",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ae3081b60c0a4868c53ed29"
+      }
+    ],
+    "notes": "Instructions",
+    "image": null,
+    "followUpDate": "2026-10-30T00:00:00.000Z",
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-29T08:47:23.671Z",
+    "updatedAt": "2026-10-29T08:47:23.671Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ae3093460c0a4868c53f0c7",
+    "patient": "6ae3079160c0a4868c53ec11",
+    "doctor": "6abf54c9e41d26b39119be07",
+    "appointment": "6ae3086e60c0a4868c53ed9d",
+    "medications": [
+      {
+        "name": "Aciclovir (Zovirax)",
+        "frequency": "1-1-1",
+        "duration": "4",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ae3081b60c0a4868c53ed29"
+      }
+    ],
+    "notes": "Instructions",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-29T08:52:04.750Z",
+    "updatedAt": "2026-10-29T08:52:04.750Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ae4331060c0a4868c53f720",
+    "patient": "6adf6d0debf93f920d8beaef",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ae432ce60c0a4868c53f565",
+    "medications": [
+      {
+        "name": "TAB.TELMA 20 MG IF BP IS MORE THAN 140/90",
+        "frequency": "1-0-0",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6adf77db435869ff52bb2202"
+      },
+      {
+        "name": "TAB.BILAMONT",
+        "frequency": "0-0-1-",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "After Food",
+        "_id": "6adf77db435869ff52bb2203"
+      },
+      {
+        "name": "TAB.PANTOCID 40 MG",
+        "frequency": "0-0-1",
+        "duration": "2",
+        "durationUnit": "Weeks",
+        "instruction": "Before Food",
+        "_id": "6adf77db435869ff52bb2204"
+      }
+    ],
+    "notes": "",
+    "followUpDate": null,
+    "isDraft": true,
+    "isImmutable": true,
+    "createdAt": "2026-10-30T06:02:56.887Z",
+    "updatedAt": "2026-10-30T06:03:06.926Z",
+    "__v": 0,
+    "image": ""
+  },
+  {
+    "_id": "6ae4367c60c0a4868c543a1e",
+    "patient": "6ae432ef60c0a4868c53f70f",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ae4332560c0a4868c53f908",
+    "medications": [
+      {
+        "name": "TAB.ROZALET 75/10 MG",
+        "frequency": "0-0-1",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6ae4367c60c0a4868c543a1f"
+      },
+      {
+        "name": "TAB.LOSAR 50 MG ",
+        "frequency": "1-0-0",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6ae4367c60c0a4868c543a20"
+      },
+      {
+        "name": "TAB.CONCOR 5MG ",
+        "frequency": "0-0-1",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6ae4367c60c0a4868c543a21"
+      },
+      {
+        "name": "TAB.PANTOCID 40 MG IF NEEDED",
+        "frequency": "1-0-0",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "Before Food",
+        "_id": "6ae4367c60c0a4868c543a22"
+      },
+      {
+        "name": "TAB.VERTIN 8MG",
+        "frequency": "1-0-1",
+        "duration": "5",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ae4367c60c0a4868c543a23"
+      }
+    ],
+    "notes": "",
+    "image": null,
+    "followUpDate": null,
+    "isDraft": false,
+    "isImmutable": false,
+    "createdAt": "2026-10-30T06:17:32.259Z",
+    "updatedAt": "2026-10-30T06:17:32.259Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ae4368260c0a4868c543bf1",
+    "patient": "6ae432ef60c0a4868c53f70f",
+    "doctor": "6a2c05e40fc20531048bb15a",
+    "appointment": "6ae4332560c0a4868c53f908",
+    "medications": [
+      {
+        "name": "TAB.ROZALET 75/10 MG",
+        "frequency": "0-0-1",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6ae436a160c0a4868c544100"
+      },
+      {
+        "name": "TAB.LOSAR 50 MG ",
+        "frequency": "1-0-0",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6ae436a160c0a4868c544101"
+      },
+      {
+        "name": "TAB.CONCOR 5MG ",
+        "frequency": "0-0-1",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "After Food",
+        "_id": "6ae436a160c0a4868c544102"
+      },
+      {
+        "name": "TAB.PANTOCID 40 MG IF NEEDED",
+        "frequency": "1-0-0",
+        "duration": "Till Review",
+        "durationUnit": "Till Review",
+        "instruction": "Before Food",
+        "_id": "6ae436a160c0a4868c544103"
+      },
+      {
+        "name": "TAB.VERTIN 8MG",
+        "frequency": "1-0-1",
+        "duration": "5",
+        "durationUnit": "Days",
+        "instruction": "After Food",
+        "_id": "6ae436a160c0a4868c544104"
+      }
+    ],
+    "notes": "REVIEW AFTER 2 MONTHS",
+    "followUpDate": null,
+    "isDraft": true,
+    "isImmutable": true,
+    "createdAt": "2026-10-30T06:17:38.197Z",
+    "updatedAt": "2026-10-30T06:18:09.648Z",
+    "__v": 5,
+    "image": ""
+  }
+]

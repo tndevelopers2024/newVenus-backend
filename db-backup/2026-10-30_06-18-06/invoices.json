@@ -1,0 +1,902 @@
+[
+  {
+    "_id": "6a7c22b62ae89186a4494a84",
+    "invoiceNumber": "INV-1786520246065-815",
+    "patient": "6a7b157442c3ac1f9f7ed345",
+    "appointment": "6a7c224c2ae89186a4494902",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6a7c22b62ae89186a4494a85"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-08-12T07:37:26.068Z",
+    "updatedAt": "2026-08-12T07:37:26.068Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a7c24fe58611d6b8a6d7d08",
+    "invoiceNumber": "INV-1786520830280-331",
+    "patient": "69eb7b530fc20531048bada0",
+    "appointment": "6a7c232b2ae89186a4494b63",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6a7c24fe58611d6b8a6d7d09"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-08-12T07:47:10.282Z",
+    "updatedAt": "2026-08-12T07:47:10.282Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a7c534a6ef03be9719f3e1e",
+    "invoiceNumber": "INV-1786532682268-961",
+    "patient": "6a7c51306ef03be9719f3b89",
+    "appointment": "6a7c51616ef03be9719f3b93",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6a7c534a6ef03be9719f3e1f"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-08-12T11:04:42.270Z",
+    "updatedAt": "2026-08-12T11:04:42.270Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a7c66fe6ef03be9719f54e6",
+    "invoiceNumber": "INV-1786537726340-93",
+    "patient": "6a7c51306ef03be9719f3b89",
+    "appointment": "6a7c63926ef03be9719f4f02",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6a7c66fe6ef03be9719f54e7"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-08-12T12:28:46.342Z",
+    "updatedAt": "2026-08-12T12:28:46.342Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a848880e6c7ac4a5efc60dd",
+    "invoiceNumber": "INV-1787070592262-404",
+    "patient": "6a8487e3e6c7ac4a5efc5ec4",
+    "appointment": "6a848808e6c7ac4a5efc5ece",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6a848880e6c7ac4a5efc60de"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-08-18T16:29:52.264Z",
+    "updatedAt": "2026-08-18T16:29:52.264Z",
+    "__v": 0
+  },
+  {
+    "_id": "6abf5052e41d26b39119b674",
+    "invoiceNumber": "INV-1790922834794-794",
+    "patient": "6abf4fa6e41d26b39119b46e",
+    "appointment": "6abf4febe41d26b39119b478",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6abf5052e41d26b39119b675"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-02T06:33:54.796Z",
+    "updatedAt": "2026-10-02T06:33:54.796Z",
+    "__v": 0
+  },
+  {
+    "_id": "6abf506be41d26b39119b6b2",
+    "invoiceNumber": "INV-1790922859150-894",
+    "patient": "6abf4fa6e41d26b39119b46e",
+    "appointment": "6abf4febe41d26b39119b478",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6abf506be41d26b39119b6b3"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-02T06:34:19.152Z",
+    "updatedAt": "2026-10-02T06:34:19.152Z",
+    "__v": 0
+  },
+  {
+    "_id": "6abf5348e41d26b39119bbe0",
+    "invoiceNumber": "INV-1790923592935-841",
+    "patient": "6abf52c4e41d26b39119b9fb",
+    "appointment": "6abf52e7e41d26b39119ba09",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6abf5348e41d26b39119bbe1"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-02T06:46:32.936Z",
+    "updatedAt": "2026-10-02T06:46:32.936Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ac5e597c2a61a13a1986599",
+    "invoiceNumber": "INV-1791354263455-50",
+    "patient": "6abf5f83e41d26b39119bf5b",
+    "appointment": "6ac5e3bec2a61a13a1985bb7",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ac5e597c2a61a13a198659a"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-07T06:24:23.456Z",
+    "updatedAt": "2026-10-07T06:24:23.456Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ac5e62693fc2b3e33051cdd",
+    "invoiceNumber": "INV-1791354406902-435",
+    "patient": "6abf5f83e41d26b39119bf5b",
+    "appointment": "6ac5e3bec2a61a13a1985bb7",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ac5e62693fc2b3e33051cde"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-07T06:26:46.905Z",
+    "updatedAt": "2026-10-07T06:26:46.905Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ac6171a44082c1c8ae4fdf3",
+    "invoiceNumber": "INV-1791366938750-135",
+    "patient": "69eb7b530fc20531048bada0",
+    "appointment": "6ac6160d44082c1c8ae4fa80",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ac6171a44082c1c8ae4fdf4"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-07T09:55:38.752Z",
+    "updatedAt": "2026-10-07T09:55:38.752Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ac6240ac37af28985f04d18",
+    "invoiceNumber": "INV-1791370250864-24",
+    "patient": "6abf68e3e41d26b39119bfe2",
+    "appointment": "6ac62297c37af28985f04a22",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ac6240ac37af28985f04d19"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-07T10:50:50.867Z",
+    "updatedAt": "2026-10-07T10:50:50.867Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ac87f81579d060d5fa34a73",
+    "invoiceNumber": "INV-1791524737309-669",
+    "patient": "6abf52c4e41d26b39119b9fb",
+    "appointment": "6ac87a06fd1b4cc0533d5480",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ac87f81579d060d5fa34a74"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-09T05:45:37.312Z",
+    "updatedAt": "2026-10-09T05:45:37.312Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ac8d7af01434212da18599a",
+    "invoiceNumber": "INV-1791547311749-908",
+    "patient": "6abf68e3e41d26b39119bfe2",
+    "appointment": "6ac8d72f01434212da18574d",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ac8d7af01434212da18599b"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-09T12:01:51.750Z",
+    "updatedAt": "2026-10-09T12:01:51.750Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad0bd6357c5085307a2c241",
+    "invoiceNumber": "INV-1792064867960-887",
+    "patient": "6abf68e3e41d26b39119bfe2",
+    "appointment": "6ad0bd4157c5085307a2c1fa",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ad0bd6357c5085307a2c242"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-15T11:47:47.963Z",
+    "updatedAt": "2026-10-15T11:47:47.963Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad0c31b57c5085307a2c4cd",
+    "invoiceNumber": "INV-1792066331622-162",
+    "patient": "6abf68e3e41d26b39119bfe2",
+    "appointment": "6ac78deb62d95ab1fe208620",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ad0c31b57c5085307a2c4ce"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-15T12:12:11.623Z",
+    "updatedAt": "2026-10-15T12:12:11.623Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad211f43ac677dc08462df6",
+    "invoiceNumber": "INV-1792152052115-494",
+    "patient": "6ad20f473ac677dc08462560",
+    "appointment": "6ad20f9f3ac677dc0846256a",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ad211f43ac677dc08462df7"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-16T12:00:52.119Z",
+    "updatedAt": "2026-10-16T12:00:52.119Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad23de3aecf0f5285dc18c8",
+    "invoiceNumber": "INV-1792163299686-54",
+    "patient": "6ad20f473ac677dc08462560",
+    "appointment": "6ad214ed3ac677dc08462e30",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ad23de3aecf0f5285dc18c9"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-16T15:08:19.689Z",
+    "updatedAt": "2026-10-16T15:08:19.689Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad764ded8f72b090e9b6725",
+    "invoiceNumber": "INV-1792500958802-809",
+    "patient": "6ad76213d8f72b090e9b5f24",
+    "appointment": "6ad76292d8f72b090e9b5f45",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ad764ded8f72b090e9b6726"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-20T12:55:58.804Z",
+    "updatedAt": "2026-10-20T12:55:58.804Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad7687ad8f72b090e9b737a",
+    "invoiceNumber": "INV-1792501882137-873",
+    "patient": "6ad76340d8f72b090e9b5f95",
+    "appointment": "6ad763c7d8f72b090e9b60c0",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ad7687ad8f72b090e9b737b"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-20T13:11:22.139Z",
+    "updatedAt": "2026-10-20T13:11:22.139Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad76bf5d8f72b090e9b7cc3",
+    "invoiceNumber": "INV-1792502773420-838",
+    "patient": "6ad76875d8f72b090e9b7361",
+    "appointment": "6ad76a2dd8f72b090e9b73e5",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ad76bf5d8f72b090e9b7cc4"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-20T13:26:13.422Z",
+    "updatedAt": "2026-10-20T13:26:13.422Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad7775cd8f72b090e9b8874",
+    "invoiceNumber": "INV-1792505692762-143",
+    "patient": "6ad76babd8f72b090e9b7ac7",
+    "appointment": "6ad76c5cd8f72b090e9b7d02",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ad7775cd8f72b090e9b8875"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-20T14:14:52.764Z",
+    "updatedAt": "2026-10-20T14:14:52.764Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad78a5bd8f72b090e9bbd06",
+    "invoiceNumber": "INV-1792510555031-401",
+    "patient": "6ad77ed5d8f72b090e9b9f53",
+    "appointment": "6ad77f05d8f72b090e9b9f61",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ad78a5bd8f72b090e9bbd07"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-20T15:35:55.033Z",
+    "updatedAt": "2026-10-20T15:35:55.033Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad78c30d8f72b090e9bc44f",
+    "invoiceNumber": "INV-1792511024509-785",
+    "patient": "6ad77227d8f72b090e9b824f",
+    "appointment": "6ad77260d8f72b090e9b8263",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ad78c30d8f72b090e9bc450"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-20T15:43:44.510Z",
+    "updatedAt": "2026-10-20T15:43:44.510Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad78f5ed8f72b090e9bd308",
+    "invoiceNumber": "INV-1792511838797-273",
+    "patient": "6ad778b3d8f72b090e9b8900",
+    "appointment": "6ad778e9d8f72b090e9b8914",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ad78f5ed8f72b090e9bd309"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-20T15:57:18.798Z",
+    "updatedAt": "2026-10-20T15:57:18.798Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad7955cd8f72b090e9bf370",
+    "invoiceNumber": "INV-1792513372327-995",
+    "patient": "6ad777e7d8f72b090e9b88e3",
+    "appointment": "6ad7780dd8f72b090e9b88f7",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ad7955cd8f72b090e9bf371"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-20T16:22:52.328Z",
+    "updatedAt": "2026-10-20T16:22:52.328Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad85cb4d8f72b090e9c26b0",
+    "invoiceNumber": "INV-1792564404246-540",
+    "patient": "6ad8566bd8f72b090e9bf515",
+    "appointment": "6ad856a1d8f72b090e9bf529",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ad85cb4d8f72b090e9c26b1"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-21T06:33:24.247Z",
+    "updatedAt": "2026-10-21T06:33:24.247Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad8c635d8f72b090e9c3840",
+    "invoiceNumber": "INV-1792591413371-808",
+    "patient": "6ad8be10d8f72b090e9c274f",
+    "appointment": "6ad8be50d8f72b090e9c275d",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ad8c635d8f72b090e9c3841"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-21T14:03:33.372Z",
+    "updatedAt": "2026-10-21T14:03:33.372Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ad8cb01d8f72b090e9c5102",
+    "invoiceNumber": "INV-1792592641082-958",
+    "patient": "6ad8bebfd8f72b090e9c2766",
+    "appointment": "6ad8bf00d8f72b090e9c2774",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ad8cb01d8f72b090e9c5103"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-21T14:24:01.084Z",
+    "updatedAt": "2026-10-21T14:24:01.084Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ada1c88d8f72b090e9c7afc",
+    "invoiceNumber": "INV-1792679048641-352",
+    "patient": "6ada13f4d8f72b090e9c537f",
+    "appointment": "6ada1435d8f72b090e9c538d",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ada1c88d8f72b090e9c7afd"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-22T14:24:08.643Z",
+    "updatedAt": "2026-10-22T14:24:08.643Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ada1f85d8f72b090e9c8c85",
+    "invoiceNumber": "INV-1792679813349-303",
+    "patient": "6ada167dd8f72b090e9c53d8",
+    "appointment": "6ada16c3d8f72b090e9c53e6",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ada1f85d8f72b090e9c8c86"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-22T14:36:53.350Z",
+    "updatedAt": "2026-10-22T14:36:53.350Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ada250bd8f72b090e9ca00e",
+    "invoiceNumber": "INV-1792681227328-157",
+    "patient": "6ada1858d8f72b090e9c57ef",
+    "appointment": "6ada19a2d8f72b090e9c612a",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ada250bd8f72b090e9ca00f"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-22T15:00:27.330Z",
+    "updatedAt": "2026-10-22T15:00:27.330Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adb6c86d8f72b090e9ccf5d",
+    "invoiceNumber": "INV-1792765062615-543",
+    "patient": "6adb65f1d8f72b090e9cb566",
+    "appointment": "6adb6652d8f72b090e9cb574",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6adb6c86d8f72b090e9ccf5e"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-23T14:17:42.616Z",
+    "updatedAt": "2026-10-23T14:17:42.616Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adb7272d8f72b090e9cdcd4",
+    "invoiceNumber": "INV-1792766578724-218",
+    "patient": "6adb6ef1d8f72b090e9cd0ca",
+    "appointment": "6adb6f30d8f72b090e9cd0d8",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6adb7272d8f72b090e9cdcd5"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-23T14:42:58.726Z",
+    "updatedAt": "2026-10-23T14:42:58.726Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adb73ebd8f72b090e9ce462",
+    "invoiceNumber": "INV-1792766955254-164",
+    "patient": "6adb6f71d8f72b090e9cd0e1",
+    "appointment": "6adb708cd8f72b090e9cd0ef",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6adb73ebd8f72b090e9ce463"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-23T14:49:15.255Z",
+    "updatedAt": "2026-10-23T14:49:15.255Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adb7631d8f72b090e9cf800",
+    "invoiceNumber": "INV-1792767537512-149",
+    "patient": "6adb713cd8f72b090e9cd0f8",
+    "appointment": "6adb7191d8f72b090e9cd246",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6adb7631d8f72b090e9cf801"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-23T14:58:57.513Z",
+    "updatedAt": "2026-10-23T14:58:57.513Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adc4ec2d8f72b090e9d38d8",
+    "invoiceNumber": "INV-1792822978663-119",
+    "patient": "6adc4662d8f72b090e9cfae0",
+    "appointment": "6adc4686d8f72b090e9cfaee",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6adc4ec2d8f72b090e9d38d9"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-24T06:22:58.664Z",
+    "updatedAt": "2026-10-24T06:22:58.664Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adcd081d8f72b090e9d55a7",
+    "invoiceNumber": "INV-1792856193104-288",
+    "patient": "6adcc356d8f72b090e9d3ea5",
+    "appointment": "6adcc386d8f72b090e9d3eb3",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6adcd081d8f72b090e9d55a8"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-24T15:36:33.106Z",
+    "updatedAt": "2026-10-24T15:36:33.106Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adf614aebf93f920d8bb586",
+    "invoiceNumber": "INV-1793024330586-514",
+    "patient": "6adf5961ebf93f920d8b9e07",
+    "appointment": "6adf59b7ebf93f920d8b9e15",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6adf614aebf93f920d8bb587"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-26T14:18:50.587Z",
+    "updatedAt": "2026-10-26T14:18:50.587Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adf676cebf93f920d8bdc1d",
+    "invoiceNumber": "INV-1793025900579-910",
+    "patient": "6adf56f2d8f72b090e9d638f",
+    "appointment": "6adf5739d8f72b090e9d639d",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6adf676cebf93f920d8bdc1e"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-26T14:45:00.581Z",
+    "updatedAt": "2026-10-26T14:45:00.581Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adf6dfaebf93f920d8bfca0",
+    "invoiceNumber": "INV-1793027578175-852",
+    "patient": "6adf5ef2ebf93f920d8b9ea9",
+    "appointment": "6adf5f18ebf93f920d8b9eb7",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6adf6dfaebf93f920d8bfca1"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-26T15:12:58.177Z",
+    "updatedAt": "2026-10-26T15:12:58.177Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adf718cebf93f920d8c23cf",
+    "invoiceNumber": "INV-1793028492274-866",
+    "patient": "6adf65b8ebf93f920d8bbec4",
+    "appointment": "6adf65fcebf93f920d8bc35c",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6adf718cebf93f920d8c23d0"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-26T15:28:12.276Z",
+    "updatedAt": "2026-10-26T15:28:12.276Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adf741febf93f920d8c33b5",
+    "invoiceNumber": "INV-1793029151920-662",
+    "patient": "6adf6c1febf93f920d8bde03",
+    "appointment": "6adf6c43ebf93f920d8bde21",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6adf741febf93f920d8c33b6"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-26T15:39:11.921Z",
+    "updatedAt": "2026-10-26T15:39:11.921Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adf77dc435869ff52bb22a4",
+    "invoiceNumber": "INV-1793030108783-548",
+    "patient": "6adf6d0debf93f920d8beaef",
+    "appointment": "6adf6df0ebf93f920d8bfbd5",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6adf77dc435869ff52bb22a5"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-26T15:55:08.785Z",
+    "updatedAt": "2026-10-26T15:55:08.785Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ae04a8d435869ff52bbdfed",
+    "invoiceNumber": "INV-1793084045404-945",
+    "patient": "6ae03e19435869ff52bb3541",
+    "appointment": "6ae03e76435869ff52bb354f",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ae04a8d435869ff52bbdfee"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-27T06:54:05.406Z",
+    "updatedAt": "2026-10-27T06:54:05.406Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ae0af38435869ff52bc0832",
+    "invoiceNumber": "INV-1793109816048-36",
+    "patient": "6ae0ac00435869ff52bbef6f",
+    "appointment": "6ae0ad5d435869ff52bbf174",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ae0af38435869ff52bc0833"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-27T14:03:36.049Z",
+    "updatedAt": "2026-10-27T14:03:36.049Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ae0b374435869ff52bc38b7",
+    "invoiceNumber": "INV-1793110900172-834",
+    "patient": "6ae0add5435869ff52bbf222",
+    "appointment": "6ae0ae32435869ff52bbf2eb",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ae0b374435869ff52bc38b8"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-27T14:21:40.173Z",
+    "updatedAt": "2026-10-27T14:21:40.173Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ae3081d60c0a4868c53ed2f",
+    "invoiceNumber": "INV-1793263645116-256",
+    "patient": "6ae3079160c0a4868c53ec11",
+    "appointment": "6ae307cc60c0a4868c53ec1b",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ae3081d60c0a4868c53ed30"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-29T08:47:25.119Z",
+    "updatedAt": "2026-10-29T08:47:25.119Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ae3093660c0a4868c53f0d2",
+    "invoiceNumber": "INV-1793263926105-864",
+    "patient": "6ae3079160c0a4868c53ec11",
+    "appointment": "6ae3086e60c0a4868c53ed9d",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ae3093660c0a4868c53f0d3"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-29T08:52:06.106Z",
+    "updatedAt": "2026-10-29T08:52:06.106Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ae4367d60c0a4868c543afa",
+    "invoiceNumber": "INV-1793341053888-787",
+    "patient": "6ae432ef60c0a4868c53f70f",
+    "appointment": "6ae4332560c0a4868c53f908",
+    "items": [
+      {
+        "description": "Consultation Fee",
+        "amount": 500,
+        "_id": "6ae4367d60c0a4868c543afb"
+      }
+    ],
+    "totalAmount": 500,
+    "status": "Unpaid",
+    "createdAt": "2026-10-30T06:17:33.890Z",
+    "updatedAt": "2026-10-30T06:17:33.890Z",
+    "__v": 0
+  }
+]

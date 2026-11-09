@@ -1,0 +1,58 @@
+{
+  "database": "newVenus",
+  "backupAt": "2026-10-30T06:18:14.346Z",
+  "totalCollections": 10,
+  "totalDocuments": 809,
+  "collections": [
+    {
+      "collection": "appointments",
+      "documents": 78,
+      "file": "appointments.json"
+    },
+    {
+      "collection": "auditlogs",
+      "documents": 457,
+      "file": "auditlogs.json"
+    },
+    {
+      "collection": "departments",
+      "documents": 0,
+      "file": "departments.json"
+    },
+    {
+      "collection": "drugs",
+      "documents": 81,
+      "file": "drugs.json"
+    },
+    {
+      "collection": "invoices",
+      "documents": 50,
+      "file": "invoices.json"
+    },
+    {
+      "collection": "newVenusdb",
+      "documents": 0,
+      "file": "newVenusdb.json"
+    },
+    {
+      "collection": "prescriptions",
+      "documents": 55,
+      "file": "prescriptions.json"
+    },
+    {
+      "collection": "prescriptiontemplates",
+      "documents": 4,
+      "file": "prescriptiontemplates.json"
+    },
+    {
+      "collection": "testreports",
+      "documents": 0,
+      "file": "testreports.json"
+    },
+    {
+      "collection": "users",
+      "documents": 84,
+      "file": "users.json"
+    }
+  ]
+}
